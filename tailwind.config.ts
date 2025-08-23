@@ -19,9 +19,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'comic': ['Comic Sans MS', 'cursive'],
-				'inter': ['Comic Sans MS', 'cursive'],
-				'playfair': ['Comic Sans MS', 'cursive'],
+				'comic': ['Georgia', 'serif'],
+				'inter': ['Georgia', 'serif'],
+				'playfair': ['Georgia', 'serif'],
 			},
 			fontSize: {
 				'xs': ['16px', { lineHeight: '24px', fontWeight: '700' }],

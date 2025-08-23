@@ -82,19 +82,19 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
 
   body {
     @apply bg-background text-foreground font-comic text-lg;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'Georgia', serif;
     font-weight: 700;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-comic;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'Georgia', serif;
     font-weight: 900;
   }
 
   p, span, div, button, input, textarea {
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'Georgia', serif;
     font-weight: 700;
   }
 
