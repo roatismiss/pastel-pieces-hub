@@ -274,38 +274,34 @@ const Index = () => {
       </section>
 
       {/* Community Feed Section */}
-      <section id="community" className="py-12 md:py-16 px-4">
+      <section id="community" className="py-12 md:py-16 px-4 bg-[#f0f0f3] relative">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-3 md:mb-4">
+          <div className="text-center mb-8 md:mb-12 bg-[#f0f0f3] rounded-[20px] p-6 md:p-8 shadow-[8px_8px_16px_#d1d1d4,-8px_-8px_16px_#ffffff] mx-4">
+            <h2 className="text-3xl md:text-4xl font-inter font-light mb-3 md:mb-4 text-[#5a5a5a]">
               Aici nu ești singur cu gândurile tale
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              <strong>Mii de români ca tine</strong> își împărtășesc zilnic experiențele, 
+            <p className="text-lg md:text-xl text-[#7a7a7a] max-w-2xl mx-auto font-light">
+              <span className="font-normal">Mii de români ca tine</span> își împărtășesc zilnic experiențele, 
               primesc sprijin și se vindecă împreună. 
-              <span className="text-healio-mint">Anonimitatea ta este protejată 100%.</span>
+              <span className="text-[#6a8a7a] font-normal">Anonimitatea ta este protejată 100%.</span>
             </p>
           </div>
 
           <PuzzleGrid>
             {/* Write post CTA */}
-            <PuzzleCard size="2x1" variant="orange">
+            <PuzzleCard size="2x1" className="bg-[#f0f0f3] rounded-[20px] shadow-[8px_8px_16px_#d1d1d4,-8px_-8px_16px_#ffffff] border-0">
               <div className="p-4 md:p-6 text-center">
-                <h3 className="text-lg md:text-xl font-playfair font-semibold mb-2 md:mb-3">
+                <h3 className="text-lg md:text-xl font-inter font-light mb-2 md:mb-3 text-[#5a5a5a]">
                   Ce simți chiar acum? Spune-ne...
                 </h3>
-                <p className="text-xs md:text-sm text-healio-orange-foreground/80 mb-3 md:mb-4">
+                <p className="text-xs md:text-sm text-[#7a7a7a] mb-3 md:mb-4 font-light">
                   Comunitatea noastră te ascultă fără să te judece. 
-                  <strong>Primul pas către vindecare e să vorbești.</strong>
+                  <span className="font-normal">Primul pas către vindecare e să vorbești.</span>
                 </p>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange text-xs md:text-sm"
-                >
-                  <Plus className="mr-1 md:mr-2 h-3 md:h-4 w-3 md:w-4" />
+                <button className="bg-[#f0f0f3] text-[#5a5a5a] font-normal text-xs md:text-sm px-4 py-2 rounded-[12px] shadow-[4px_4px_8px_#d1d1d4,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#d1d1d4,-2px_-2px_4px_#ffffff] transition-all duration-200 flex items-center gap-2 mx-auto">
+                  <Plus className="h-3 md:h-4 w-3 md:w-4" />
                   Începe să vorbești
-                </Button>
+                </button>
               </div>
             </PuzzleCard>
 
@@ -317,19 +313,38 @@ const Index = () => {
                   index === 1 ? '1x1' : 
                   index === 2 ? '2x1' : '1x2'
                 }
-                variant={
-                  index === 1 ? 'turquoise' :
-                  index === 2 ? 'mint' : 'default'
-                }
+                className="bg-[#f0f0f3] rounded-[20px] shadow-[8px_8px_16px_#d1d1d4,-8px_-8px_16px_#ffffff] border-0"
               >
-                <CommunityCard 
-                  post={post}
-                  size={
-                    index === 0 ? '2x2' : 
-                    index === 1 ? '1x1' : 
-                    index === 2 ? '2x1' : '1x2'
-                  }
-                />
+                <div className="p-4 md:p-6 h-full">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-8 h-8 bg-[#f0f0f3] rounded-full shadow-[4px_4px_8px_#d1d1d4,-4px_-4px_8px_#ffffff] flex items-center justify-center flex-shrink-0">
+                      <div className="w-4 h-4 bg-[#e5e5e8] rounded-full shadow-[inset_2px_2px_4px_#d1d1d4,inset_-2px_-2px_4px_#ffffff]"></div>
+                    </div>
+                    <div>
+                      <div className="font-inter font-normal text-[#5a5a5a] text-sm">{post.author}</div>
+                      <div className="text-xs text-[#8a8a8a] font-light">{post.timestamp}</div>
+                    </div>
+                  </div>
+                  
+                  <p className="text-[#6a6a6a] font-light text-sm md:text-base leading-relaxed mb-4">
+                    {post.content}
+                  </p>
+                  
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {Object.entries(post.reactions).map(([reaction, count]) => (
+                      <button 
+                        key={reaction}
+                        className="bg-[#f0f0f3] text-[#7a7a7a] px-3 py-1 rounded-[8px] text-xs font-light shadow-[2px_2px_4px_#d1d1d4,-2px_-2px_4px_#ffffff] hover:shadow-[1px_1px_2px_#d1d1d4,-1px_-1px_2px_#ffffff] transition-all duration-150"
+                      >
+                        {reaction === 'hug' && '🤗'} 
+                        {reaction === 'growth' && '🌱'} 
+                        {reaction === 'strength' && '💪'} 
+                        {reaction === 'insight' && '💡'} 
+                        {count}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </PuzzleCard>
             ))}
           </PuzzleGrid>
