@@ -4,6 +4,7 @@ import { PuzzleGrid, PuzzleCard } from '@/components/PuzzleGrid';
 import { TherapistCard } from '@/components/TherapistCard';
 import { CommunityCard } from '@/components/CommunityCard';
 import { FloatingNodes } from '@/components/FloatingNodes';
+import { Link } from 'react-router-dom';
 import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 import heroImage from '@/assets/hero-healio.jpg';
@@ -116,11 +117,11 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-3">
-              <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-                Conectează-te
+              <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
+                <Link to="/auth">Conectează-te</Link>
               </Button>
-              <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4">
-                Începe acum
+              <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4" asChild>
+                <Link to="/auth">Începe acum</Link>
               </Button>
             </div>
           </div>
