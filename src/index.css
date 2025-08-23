@@ -120,16 +120,60 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
   /* Responsive puzzle adjustments */
   @media (max-width: 768px) {
     .puzzle-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      padding: 0 8px;
     }
     
-    .puzzle-2x1, .puzzle-2x2 {
-      grid-column: span 1;
+    /* Mobile puzzle variants - create mosaic effect */
+    .puzzle-mobile-wide { 
+      grid-column: span 6; 
+      min-height: 200px;
     }
     
-    .puzzle-1x2, .puzzle-2x2 {
-      grid-row: span 1;
+    .puzzle-mobile-half { 
+      grid-column: span 3; 
+      min-height: 150px;
+    }
+    
+    .puzzle-mobile-tall { 
+      grid-column: span 2; 
+      grid-row: span 2;
+      min-height: 250px;
+    }
+    
+    .puzzle-mobile-square { 
+      grid-column: span 2; 
+      min-height: 120px;
+    }
+    
+    .puzzle-mobile-vertical { 
+      grid-column: span 3; 
+      grid-row: span 2;
+      min-height: 280px;
+    }
+    
+    /* Override desktop sizes on mobile */
+    .puzzle-2x1 { 
+      grid-column: span 4; 
+      min-height: 180px;
+    }
+    
+    .puzzle-2x2 { 
+      grid-column: span 6; 
+      grid-row: span 2;
+      min-height: 320px;
+    }
+    
+    .puzzle-1x2 { 
+      grid-column: span 2; 
+      grid-row: span 2;
+      min-height: 250px;
+    }
+    
+    .puzzle-1x1 { 
+      grid-column: span 2; 
+      min-height: 120px;
     }
   }
 
