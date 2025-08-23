@@ -5,6 +5,7 @@ import { TherapistCard } from '@/components/TherapistCard';
 import { CommunityCard } from '@/components/CommunityCard';
 import { FloatingNodes } from '@/components/FloatingNodes';
 import ConnectedParticles from '@/components/ConnectedParticles';
+import CloudNodes from '@/components/CloudNodes';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 
@@ -201,12 +202,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Test message to check if component loads */}
+      {/* Beautiful Cloud Animation Section */}
       <section className="py-8 text-center">
-        <div className="bg-healio-orange p-4 rounded-lg max-w-md mx-auto">
-          <h2 className="text-2xl font-bold">Healio is Loading!</h2>
-          <p>If you see this, the component is working correctly!</p>
-        </div>
+        <CloudNodes />
       </section>
 
       {/* Marketplace Section */}
