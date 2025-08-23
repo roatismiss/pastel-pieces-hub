@@ -3,7 +3,8 @@ import { Badge } from '@/components/ui/badge';
 import { PuzzleGrid, PuzzleCard } from '@/components/PuzzleGrid';
 import { TherapistCard } from '@/components/TherapistCard';
 import { CommunityCard } from '@/components/CommunityCard';
-import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus } from 'lucide-react';
+import { FloatingNodes } from '@/components/FloatingNodes';
+import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star } from 'lucide-react';
 
 import heroImage from '@/assets/hero-healio.jpg';
 import therapist1 from '@/assets/therapist-1.jpg';
@@ -125,42 +126,70 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 relative">
         <div className="container mx-auto max-w-6xl">
           <PuzzleGrid className="gap-6">
             <PuzzleCard size="2x2" className="flex items-center justify-center relative overflow-hidden">
+              <FloatingNodes />
               <img 
                 src={heroImage} 
                 alt="Healio - Echilibru interior"
-                className="absolute inset-0 w-full h-full object-cover opacity-20"
+                className="absolute inset-0 w-full h-full object-cover opacity-10"
               />
               <div className="relative z-10 text-center p-8">
+                <div className="mb-6">
+                  <Badge className="bg-healio-mint/20 text-healio-mint-foreground border-healio-mint/30 mb-4">
+                    ✨ Platforma #1 pentru sănătatea mentală în România
+                  </Badge>
+                </div>
                 <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 leading-tight">
-                  Healio îți aduce doi pași esențiali pentru 
-                  <span className="healio-gradient-text"> echilibrul interior</span>
+                  Nu mai suferi în 
+                  <span className="healio-gradient-text"> tăcere</span>
+                  <br />
+                  Găsește-ți echilibrul cu Healio
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                  🧑‍⚕️ un marketplace unde găsești rapid terapeuți licențiați și 
-                  📰 un feed comunitar unde împărtășești gânduri și primești sprijin.
-                  Totul într-un spațiu sigur, cald și uman.
+                  <strong>Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
+                  rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
+                  <span className="text-healio-orange font-medium">Fără judecăți. Doar sprijin.</span>
                 </p>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-8 text-sm">
+                  <div className="flex items-center gap-2 justify-center">
+                    <Shield className="h-5 w-5 text-healio-turquoise" />
+                    <span>100% Confidențial</span>
+                  </div>
+                  <div className="flex items-center gap-2 justify-center">
+                    <Clock className="h-5 w-5 text-healio-mint" />
+                    <span>Disponibil 24/7</span>
+                  </div>
+                  <div className="flex items-center gap-2 justify-center">
+                    <Star className="h-5 w-5 text-healio-orange" />
+                    <span>Terapeuți verificați</span>
+                  </div>
+                </div>
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     size="lg" 
-                    className="bg-healio-turquoise hover:bg-healio-turquoise/90 text-healio-turquoise-foreground font-medium"
+                    className="text-lg px-8 py-4 bg-healio-turquoise hover:bg-healio-turquoise/90 text-healio-turquoise-foreground font-medium shadow-lg hover:shadow-xl transition-all"
                   >
                     <Users className="mr-2 h-5 w-5" />
-                    Descoperă terapeuții
+                    Vorbește cu un terapeut ACUM
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline"
-                    className="border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-healio-orange-foreground"
+                    className="text-lg px-8 py-4 border-2 border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-healio-orange-foreground shadow-lg hover:shadow-xl transition-all"
                   >
                     <Heart className="mr-2 h-5 w-5" />
-                    Intră în comunitate
+                    Alătură-te comunității (gratuit)
                   </Button>
                 </div>
+                
+                <p className="text-sm text-muted-foreground mt-6">
+                  <strong>Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
+                </p>
               </div>
             </PuzzleCard>
           </PuzzleGrid>
@@ -172,10 +201,12 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-playfair font-bold mb-4">
-              Găsește terapeutul potrivit pentru tine
+              Terapeutul perfect te așteaptă
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Toți profesioniștii Healio sunt licențiați, verificați și disponibili online.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Nu mai pierde timpul cu căutări nesfârșite. Terapeuții noștri sunt 
+              <strong> licențiați, verificați și specializați</strong> în ceea ce ai nevoie. 
+              <span className="text-healio-turquoise">Prima consultație poate fi chiar azi.</span>
             </p>
           </div>
 
@@ -224,10 +255,12 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-playfair font-bold mb-4">
-              Un spațiu sigur unde poți fi tu însuți
+              Aici nu ești singur cu gândurile tale
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Împărtășește, întreabă, primește sprijin. Cu anonimitate, dacă vrei.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <strong>Mii de români ca tine</strong> își împărtășesc zilnic experiențele, 
+              primesc sprijin și se vindecă împreună. 
+              <span className="text-healio-mint">Anonimitatea ta este protejată 100%.</span>
             </p>
           </div>
 
@@ -236,14 +269,18 @@ const Index = () => {
             <PuzzleCard size="2x1" variant="orange">
               <div className="p-6 text-center">
                 <h3 className="text-xl font-playfair font-semibold mb-3">
-                  Scrie ce simți acum...
+                  Ce simți chiar acum? Spune-ne...
                 </h3>
+                <p className="text-sm text-healio-orange-foreground/80 mb-4">
+                  Comunitatea noastră te ascultă fără să te judece. 
+                  <strong>Primul pas către vindecare e să vorbești.</strong>
+                </p>
                 <Button 
                   variant="outline" 
                   className="border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange"
                 >
                   <Plus className="mr-2 h-4 w-4" />
-                  Împărtășește
+                  Începe să vorbești
                 </Button>
               </div>
             </PuzzleCard>
@@ -280,10 +317,12 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-playfair font-bold mb-4">
-              Învață și crește
+              Înțelege-te mai bine cu resurse gratuite
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Resurse educaționale și teste pentru a-ți înțelege mai bine starea mentală.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <strong>Cunoașterea de sine</strong> e primul pas spre vindecare. 
+              Testele noastre validate științific și ghidurile practice te ajută să 
+              <span className="text-healio-turquoise">descoperi ce ai cu adevărat nevoie.</span>
             </p>
           </div>
 
@@ -292,10 +331,10 @@ const Index = () => {
               <div className="p-6">
                 <BookOpen className="w-8 h-8 mb-3 text-healio-turquoise-foreground" />
                 <h3 className="text-lg font-playfair font-semibold mb-2">
-                  Test Anxietate
+                  Suferi de anxietate? Află acum!
                 </h3>
                 <p className="text-sm text-healio-turquoise-foreground/80 mb-4">
-                  Evaluează-ți nivelul de anxietate cu un test validat științific.
+                  Test profesional de 5 minute care îți arată exact unde te afli și ce pași să faci.
                 </p>
                 <Button 
                   size="sm" 
@@ -310,10 +349,11 @@ const Index = () => {
             <PuzzleCard size="2x1">
               <div className="p-6">
                 <h3 className="text-xl font-playfair font-semibold mb-3">
-                  Ghidul complet pentru gestionarea stresului
+                  Stresul îți distruge viața? Nu mai lăsa!
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Tehnici practice și științifice pentru a-ți gestiona stresul zilnic și pentru a-ți îmbunătăți calitatea vieții.
+                  <strong>Ghidul complet</strong> cu 15+ tehnici dovedite științific pentru a-ți recâștiga controlul. 
+                  Includes exerciții practice pentru rezultate imediate.
                 </p>
                 <Button size="sm">
                   Citește ghidul
@@ -337,10 +377,11 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-playfair font-bold mb-4">
-              Evenimente și grupuri de sprijin
+              Nu mai trece prin asta singur
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Conectează-te cu alții într-un mediu sigur și de încredere.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <strong>Grupurile noastre de sprijin</strong> te conectează cu oameni care înțeleg exact prin ce treci. 
+              <span className="text-healio-orange">Vindecarea e mai rapidă când nu ești singur.</span>
             </p>
           </div>
 
@@ -349,20 +390,22 @@ const Index = () => {
               <div className="p-6">
                 <Calendar className="w-8 h-8 mb-3 text-healio-orange-foreground" />
                 <h3 className="text-2xl font-playfair font-semibold mb-3">
-                  Grup de Sprijin: Anxietate
+                  💬 Grup Anxietate: "Nu ești nebun, doar ai nevoie de ajutor"
                 </h3>
                 <p className="text-healio-orange-foreground/80 mb-4">
-                  Miercuri, 20:00 - 21:30<br />
-                  Moderator: Dr. Ana Popescu
+                  <strong>Miercuri, 20:00 - 21:30</strong><br />
+                  Moderator: Dr. Ana Popescu (Psiholog Clinician)
                 </p>
                 <p className="text-sm text-healio-orange-foreground/70 mb-4">
-                  Un spațiu sigur pentru a discuta despre anxietate, tehnici de coping și experiențe comune.
+                  <strong>"M-am simțit înțeles pentru prima dată"</strong> - Maria, 32 ani<br />
+                  Un spațiu unde poți vorbi liber despre frici, atacuri de panică și gânduri negative.
                 </p>
                 <Button 
                   variant="outline"
-                  className="border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange"
+                  size="lg"
+                  className="border-2 border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange font-medium"
                 >
-                  Participă
+                  Salvează-mi locul GRATUIT
                 </Button>
               </div>
             </PuzzleCard>
@@ -393,9 +436,10 @@ const Index = () => {
             <h2 className="text-3xl font-playfair font-bold healio-gradient-text mb-4">
               Healio
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Platforma care conectează oamenii cu resursele de sănătate mentală de care au nevoie, 
-              într-un mediu sigur, empatic și de încredere.
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+              <strong>Suntem aici pentru tine.</strong> Healio nu e doar o platformă - e o mișcare de oameni 
+              care cred că <span className="text-healio-turquoise">sănătatea mentală e un drept, nu un privilegiu.</span> 
+              Împreună construim o lume mai empatică, o conversație la timpul potrivit.
             </p>
             <div className="flex justify-center gap-8 text-sm text-muted-foreground">
               <a href="#" className="hover:text-foreground transition-colors">Despre noi</a>
