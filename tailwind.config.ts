@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'playfair': ['Playfair Display', 'serif'],
+				'inter': ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -51,6 +55,14 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				healio: {
+					orange: 'hsl(var(--healio-orange))',
+					'orange-foreground': 'hsl(var(--healio-orange-foreground))',
+					turquoise: 'hsl(var(--healio-turquoise))',
+					'turquoise-foreground': 'hsl(var(--healio-turquoise-foreground))',
+					mint: 'hsl(var(--healio-mint))',
+					'mint-foreground': 'hsl(var(--healio-mint-foreground))',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

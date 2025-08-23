@@ -18,6 +18,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        healio: "bg-healio-orange text-healio-orange-foreground hover:bg-healio-orange/90 transition-all duration-200",
+        turquoise: "bg-healio-turquoise text-healio-turquoise-foreground hover:bg-healio-turquoise/90 transition-all duration-200",
+        mint: "bg-healio-mint text-healio-mint-foreground hover:bg-healio-mint/90 transition-all duration-200",
       },
       size: {
         default: "h-10 px-4 py-2",
