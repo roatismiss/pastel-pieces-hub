@@ -396,60 +396,167 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Events Section */}
-      <section id="events" className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-playfair font-bold mb-4">
-              Nu mai trece prin asta singur
+      {/* Community Section */}
+      <section id="community" className="relative overflow-hidden">
+        {/* Gradient + noise background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F6FFF9] via-white to-[#FFF6FA]"></div>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.06]" 
+             style={{
+               backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.5"/></svg>')`
+             }}>
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          {/* Headings */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#2A2A2A] font-merriweather">
+              Aici nu ești singur cu gândurile tale
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              <strong>Grupurile noastre de sprijin</strong> te conectează cu oameni care înțeleg exact prin ce treci. 
-              <span className="text-healio-orange">Vindecarea e mai rapidă când nu ești singur.</span>
+            <p className="mt-4 text-lg sm:text-xl text-[#4A4A4A]">
+              Mii de români ca tine își împărtășesc zilnic experiențele, primesc sprijin și se vindecă împreună.
+              <span className="bg-gradient-to-r from-[#4EC9B0] to-[#F6B26B] bg-clip-text text-transparent font-semibold italic">
+                Anonimitatea ta este protejată 100%.
+              </span>
             </p>
           </div>
 
-          <PuzzleGrid>
-            <PuzzleCard size="2x2" variant="orange">
-              <div className="p-6">
-                <Calendar className="w-8 h-8 mb-3 text-healio-orange-foreground" />
-                <h3 className="text-2xl font-playfair font-semibold mb-3">
-                  💬 Grup Anxietate: "Nu ești nebun, doar ai nevoie de ajutor"
-                </h3>
-                <p className="text-healio-orange-foreground/80 mb-4">
-                  <strong>Miercuri, 20:00 - 21:30</strong><br />
-                  Moderator: Dr. Ana Popescu (Psiholog Clinician)
-                </p>
-                <p className="text-sm text-healio-orange-foreground/70 mb-4">
-                  <strong>"M-am simțit înțeles pentru prima dată"</strong> - Maria, 32 ani<br />
-                  Un spațiu unde poți vorbi liber despre frici, atacuri de panică și gânduri negative.
-                </p>
+          {/* CTA Card mare */}
+          <div className="relative rounded-3xl bg-[#FFE4BE]/70 backdrop-blur-xl ring-1 ring-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow p-6 sm:p-8 lg:p-10 mb-8 sm:mb-10">
+            {/* subtle inner border */}
+            <div className="absolute inset-0 rounded-3xl ring-1 ring-black/5 pointer-events-none"></div>
+
+            {/* glowing shapes pentru integrare */}
+            <div className="absolute -z-10 -top-6 -left-6 h-28 w-28 rounded-full bg-[#9EF3E1] blur-3xl opacity-40"></div>
+            <div className="absolute -z-10 -bottom-8 -right-8 h-32 w-32 rounded-full bg-[#FFD9C2] blur-3xl opacity-40"></div>
+
+            <div className="text-center max-w-3xl mx-auto">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-[#2A2A2A] font-merriweather">Ce simți chiar acum? Spune‑ne…</h3>
+              <p className="mt-3 text-base sm:text-lg text-[#5A5A5A]">
+                Comunitatea noastră te ascultă fără să te judece.
+                <span className="font-semibold text-[#2F2F2F]">Primul pas către vindecare</span> e să vorbești.
+              </p>
+
+              <div className="mt-6 flex items-center justify-center gap-4 flex-wrap">
+                {/* Buton primar */}
+                <Button 
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#4EC9B0] text-white font-semibold px-5 py-3 shadow-[0_8px_24px_rgba(78,201,176,0.35)] hover:shadow-[0_12px_32px_rgba(78,201,176,0.45)] hover:translate-y-[-1px] active:translate-y-0 transition-all"
+                >
+                  <Plus className="w-5 h-5" /> Începe să vorbești
+                </Button>
+
+                {/* Buton secundar (contur) */}
                 <Button 
                   variant="outline"
-                  size="lg"
-                  className="border-2 border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange font-medium"
+                  className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur text-[#1F3B3A] font-semibold px-5 py-3 hover:bg-white hover:border-black/15 transition"
                 >
-                  Salvează-mi locul GRATUIT
+                  Vezi discuțiile
                 </Button>
               </div>
-            </PuzzleCard>
 
-            <PuzzleCard size="1x1" variant="turquoise">
-              <div className="p-4 text-center">
-                <div className="text-2xl mb-2">📅</div>
-                <h4 className="font-medium mb-2">Workshop Mindfulness</h4>
-                <p className="text-xs text-healio-turquoise-foreground/70">Sâmbătă, 10:00</p>
+              {/* Trust row */}
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#4A4A4A]">
+                <div className="inline-flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 ring-1 ring-black/5">🔒</span>
+                  Confidențial 100%
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 ring-1 ring-black/5">🕒</span>
+                  Răspuns rapid
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 ring-1 ring-black/5">👥</span>
+                  Fără judecăți
+                </div>
               </div>
-            </PuzzleCard>
+            </div>
+          </div>
 
-            <PuzzleCard size="1x1" variant="mint">
-              <div className="p-4 text-center">
-                <div className="text-2xl mb-2">💬</div>
-                <h4 className="font-medium mb-2">Cerc de povești</h4>
-                <p className="text-xs text-healio-mint-foreground/70">Duminică, 19:00</p>
+          {/* Grid postări */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {/* Card postare 1 */}
+            <article className="relative rounded-3xl bg-white/70 backdrop-blur-xl ring-1 ring-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow">
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-black/5 pointer-events-none"></div>
+              <div className="p-6 sm:p-8">
+                <header className="flex items-center gap-3 mb-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#C9F7EF] to-white ring-1 ring-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]"></div>
+                  <div>
+                    <div className="font-semibold text-[#2A2A2A]">Anonim</div>
+                    <div className="text-sm text-[#667085]">30 min</div>
+                  </div>
+                </header>
+                <p className="text-[#3A3A3A]">Mă simt copleșit în ultima vreme. Mi-e teamă să vorbesc cu ai mei despre asta…</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <Button variant="link" className="text-sm font-semibold text-[#1B6E66] hover:underline p-0">
+                    Vezi discuția
+                  </Button>
+                  <div className="text-sm text-[#667085]">23 răspunsuri</div>
+                </div>
               </div>
-            </PuzzleCard>
-          </PuzzleGrid>
+            </article>
+
+            {/* Card postare 2 */}
+            <article className="relative rounded-3xl bg-white/70 backdrop-blur-xl ring-1 ring-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow">
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-black/5 pointer-events-none"></div>
+              <div className="p-6 sm:p-8">
+                <header className="flex items-center gap-3 mb-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#FFE4BE] to-white ring-1 ring-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]"></div>
+                  <div>
+                    <div className="font-semibold text-[#2A2A2A]">Anonim</div>
+                    <div className="text-sm text-[#667085]">2h</div>
+                  </div>
+                </header>
+                <p className="text-[#3A3A3A]">Am început terapia acum 2 luni și pot spune că e cea mai bună decizie pe care am luat-o. Mulțumesc tuturor pentru curaj!</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <Button variant="link" className="text-sm font-semibold text-[#1B6E66] hover:underline p-0">
+                    Vezi discuția
+                  </Button>
+                  <div className="text-sm text-[#667085]">47 răspunsuri</div>
+                </div>
+              </div>
+            </article>
+
+            {/* Card postare 3 */}
+            <article className="relative rounded-3xl bg-white/70 backdrop-blur-xl ring-1 ring-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow">
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-black/5 pointer-events-none"></div>
+              <div className="p-6 sm:p-8">
+                <header className="flex items-center gap-3 mb-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#E0F2FE] to-white ring-1 ring-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]"></div>
+                  <div>
+                    <div className="font-semibold text-[#2A2A2A]">Anonim</div>
+                    <div className="text-sm text-[#667085]">4h</div>
+                  </div>
+                </header>
+                <p className="text-[#3A3A3A]">Cum gestionați anxietatea înainte de întâlniri importante? Căutam strategii practice care chiar funcționează.</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <Button variant="link" className="text-sm font-semibold text-[#1B6E66] hover:underline p-0">
+                    Vezi discuția
+                  </Button>
+                  <div className="text-sm text-[#667085]">15 răspunsuri</div>
+                </div>
+              </div>
+            </article>
+
+            {/* Card postare 4 */}
+            <article className="relative rounded-3xl bg-white/70 backdrop-blur-xl ring-1 ring-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow">
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-black/5 pointer-events-none"></div>
+              <div className="p-6 sm:p-8">
+                <header className="flex items-center gap-3 mb-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#F0FDF4] to-white ring-1 ring-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]"></div>
+                  <div>
+                    <div className="font-semibold text-[#2A2A2A]">Anonim</div>
+                    <div className="text-sm text-[#667085]">1 zi</div>
+                  </div>
+                </header>
+                <p className="text-[#3A3A3A]">Pentru cei care se gândesc să înceapă terapia: merită fiecare sesiune. Să nu vă fie teamă să faceți primul pas.</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <Button variant="link" className="text-sm font-semibold text-[#1B6E66] hover:underline p-0">
+                    Vezi discuția
+                  </Button>
+                  <div className="text-sm text-[#667085]">89 răspunsuri</div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
