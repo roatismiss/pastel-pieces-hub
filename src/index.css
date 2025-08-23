@@ -683,15 +683,121 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
   .card-healio-orange {
     background: hsl(var(--healio-orange));
     color: hsl(var(--healio-orange-foreground));
+    border-radius: 20px;
+    box-shadow: 
+      5px 5px 20px hsla(35, 100%, 70%, 0.3),
+      -5px -5px 10px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+  }
+
+  .card-healio-orange:hover {
+    box-shadow: 
+      8px 8px 25px hsla(35, 100%, 70%, 0.4),
+      -8px -8px 15px rgba(255, 255, 255, 0.9),
+      inset 0 2px 0 rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
   }
 
   .card-healio-turquoise {
     background: hsl(var(--healio-turquoise));
     color: hsl(var(--healio-turquoise-foreground));
+    border-radius: 20px;
+    box-shadow: 
+      5px 5px 20px hsla(179, 64%, 60%, 0.3),
+      -5px -5px 10px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+  }
+
+  .card-healio-turquoise:hover {
+    box-shadow: 
+      8px 8px 25px hsla(179, 64%, 60%, 0.4),
+      -8px -8px 15px rgba(255, 255, 255, 0.9),
+      inset 0 2px 0 rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
   }
 
   .card-healio-mint {
     background: hsl(var(--healio-mint));
     color: hsl(var(--healio-mint-foreground));
+    border-radius: 20px;
+    box-shadow: 
+      5px 5px 20px hsla(140, 61%, 70%, 0.3),
+      -5px -5px 10px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+  }
+
+  .card-healio-mint:hover {
+    box-shadow: 
+      8px 8px 25px hsla(140, 61%, 70%, 0.4),
+      -8px -8px 15px rgba(255, 255, 255, 0.9),
+      inset 0 2px 0 rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+  }
+
+  /* Neumorphic buttons for colored cards */
+  .btn-neuro-turquoise {
+    background: hsl(var(--healio-turquoise));
+    color: hsl(var(--healio-turquoise-foreground));
+    border-radius: 12px;
+    box-shadow: 
+      3px 3px 8px hsla(179, 64%, 60%, 0.4),
+      -3px -3px 6px rgba(255, 255, 255, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-neuro-turquoise:hover {
+    box-shadow: 
+      4px 4px 12px hsla(179, 64%, 60%, 0.5),
+      -4px -4px 8px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+  }
+
+  .btn-neuro-mint {
+    background: hsl(var(--healio-mint));
+    color: hsl(var(--healio-mint-foreground));
+    border-radius: 12px;
+    box-shadow: 
+      3px 3px 8px hsla(140, 61%, 70%, 0.4),
+      -3px -3px 6px rgba(255, 255, 255, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-neuro-mint:hover {
+    box-shadow: 
+      4px 4px 12px hsla(140, 61%, 70%, 0.5),
+      -4px -4px 8px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+  }
+
+  .btn-neuro-orange {
+    background: hsl(var(--healio-orange));
+    color: hsl(var(--healio-orange-foreground));
+    border-radius: 12px;
+    box-shadow: 
+      3px 3px 8px hsla(35, 100%, 70%, 0.4),
+      -3px -3px 6px rgba(255, 255, 255, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-neuro-orange:hover {
+    box-shadow: 
+      4px 4px 12px hsla(35, 100%, 70%, 0.5),
+      -4px -4px 8px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
   }
 }
