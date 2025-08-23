@@ -274,34 +274,33 @@ const Index = () => {
       </section>
 
       {/* Community Feed Section */}
-      <section id="community" className="py-12 md:py-16 px-4">
+      <section id="community" className="py-12 md:py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-3 md:mb-4">
+            <h2 className="text-3xl md:text-4xl font-inter font-light mb-3 md:mb-4 text-gray-700">
               Aici nu ești singur cu gândurile tale
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              <strong>Mii de români ca tine</strong> își împărtășesc zilnic experiențele, 
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
+              <strong className="font-medium">Mii de români ca tine</strong> își împărtășesc zilnic experiențele, 
               primesc sprijin și se vindecă împreună. 
-              <span className="text-healio-mint">Anonimitatea ta este protejată 100%.</span>
+              <span className="text-teal-600 font-medium">Anonimitatea ta este protejată 100%.</span>
             </p>
           </div>
 
           <PuzzleGrid>
             {/* Write post CTA */}
-            <PuzzleCard size="2x1" variant="orange">
+            <PuzzleCard size="2x1" variant="orange" className="neuro-card-orange">
               <div className="p-4 md:p-6 text-center">
-                <h3 className="text-lg md:text-xl font-playfair font-semibold mb-2 md:mb-3">
+                <h3 className="text-lg md:text-xl font-inter font-medium mb-2 md:mb-3 text-gray-700">
                   Ce simți chiar acum? Spune-ne...
                 </h3>
-                <p className="text-xs md:text-sm text-healio-orange-foreground/80 mb-3 md:mb-4">
+                <p className="text-xs md:text-sm text-gray-600 mb-3 md:mb-4 font-light">
                   Comunitatea noastră te ascultă fără să te judece. 
-                  <strong>Primul pas către vindecare e să vorbești.</strong>
+                  <strong className="font-medium">Primul pas către vindecare e să vorbești.</strong>
                 </p>
                 <Button 
-                  variant="outline" 
                   size="sm"
-                  className="border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange text-xs md:text-sm"
+                  className="neuro-btn-orange font-medium text-xs md:text-sm"
                 >
                   <Plus className="mr-1 md:mr-2 h-3 md:h-4 w-3 md:w-4" />
                   Începe să vorbești
@@ -309,29 +308,32 @@ const Index = () => {
               </div>
             </PuzzleCard>
 
-            {communityPosts.map((post, index) => (
-              <PuzzleCard 
-                key={post.id}
-                size={
-                  index === 0 ? '2x2' : 
-                  index === 1 ? '1x1' : 
-                  index === 2 ? '2x1' : '1x2'
-                }
-                variant={
-                  index === 1 ? 'turquoise' :
-                  index === 2 ? 'mint' : 'default'
-                }
-              >
-                <CommunityCard 
-                  post={post}
+            {communityPosts.map((post, index) => {
+              const cardVariant = index === 1 ? 'turquoise' : index === 2 ? 'mint' : 'default';
+              const neuroClass = index === 1 ? 'neuro-card-turquoise' : index === 2 ? 'neuro-card-mint' : 'neuro-card-default';
+              
+              return (
+                <PuzzleCard 
+                  key={post.id}
                   size={
                     index === 0 ? '2x2' : 
                     index === 1 ? '1x1' : 
                     index === 2 ? '2x1' : '1x2'
                   }
-                />
-              </PuzzleCard>
-            ))}
+                  variant={cardVariant}
+                  className={neuroClass}
+                >
+                  <CommunityCard 
+                    post={post}
+                    size={
+                      index === 0 ? '2x2' : 
+                      index === 1 ? '1x1' : 
+                      index === 2 ? '2x1' : '1x2'
+                    }
+                  />
+                </PuzzleCard>
+              );
+            })}
           </PuzzleGrid>
         </div>
       </section>
