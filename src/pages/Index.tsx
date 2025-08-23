@@ -219,9 +219,9 @@ const Index = () => {
       </section>
 
       {/* Marketplace Section */}
-      <section id="marketplace" className="py-12 md:py-16 px-4 bg-muted/30 relative overflow-hidden">
+      <section id="marketplace" className="py-12 md:py-16 px-4 relative overflow-hidden neuro-background texture-paper">
         <ConnectedParticles />
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl relative z-10 neuro-inset-deep p-8 md:p-12 rounded-3xl bg-background/40 backdrop-blur-sm">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-3 md:mb-4">
               Terapeutul perfect te așteaptă
