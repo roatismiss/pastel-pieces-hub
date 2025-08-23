@@ -19,9 +19,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'comic': ['Georgia', 'serif'],
-				'inter': ['Georgia', 'serif'],
-				'playfair': ['Georgia', 'serif'],
+				'inter': ['Inter', 'sans-serif'],
+				'merriweather': ['Merriweather', 'serif'],
+				'sans': ['Inter', 'sans-serif'],
+				'serif': ['Merriweather', 'serif'],
 			},
 			fontSize: {
 				'xs': ['16px', { lineHeight: '24px', fontWeight: '700' }],

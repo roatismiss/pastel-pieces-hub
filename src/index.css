@@ -81,20 +81,26 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
   }
 
   body {
-    @apply bg-background text-foreground font-comic text-lg;
-    font-family: 'Georgia', serif;
-    font-weight: 700;
+    @apply bg-background text-foreground font-inter text-lg;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-comic;
-    font-family: 'Georgia', serif;
-    font-weight: 900;
+    @apply font-merriweather;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
   }
 
   p, span, div, button, input, textarea {
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  /* Special emphasis for therapist names and important headings */
+  .therapist-name, .card-title, .section-title {
+    font-family: 'Merriweather', serif;
     font-weight: 700;
   }
 
