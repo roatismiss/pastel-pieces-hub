@@ -4,6 +4,7 @@ import { PuzzleGrid, PuzzleCard } from '@/components/PuzzleGrid';
 import { TherapistCard } from '@/components/TherapistCard';
 import { CommunityCard } from '@/components/CommunityCard';
 import { FloatingNodes } from '@/components/FloatingNodes';
+import ConnectedParticles from '@/components/ConnectedParticles';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 
@@ -209,8 +210,9 @@ const Index = () => {
       </section>
 
       {/* Marketplace Section */}
-      <section id="marketplace" className="py-12 md:py-16 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-6xl">
+      <section id="marketplace" className="py-12 md:py-16 px-4 bg-muted/30 relative overflow-hidden">
+        <ConnectedParticles />
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-3 md:mb-4">
               Terapeutul perfect te așteaptă
