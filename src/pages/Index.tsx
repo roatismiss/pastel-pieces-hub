@@ -92,10 +92,10 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-playfair font-bold healio-gradient-text">
+            <div className="flex items-center gap-4 md:gap-8">
+              <h1 className="text-xl md:text-2xl font-playfair font-bold healio-gradient-text">
                 Healio
               </h1>
               <div className="hidden md:flex items-center gap-6">
@@ -113,11 +113,11 @@ const Index = () => {
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm">
+            <div className="flex items-center gap-2 md:gap-3">
+              <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
                 Conectează-te
               </Button>
-              <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90">
+              <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4">
                 Începe acum
               </Button>
             </div>
@@ -126,68 +126,68 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 relative">
+      <section className="py-12 md:py-20 px-4 relative">
         <div className="container mx-auto max-w-6xl">
-          <PuzzleGrid className="gap-6">
-            <PuzzleCard size="2x2" className="flex items-center justify-center relative overflow-hidden">
+          <PuzzleGrid className="gap-4 md:gap-6">
+            <PuzzleCard size="2x2" className="flex items-center justify-center relative overflow-hidden min-h-[500px] md:min-h-[600px]">
               <FloatingNodes />
               <img 
                 src={heroImage} 
                 alt="Healio - Echilibru interior"
                 className="absolute inset-0 w-full h-full object-cover opacity-10"
               />
-              <div className="relative z-10 text-center p-8">
-                <div className="mb-6">
-                  <Badge className="bg-healio-mint/20 text-healio-mint-foreground border-healio-mint/30 mb-4">
+              <div className="relative z-10 text-center p-4 md:p-8">
+                <div className="mb-4 md:mb-6">
+                  <Badge className="bg-healio-mint/20 text-healio-mint-foreground border-healio-mint/30 mb-4 text-xs md:text-sm">
                     ✨ Platforma #1 pentru sănătatea mentală în România
                   </Badge>
                 </div>
-                <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 leading-tight">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 md:mb-6 leading-tight">
                   Nu mai suferi în 
                   <span className="healio-gradient-text"> tăcere</span>
                   <br />
                   Găsește-ți echilibrul cu Healio
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed">
                   <strong>Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
                   rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
                   <span className="text-healio-orange font-medium">Fără judecăți. Doar sprijin.</span>
                 </p>
                 
-                <div className="grid md:grid-cols-3 gap-6 mb-8 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8 text-sm">
                   <div className="flex items-center gap-2 justify-center">
-                    <Shield className="h-5 w-5 text-healio-turquoise" />
+                    <Shield className="h-4 md:h-5 w-4 md:w-5 text-healio-turquoise flex-shrink-0" />
                     <span>100% Confidențial</span>
                   </div>
                   <div className="flex items-center gap-2 justify-center">
-                    <Clock className="h-5 w-5 text-healio-mint" />
+                    <Clock className="h-4 md:h-5 w-4 md:w-5 text-healio-mint flex-shrink-0" />
                     <span>Disponibil 24/7</span>
                   </div>
                   <div className="flex items-center gap-2 justify-center">
-                    <Star className="h-5 w-5 text-healio-orange" />
+                    <Star className="h-4 md:h-5 w-4 md:w-5 text-healio-orange flex-shrink-0" />
                     <span>Terapeuți verificați</span>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col gap-3 md:gap-4 justify-center max-w-md mx-auto md:max-w-none md:flex-row">
                   <Button 
                     size="lg" 
-                    className="text-lg px-8 py-4 bg-healio-turquoise hover:bg-healio-turquoise/90 text-healio-turquoise-foreground font-medium shadow-lg hover:shadow-xl transition-all"
+                    className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 bg-healio-turquoise hover:bg-healio-turquoise/90 text-healio-turquoise-foreground font-medium shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
                   >
-                    <Users className="mr-2 h-5 w-5" />
+                    <Users className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                     Vorbește cu un terapeut ACUM
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline"
-                    className="text-lg px-8 py-4 border-2 border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-healio-orange-foreground shadow-lg hover:shadow-xl transition-all"
+                    className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 border-2 border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-healio-orange-foreground shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
                   >
-                    <Heart className="mr-2 h-5 w-5" />
+                    <Heart className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                     Alătură-te comunității (gratuit)
                   </Button>
                 </div>
                 
-                <p className="text-sm text-muted-foreground mt-6">
+                <p className="text-xs md:text-sm text-muted-foreground mt-4 md:mt-6">
                   <strong>Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
                 </p>
               </div>
@@ -197,13 +197,13 @@ const Index = () => {
       </section>
 
       {/* Marketplace Section */}
-      <section id="marketplace" className="py-16 px-4 bg-muted/30">
+      <section id="marketplace" className="py-12 md:py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-playfair font-bold mb-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-3 md:mb-4">
               Terapeutul perfect te așteaptă
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               Nu mai pierde timpul cu căutări nesfârșite. Terapeuții noștri sunt 
               <strong> licențiați, verificați și specializați</strong> în ceea ce ai nevoie. 
               <span className="text-healio-turquoise">Prima consultație poate fi chiar azi.</span>
@@ -211,19 +211,19 @@ const Index = () => {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-3 mb-8 justify-center">
-            <Button variant="outline" size="sm">
-              <Search className="mr-2 h-4 w-4" />
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8 justify-center">
+            <Button variant="outline" size="sm" className="text-xs md:text-sm">
+              <Search className="mr-1 md:mr-2 h-3 md:h-4 w-3 md:w-4" />
               Caută
             </Button>
-            <Button variant="outline" size="sm">
-              <Filter className="mr-2 h-4 w-4" />
+            <Button variant="outline" size="sm" className="text-xs md:text-sm">
+              <Filter className="mr-1 md:mr-2 h-3 md:h-4 w-3 md:w-4" />
               Specializare
             </Button>
-            <Badge variant="secondary" className="bg-healio-mint">Anxietate</Badge>
-            <Badge variant="secondary" className="bg-healio-turquoise">Depresie</Badge>
-            <Badge variant="secondary" className="bg-healio-orange">Stres</Badge>
-            <Badge variant="secondary">Relații</Badge>
+            <Badge variant="secondary" className="bg-healio-mint text-xs">Anxietate</Badge>
+            <Badge variant="secondary" className="bg-healio-turquoise text-xs">Depresie</Badge>
+            <Badge variant="secondary" className="bg-healio-orange text-xs">Stres</Badge>
+            <Badge variant="secondary" className="text-xs">Relații</Badge>
           </div>
 
           <PuzzleGrid>
@@ -242,8 +242,8 @@ const Index = () => {
             {/* Add more therapist placeholder cards */}
             <PuzzleCard size="1x1" variant="mint">
               <div className="p-4 text-center">
-                <Plus className="w-8 h-8 mx-auto mb-2 text-healio-mint-foreground/60" />
-                <p className="text-sm font-medium">Vezi mai mulți terapeuți</p>
+                <Plus className="w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 text-healio-mint-foreground/60" />
+                <p className="text-xs md:text-sm font-medium">Vezi mai mulți terapeuți</p>
               </div>
             </PuzzleCard>
           </PuzzleGrid>
@@ -251,13 +251,13 @@ const Index = () => {
       </section>
 
       {/* Community Feed Section */}
-      <section id="community" className="py-16 px-4">
+      <section id="community" className="py-12 md:py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-playfair font-bold mb-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-3 md:mb-4">
               Aici nu ești singur cu gândurile tale
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               <strong>Mii de români ca tine</strong> își împărtășesc zilnic experiențele, 
               primesc sprijin și se vindecă împreună. 
               <span className="text-healio-mint">Anonimitatea ta este protejată 100%.</span>
@@ -267,19 +267,20 @@ const Index = () => {
           <PuzzleGrid>
             {/* Write post CTA */}
             <PuzzleCard size="2x1" variant="orange">
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-playfair font-semibold mb-3">
+              <div className="p-4 md:p-6 text-center">
+                <h3 className="text-lg md:text-xl font-playfair font-semibold mb-2 md:mb-3">
                   Ce simți chiar acum? Spune-ne...
                 </h3>
-                <p className="text-sm text-healio-orange-foreground/80 mb-4">
+                <p className="text-xs md:text-sm text-healio-orange-foreground/80 mb-3 md:mb-4">
                   Comunitatea noastră te ascultă fără să te judece. 
                   <strong>Primul pas către vindecare e să vorbești.</strong>
                 </p>
                 <Button 
                   variant="outline" 
-                  className="border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange"
+                  size="sm"
+                  className="border-healio-orange-foreground text-healio-orange-foreground hover:bg-healio-orange-foreground hover:text-healio-orange text-xs md:text-sm"
                 >
-                  <Plus className="mr-2 h-4 w-4" />
+                  <Plus className="mr-1 md:mr-2 h-3 md:h-4 w-3 md:w-4" />
                   Începe să vorbești
                 </Button>
               </div>

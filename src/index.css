@@ -127,6 +127,17 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
     .puzzle-2x1, .puzzle-2x2 {
       grid-column: span 1;
     }
+    
+    .puzzle-1x2, .puzzle-2x2 {
+      grid-row: span 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .puzzle-grid {
+      gap: 16px;
+      padding: 0 4px;
+    }
   }
 
   /* Smooth interactions */
@@ -137,6 +148,27 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
   .hover-lift:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .hover-lift:hover {
+      transform: none; /* Disable hover lift on mobile */
+    }
+    
+    /* Reduce padding on mobile */
+    .mobile-padding {
+      padding: 1rem !important;
+    }
+    
+    /* Smaller text on mobile */
+    .mobile-text-sm {
+      font-size: 0.875rem !important;
+    }
+    
+    .mobile-text-base {
+      font-size: 1rem !important;
+    }
   }
 }
 
