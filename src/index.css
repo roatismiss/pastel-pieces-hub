@@ -169,6 +169,28 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
     .mobile-text-base {
       font-size: 1rem !important;
     }
+    
+    /* Better text wrapping and spacing */
+    h1, h2, h3, h4, h5, h6 {
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+    
+    p {
+      word-wrap: break-word;
+      line-height: 1.6;
+    }
+    
+    /* Button text optimization */
+    button {
+      word-wrap: break-word;
+    }
+    
+    /* Container padding for better text visibility */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }
 

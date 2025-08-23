@@ -142,13 +142,14 @@ const Index = () => {
                     ✨ Platforma #1 pentru sănătatea mentală în România
                   </Badge>
                 </div>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 md:mb-6 leading-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 md:mb-6 leading-tight">
                   Nu mai suferi în 
                   <span className="healio-gradient-text"> tăcere</span>
-                  <br />
+                  <br className="hidden sm:block" />
+                  <span className="sm:hidden"> </span>
                   Găsește-ți echilibrul cu Healio
                 </h1>
-                <p className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-sm sm:text-base md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed px-2">
                   <strong>Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
                   rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
                   <span className="text-healio-orange font-medium">Fără judecăți. Doar sprijin.</span>
@@ -169,21 +170,21 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 md:gap-4 justify-center max-w-md mx-auto md:max-w-none md:flex-row">
+                <div className="flex flex-col gap-3 md:gap-4 justify-center max-w-md mx-auto md:max-w-none md:flex-row px-2">
                   <Button 
                     size="lg" 
-                    className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 bg-healio-turquoise hover:bg-healio-turquoise/90 text-healio-turquoise-foreground font-medium shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
+                    className="text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 bg-healio-turquoise hover:bg-healio-turquoise/90 text-healio-turquoise-foreground font-medium shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
                   >
-                    <Users className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                    Vorbește cu un terapeut ACUM
+                    <Users className="mr-1 sm:mr-2 h-4 md:h-5 w-4 md:w-5 flex-shrink-0" />
+                    <span className="truncate">Vorbește cu terapeut ACUM</span>
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline"
-                    className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 border-2 border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-healio-orange-foreground shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
+                    className="text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 border-2 border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-healio-orange-foreground shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
                   >
-                    <Heart className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                    Alătură-te comunității (gratuit)
+                    <Heart className="mr-1 sm:mr-2 h-4 md:h-5 w-4 md:w-5 flex-shrink-0" />
+                    <span className="truncate">Alătură-te comunității</span>
                   </Button>
                 </div>
                 
