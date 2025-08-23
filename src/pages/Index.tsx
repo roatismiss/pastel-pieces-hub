@@ -12,6 +12,8 @@ import therapist2 from '@/assets/therapist-2.jpg';
 import therapist3 from '@/assets/therapist-3.jpg';
 
 const Index = () => {
+  console.log('Index component is rendering');
+  
   const therapists = [
     {
       id: '1',
@@ -194,6 +196,14 @@ const Index = () => {
               </div>
             </PuzzleCard>
           </PuzzleGrid>
+        </div>
+      </section>
+
+      {/* Test message to check if component loads */}
+      <section className="py-8 text-center">
+        <div className="bg-healio-orange p-4 rounded-lg max-w-md mx-auto">
+          <h2 className="text-2xl font-bold">Healio is Loading!</h2>
+          <p>If you see this, the component is working correctly!</p>
         </div>
       </section>
 
