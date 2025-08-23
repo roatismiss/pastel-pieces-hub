@@ -100,9 +100,17 @@ const Index = () => {
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 md:gap-8">
-              <h1 className="text-xl md:text-2xl font-playfair font-bold healio-gradient-text">
-                Healio
-              </h1>
+              <div className="relative group">
+                <h1 className="text-xl md:text-2xl font-orbitron font-bold healio-gradient-text animate-logo-bounce hover:animate-logo-glow cursor-pointer transition-all duration-300">
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0s' }}>H</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0.1s' }}>e</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0.2s' }}>a</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0.3s' }}>l</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0.4s' }}>i</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0.5s' }}>o</span>
+                </h1>
+                <div className="absolute -inset-2 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
+              </div>
               <div className="hidden md:flex items-center gap-6">
                 <a href="#marketplace" className="text-sm hover:text-primary transition-colors">
                   Terapeuți

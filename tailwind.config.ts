@@ -23,6 +23,8 @@ export default {
 				'merriweather': ['Merriweather', 'serif'],
 				'sans': ['Inter', 'sans-serif'],
 				'serif': ['Merriweather', 'serif'],
+				'orbitron': ['Orbitron', 'monospace'],
+				'creepster': ['Creepster', 'cursive'],
 			},
 			fontSize: {
 				'xs': ['16px', { lineHeight: '24px', fontWeight: '700' }],
@@ -129,6 +131,41 @@ export default {
 				'pulse-glow': {
 					'0%, 100%': { transform: 'scale(1)', opacity: '0.7' },
 					'50%': { transform: 'scale(1.1)', opacity: '1' }
+				},
+				'logo-bounce': {
+					'0%, 100%': { 
+						transform: 'translateY(0px) scale(1) rotate(0deg)',
+						textShadow: '0 0 10px rgba(132, 204, 191, 0.5)'
+					},
+					'25%': { 
+						transform: 'translateY(-8px) scale(1.05) rotate(1deg)',
+						textShadow: '0 0 20px rgba(255, 179, 132, 0.8)'
+					},
+					'75%': { 
+						transform: 'translateY(-4px) scale(1.02) rotate(-1deg)',
+						textShadow: '0 0 15px rgba(179, 255, 204, 0.6)'
+					}
+				},
+				'logo-glow': {
+					'0%, 100%': { 
+						filter: 'hue-rotate(0deg) brightness(1)',
+						textShadow: '0 0 10px rgba(132, 204, 191, 0.5)'
+					},
+					'33%': { 
+						filter: 'hue-rotate(120deg) brightness(1.2)',
+						textShadow: '0 0 20px rgba(255, 179, 132, 0.8)'
+					},
+					'66%': { 
+						filter: 'hue-rotate(240deg) brightness(1.1)',
+						textShadow: '0 0 15px rgba(179, 255, 204, 0.6)'
+					}
+				},
+				'letter-dance': {
+					'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+					'20%': { transform: 'translateY(-3px) rotate(2deg)' },
+					'40%': { transform: 'translateY(1px) rotate(-1deg)' },
+					'60%': { transform: 'translateY(-2px) rotate(1deg)' },
+					'80%': { transform: 'translateY(1px) rotate(-0.5deg)' }
 				}
 			},
 			animation: {
@@ -137,7 +174,10 @@ export default {
 				'float': 'float 6s ease-in-out infinite',
 				'float-reverse': 'float-reverse 8s ease-in-out infinite',
 				'float-slow': 'float-slow 12s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 4s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+				'logo-bounce': 'logo-bounce 3s ease-in-out infinite',
+				'logo-glow': 'logo-glow 4s ease-in-out infinite',
+				'letter-dance': 'letter-dance 2s ease-in-out infinite'
 			}
 		}
 	},
