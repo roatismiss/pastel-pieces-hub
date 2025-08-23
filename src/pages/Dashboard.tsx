@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Calendar, 
   MessageCircle, 
@@ -17,12 +18,7 @@ import {
   BookOpen,
   TrendingUp,
   LogOut,
-  Bell,
-  Home,
-  FileText,
-  GraduationCap,
-  Plus,
-  HeadphonesIcon
+  Bell
 } from 'lucide-react';
 
 interface Profile {
@@ -36,7 +32,6 @@ export default function Dashboard() {
   const { user, loading, signOut } = useAuth();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [profileLoading, setProfileLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState('overview');
 
   // Redirect if not authenticated
   if (!user && !loading) {
@@ -82,294 +77,277 @@ export default function Dashboard() {
 
   if (loading || profileLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     );
   }
 
-  const sidebarItems = [
-    { id: 'overview', label: 'Prezentare generală', icon: Home },
-    { id: 'appointments', label: 'Rezervările mele', icon: Calendar },
-    { id: 'messages', label: 'Mesaje', icon: MessageCircle },
-    { id: 'resources', label: 'Articole și teste', icon: FileText },
-    { id: 'lessons', label: 'Lecții interactive', icon: GraduationCap },
-    { id: 'premium', label: 'Healio+', icon: Plus, badge: 'până la -10%' },
-    { id: 'support', label: 'Suport clienți', icon: HeadphonesIcon },
-    { id: 'profile', label: 'Contul meu', icon: User },
+  const upcomingAppointments = [
+    {
+      id: 1,
+      therapist: "Dr. Sarah Johnson",
+      date: "Today",
+      time: "2:00 PM",
+      type: "Individual Therapy"
+    },
+    {
+      id: 2,
+      therapist: "Dr. Michael Chen",
+      date: "Tomorrow",
+      time: "10:00 AM", 
+      type: "Couples Therapy"
+    }
+  ];
+
+  const recentActivities = [
+    {
+      id: 1,
+      action: "Completed mood check-in",
+      time: "2 hours ago",
+      icon: CheckCircle
+    },
+    {
+      id: 2,
+      action: "Started mindfulness exercise",
+      time: "1 day ago",
+      icon: Heart
+    },
+    {
+      id: 3,
+      action: "Read wellness article",
+      time: "2 days ago",
+      icon: BookOpen
+    }
   ];
 
   return (
-    <div className="min-h-screen bg-background flex">
-      {/* Sidebar */}
-      <aside className="w-64 bg-secondary border-r border-border flex flex-col">
-        <div className="p-6">
-          <div className="flex items-center space-x-2">
-            <Heart className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold text-primary">healio</span>
-          </div>
-        </div>
-        
-        <nav className="flex-1 px-4 pb-4">
-          {sidebarItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveSection(item.id)}
-              className={`w-full flex items-center justify-between px-4 py-3 text-sm rounded-lg mb-1 transition-colors ${
-                activeSection === item.id
-                  ? 'bg-primary/10 text-primary border border-primary/20'
-                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                <item.icon className="h-4 w-4" />
-                <span>{item.label}</span>
-              </div>
-              {item.badge && (
-                <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">
-                  {item.badge}
-                </Badge>
-              )}
-            </button>
-          ))}
-        </nav>
-
-        <div className="p-4 border-t border-border">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={handleSignOut}
-            className="w-full justify-start text-muted-foreground"
-          >
-            <LogOut className="h-4 w-4 mr-3" />
-            Ieși din cont
-          </Button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 overflow-auto">
-        {/* Header */}
-        <header className="bg-background border-b border-border px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-semibold text-foreground">
-                Bună, {profile?.full_name?.split(' ')[0] || 'acolo'}!
-              </h1>
-              <p className="text-muted-foreground">
-                Bine ai revenit pe platforma ta de sănătate mentală
-              </p>
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5">
+      {/* Header */}
+      <header className="bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-4">
+              <Heart className="h-8 w-8 text-primary" />
+              <h1 className="text-2xl font-bold text-foreground">Healio Dashboard</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" size="sm">
                 <Bell className="h-4 w-4" />
               </Button>
-              <Avatar className="h-8 w-8">
-                <AvatarImage src={profile?.avatar_url || ""} />
-                <AvatarFallback>{getInitials(profile?.full_name)}</AvatarFallback>
-              </Avatar>
+              <div className="flex items-center space-x-2">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={profile?.avatar_url || ""} />
+                  <AvatarFallback>{getInitials(profile?.full_name)}</AvatarFallback>
+                </Avatar>
+                <span className="text-sm font-medium text-foreground">
+                  {profile?.full_name || user?.email}
+                </span>
+              </div>
+              <Button variant="outline" size="sm" onClick={handleSignOut}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
             </div>
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* Content Area */}
-        <div className="p-6">
-          {activeSection === 'overview' && (
-            <div className="space-y-6">
-              {/* No Appointments Card */}
-              <Card className="bg-primary text-primary-foreground">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <Calendar className="h-12 w-12 opacity-80" />
-                    <div className="flex-1">
-                      <h3 className="text-lg font-medium mb-2">
-                        În acest moment nu mai ai alte programări planificate.
-                      </h3>
-                      <Button 
-                        size="sm" 
-                        className="bg-accent hover:bg-accent/90 text-accent-foreground"
-                      >
-                        REZERVĂ
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-foreground mb-2">
+            Welcome back, {profile?.full_name?.split(' ')[0] || 'there'}!
+          </h2>
+          <p className="text-muted-foreground">
+            Here's your mental wellness dashboard for today.
+          </p>
+        </div>
 
-              {/* Contact Info Card */}
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <MessageCircle className="h-8 w-8 text-primary mt-1" />
-                    <div className="flex-1">
-                      <h3 className="text-lg font-medium text-foreground mb-2">
-                        Cum te putem contacta?
-                      </h3>
-                      <p className="text-muted-foreground mb-4">
-                        Ai toate informațiile de contact completate? În caz de nevoie, colegii 
-                        noștri de la Relații clienți te vor putea ajuta mai rapid.
-                      </p>
-                      <Button 
-                        className="bg-accent hover:bg-accent/90 text-accent-foreground"
-                      >
-                        COMPLETEAZĂ PROFILUL
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Bottom Cards Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <Settings className="h-8 w-8 text-primary mt-1" />
-                      <div className="flex-1">
-                        <h3 className="font-medium text-foreground mb-2">
-                          Cum să îți pregătești dispozitivul și mediul?
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4">
-                          Nu trebuie să instalezi nimic, te poți conecta din browser, 
-                          sau chiar și de pe telefon.
-                        </p>
-                        <p className="text-sm text-muted-foreground mb-4">
-                          Majoritatea ședințelor nu întâmpină probleme tehnice. Dacă ședința 
-                          nu poate fi realizată din cauza problemelor tehnice, ședința va fi 
-                          achitată de noi.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <Calendar className="h-8 w-8 text-primary mt-1" />
-                      <div className="flex-1">
-                        <h3 className="font-medium text-foreground mb-2">
-                          Dorești să rezervi mai multe programări?
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4">
-                          Planifică mai multe programări în avans, pentru a te asigura că 
-                          găsești ore disponibile în calendarul terapeutului tău care să fie 
-                          compatibile și cu programul tău.
-                        </p>
-                        <Button 
-                          className="bg-accent hover:bg-accent/90 text-accent-foreground"
-                        >
-                          REZERVĂ
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+        {/* Quick Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <Calendar className="h-8 w-8 text-primary" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-muted-foreground">Next Session</p>
+                  <p className="text-2xl font-bold text-foreground">Today 2PM</p>
+                </div>
               </div>
-            </div>
-          )}
+            </CardContent>
+          </Card>
 
-          {activeSection === 'appointments' && (
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <TrendingUp className="h-8 w-8 text-green-500" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-muted-foreground">Progress</p>
+                  <p className="text-2xl font-bold text-foreground">85%</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <Clock className="h-8 w-8 text-blue-500" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-muted-foreground">Total Hours</p>
+                  <p className="text-2xl font-bold text-foreground">24h</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <Heart className="h-8 w-8 text-red-500" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-muted-foreground">Mood Score</p>
+                  <p className="text-2xl font-bold text-foreground">8.2/10</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList>
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="appointments">Appointments</TabsTrigger>
+            <TabsTrigger value="progress">Progress</TabsTrigger>
+            <TabsTrigger value="profile">Profile</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Upcoming Appointments */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Calendar className="h-5 w-5 mr-2" />
+                    Upcoming Appointments
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {upcomingAppointments.map((appointment) => (
+                      <div key={appointment.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                        <div>
+                          <p className="font-medium">{appointment.therapist}</p>
+                          <p className="text-sm text-muted-foreground">{appointment.type}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-medium">{appointment.date}</p>
+                          <p className="text-sm text-muted-foreground">{appointment.time}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Button className="w-full mt-4" variant="outline">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    View All Appointments
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Recent Activity */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <TrendingUp className="h-5 w-5 mr-2" />
+                    Recent Activity
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {recentActivities.map((activity) => (
+                      <div key={activity.id} className="flex items-center space-x-3">
+                        <activity.icon className="h-5 w-5 text-primary" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">{activity.action}</p>
+                          <p className="text-xs text-muted-foreground">{activity.time}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Button className="w-full mt-4" variant="outline">
+                    View Full History
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Quick Actions */}
             <Card>
               <CardHeader>
-                <CardTitle>Programările mele</CardTitle>
-                <CardDescription>Gestionează sesiunile tale de terapie</CardDescription>
+                <CardTitle>Quick Actions</CardTitle>
+                <CardDescription>Common tasks to help manage your wellness journey</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <Button className="h-20 flex-col">
+                    <MessageCircle className="h-6 w-6 mb-2" />
+                    Start Chat
+                  </Button>
+                  <Button variant="outline" className="h-20 flex-col">
+                    <Calendar className="h-6 w-6 mb-2" />
+                    Book Session
+                  </Button>
+                  <Button variant="outline" className="h-20 flex-col">
+                    <Heart className="h-6 w-6 mb-2" />
+                    Mood Check
+                  </Button>
+                  <Button variant="outline" className="h-20 flex-col">
+                    <BookOpen className="h-6 w-6 mb-2" />
+                    Resources
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="appointments">
+            <Card>
+              <CardHeader>
+                <CardTitle>All Appointments</CardTitle>
+                <CardDescription>Manage your therapy sessions and bookings</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8">
                   <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium">Sistemul de programări vine curând</p>
-                  <p className="text-muted-foreground">Construim un sistem complet de programare</p>
+                  <p className="text-lg font-medium">Appointment management coming soon</p>
+                  <p className="text-muted-foreground">We're building a comprehensive scheduling system</p>
                 </div>
               </CardContent>
             </Card>
-          )}
+          </TabsContent>
 
-          {activeSection === 'messages' && (
+          <TabsContent value="progress">
             <Card>
               <CardHeader>
-                <CardTitle>Mesaje</CardTitle>
-                <CardDescription>Comunică cu echipa ta de terapeuți</CardDescription>
+                <CardTitle>Your Progress</CardTitle>
+                <CardDescription>Track your mental wellness journey</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8">
-                  <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium">Sistemul de mesagerie vine curând</p>
-                  <p className="text-muted-foreground">Vei putea comunica direct cu terapeuții</p>
+                  <TrendingUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-lg font-medium">Progress tracking coming soon</p>
+                  <p className="text-muted-foreground">Detailed analytics and insights on your wellness journey</p>
                 </div>
               </CardContent>
             </Card>
-          )}
+          </TabsContent>
 
-          {activeSection === 'resources' && (
+          <TabsContent value="profile">
             <Card>
               <CardHeader>
-                <CardTitle>Articole și teste</CardTitle>
-                <CardDescription>Resurse pentru sănătatea ta mentală</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8">
-                  <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium">Resurse educaționale vin curând</p>
-                  <p className="text-muted-foreground">Articole și teste pentru dezvoltarea personală</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {activeSection === 'lessons' && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Lecții interactive</CardTitle>
-                <CardDescription>Învață tehnici de gestionare a stresului</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8">
-                  <GraduationCap className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium">Lecții interactive vin curând</p>
-                  <p className="text-muted-foreground">Exerciții ghidate și tehnici de mindfulness</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {activeSection === 'premium' && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Healio+ Premium</CardTitle>
-                <CardDescription>Acces extins la serviciile noastre</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8">
-                  <Plus className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium">Servicii premium vin curând</p>
-                  <p className="text-muted-foreground">Acces prioritar și funcții avansate</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {activeSection === 'support' && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Suport clienți</CardTitle>
-                <CardDescription>Contactează echipa noastră pentru ajutor</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8">
-                  <HeadphonesIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium">Suport clienți vine curând</p>
-                  <p className="text-muted-foreground">Chat direct cu echipa de suport</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {activeSection === 'profile' && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Contul meu</CardTitle>
-                <CardDescription>Gestionează profilul și preferințele</CardDescription>
+                <CardTitle>Profile Settings</CardTitle>
+                <CardDescription>Manage your account and preferences</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center space-x-4">
@@ -378,27 +356,24 @@ export default function Dashboard() {
                     <AvatarFallback className="text-lg">{getInitials(profile?.full_name)}</AvatarFallback>
                   </Avatar>
                   <div className="space-y-2">
-                    <h3 className="text-xl font-semibold">{profile?.full_name || 'Nume nesetat'}</h3>
+                    <h3 className="text-xl font-semibold">{profile?.full_name || 'No name set'}</h3>
                     <p className="text-muted-foreground">{user?.email}</p>
                     <Badge variant="secondary">
-                      Membru din {new Date(profile?.created_at || '').toLocaleDateString('ro-RO')}
+                      Member since {new Date(profile?.created_at || '').toLocaleDateString()}
                     </Badge>
                   </div>
                 </div>
                 
                 <div className="border-t pt-6">
-                  <Button 
-                    variant="outline"
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground border-accent"
-                  >
+                  <Button variant="outline">
                     <Settings className="h-4 w-4 mr-2" />
-                    Editează profilul
+                    Edit Profile
                   </Button>
                 </div>
               </CardContent>
             </Card>
-          )}
-        </div>
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );

@@ -2,72 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Professional Healio Design System - 3 Organized Colors
-Clean, modern, and trustworthy healthcare platform design.
-Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
+/* Healio Design System - Premium, Calming, Pastel Colors
+All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
 */
 
 @layer base {
   :root {
-    /* Healthcare Professional 3-Color Palette */
-    --background: 0 0% 100%; /* Pure White */
-    --foreground: 185 15% 20%; /* Deep Teal-Gray */
+    /* Healio Color Palette - Pastel & Calming */
+    --background: 0 0% 98%; /* #FAFAFA */
+    --foreground: 0 0% 27%; /* #444444 */
 
-    /* Primary - Deep Healthcare Teal (Trust & Reliability) */
-    --primary: 185 85% 25%; /* #0B5D5D - Deep Professional Teal */
-    --primary-foreground: 0 0% 98%;
-    --primary-muted: 185 65% 35%; /* Lighter variant for hover */
+    /* Healio Pastel Colors */
+    --healio-orange: 35 100% 84%; /* #FFD6A5 - Pastel Orange */
+    --healio-orange-foreground: 0 0% 27%;
     
-    /* Secondary - Clean Light Gray */
-    --secondary: 185 10% 96%; /* #F7F9F9 - Very light teal-gray */
-    --secondary-foreground: 185 15% 20%;
+    --healio-turquoise: 179 64% 76%; /* #A5E3E2 - Pastel Turquoise */
+    --healio-turquoise-foreground: 0 0% 27%;
     
-    /* Accent - Coral Orange (Call-to-Action) */
-    --accent: 15 85% 65%; /* #EA8B72 - Professional Coral */
-    --accent-foreground: 0 0% 100%;
-    --accent-muted: 15 75% 75%; /* Lighter variant */
+    --healio-mint: 140 61% 87%; /* #C8F2D8 - Mint Green */
+    --healio-mint-foreground: 0 0% 27%;
 
     /* Card System */
-    --card: 0 0% 100%; /* Pure White */
-    --card-foreground: 220 13% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 27%;
+    --card-border: 0 0% 90%;
 
-    /* Neutral System */
-    --muted: 220 14% 96%; /* Very light blue-gray */
-    --muted-foreground: 220 9% 46%;
-    
-    /* Interactive Elements */
-    --border: 220 13% 91%; /* Light border */
-    --input: 0 0% 100%; /* White inputs */
-    --ring: 220 91% 32%; /* Primary blue focus ring */
+    /* Primary - Healio Orange */
+    --primary: 35 100% 84%;
+    --primary-foreground: 0 0% 27%;
 
-    /* Healthcare Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-muted)));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-muted)) 100%);
+    /* Secondary - Healio Turquoise */
+    --secondary: 179 64% 76%;
+    --secondary-foreground: 0 0% 27%;
 
-    /* Professional Shadows */
-    --shadow-sm: 0 1px 3px hsl(220 13% 18% / 0.08);
-    --shadow-md: 0 4px 12px hsl(220 13% 18% / 0.10);
-    --shadow-lg: 0 8px 24px hsl(220 13% 18% / 0.12);
-    --shadow-focus: 0 0 0 3px hsl(var(--primary) / 0.12);
+    /* Accent - Healio Mint */
+    --accent: 140 61% 87%;
+    --accent-foreground: 0 0% 27%;
+
+    /* Muted - Soft background variants */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Interactive states */
+    --border: 0 0% 90%;
+    --input: 0 0% 100%;
+    --ring: 35 100% 84%;
+
+    /* Gradients */
+    --gradient-healio: linear-gradient(135deg, hsl(var(--healio-orange)), hsl(var(--healio-turquoise)));
+    --gradient-calm: linear-gradient(180deg, hsl(var(--healio-mint)), hsl(var(--healio-turquoise)));
+    --gradient-warm: linear-gradient(45deg, hsl(var(--healio-orange)), hsl(var(--healio-mint)));
+
+    /* Shadows - Soft and calming */
+    --shadow-soft: 0 4px 12px hsl(0 0% 0% / 0.05);
+    --shadow-hover: 0 8px 24px hsl(0 0% 0% / 0.08);
+    --shadow-puzzle: 0 2px 8px hsl(0 0% 0% / 0.04);
 
     /* Animations */
-    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-gentle: all 0.15s ease-out;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-gentle: all 0.2s ease-out;
 
-    --radius: 8px; /* More subtle rounded corners */
+    --radius: 12px;
   }
 
   .dark {
-    --background: 185 15% 9%; /* Dark teal-gray */
-    --foreground: 0 0% 98%;
-    --primary: 185 75% 45%; /* Lighter teal for dark mode */
-    --card: 185 15% 12%;
-    --card-foreground: 0 0% 98%;
-    --border: 185 15% 20%;
-    --input: 185 15% 15%;
-    --muted: 185 15% 15%;
-    --muted-foreground: 185 10% 65%;
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
   }
 }
 
@@ -79,35 +83,32 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
   body {
     @apply bg-background text-foreground font-inter;
     font-feature-settings: "rlig" 1, "calt" 1;
-    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair text-foreground;
-    line-height: 1.2;
+    @apply font-playfair;
   }
 
-  /* Professional Card System */
+  /* Puzzle Grid System */
   .puzzle-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 8px;
     align-items: start;
   }
 
   .puzzle-card {
     background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
+    border: 1px solid hsl(var(--card-border));
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-puzzle);
+    transition: var(--transition-gentle);
     overflow: hidden;
   }
 
   .puzzle-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
-    border-color: hsl(var(--accent) / 0.2);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
   }
 
   /* Card size variants */
@@ -120,7 +121,7 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
   @media (max-width: 768px) {
     .puzzle-grid {
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 12px;
     }
     
     .puzzle-2x1, .puzzle-2x2 {
@@ -132,29 +133,21 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
     }
   }
 
-  /* Professional Interactions */
+  @media (max-width: 480px) {
+    .puzzle-grid {
+      gap: 16px;
+      padding: 0 4px;
+    }
+  }
+
+  /* Smooth interactions */
   .hover-lift {
-    transition: var(--transition-smooth);
+    transition: var(--transition-gentle);
   }
   
   .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  /* Focus Styles */
-  button:focus-visible, 
-  input:focus-visible, 
-  select:focus-visible,
-  textarea:focus-visible {
-    outline: none;
-    box-shadow: var(--shadow-focus);
-    border-color: hsl(var(--primary));
-  }
-
-  /* Professional Typography */
-  .text-balance {
-    text-wrap: balance;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
 
   /* Mobile optimizations */
@@ -202,39 +195,26 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
 }
 
 @layer components {
-  /* Professional Healio Components */
+  /* Healio specific components */
   .healio-gradient-text {
-    background: var(--gradient-primary);
+    background: var(--gradient-healio);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
   }
 
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  .card-healio-orange {
+    background: hsl(var(--healio-orange));
+    color: hsl(var(--healio-orange-foreground));
   }
 
-  .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border;
+  .card-healio-turquoise {
+    background: hsl(var(--healio-turquoise));
+    color: hsl(var(--healio-turquoise-foreground));
   }
 
-  .btn-accent {
-    @apply bg-accent text-accent-foreground hover:bg-accent/90;
-  }
-
-  .card-professional {
-    @apply bg-card border border-border rounded-lg shadow-sm;
-  }
-
-  .text-professional {
-    @apply text-foreground leading-relaxed;
-  }
-
-  .section-padding {
-    @apply py-16 px-6;
-  }
-
-  .container-professional {
-    @apply max-w-6xl mx-auto;
+  .card-healio-mint {
+    background: hsl(var(--healio-mint));
+    color: hsl(var(--healio-mint-foreground));
   }
 }
