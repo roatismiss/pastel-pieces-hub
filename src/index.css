@@ -9,23 +9,23 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
 
 @layer base {
   :root {
-    /* Professional 3-Color Palette */
+    /* Healthcare Professional 3-Color Palette */
     --background: 0 0% 100%; /* Pure White */
-    --foreground: 220 13% 18%; /* Deep Charcoal */
+    --foreground: 185 15% 20%; /* Deep Teal-Gray */
 
-    /* Primary - Professional Blue (Trust & Reliability) */
-    --primary: 220 91% 32%; /* #0F3B82 - Deep Professional Blue */
+    /* Primary - Deep Healthcare Teal (Trust & Reliability) */
+    --primary: 185 85% 25%; /* #0B5D5D - Deep Professional Teal */
     --primary-foreground: 0 0% 98%;
-    --primary-muted: 220 91% 45%; /* Lighter variant for hover */
+    --primary-muted: 185 65% 35%; /* Lighter variant for hover */
     
-    /* Secondary - Clean White & Light Gray */
-    --secondary: 0 0% 97%; /* #F8F9FA - Off-white */
-    --secondary-foreground: 220 13% 18%;
+    /* Secondary - Clean Light Gray */
+    --secondary: 185 10% 96%; /* #F7F9F9 - Very light teal-gray */
+    --secondary-foreground: 185 15% 20%;
     
-    /* Accent - Soft Teal (Healthcare/Wellness) */
-    --accent: 180 42% 48%; /* #4A9B9B - Professional Teal */
-    --accent-foreground: 0 0% 98%;
-    --accent-muted: 180 42% 65%; /* Lighter variant */
+    /* Accent - Coral Orange (Call-to-Action) */
+    --accent: 15 85% 65%; /* #EA8B72 - Professional Coral */
+    --accent-foreground: 0 0% 100%;
+    --accent-muted: 15 75% 75%; /* Lighter variant */
 
     /* Card System */
     --card: 0 0% 100%; /* Pure White */
@@ -40,10 +40,10 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
     --input: 0 0% 100%; /* White inputs */
     --ring: 220 91% 32%; /* Primary blue focus ring */
 
-    /* Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    /* Healthcare Professional Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-muted)));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-muted)) 100%);
 
     /* Professional Shadows */
     --shadow-sm: 0 1px 3px hsl(220 13% 18% / 0.08);
@@ -59,15 +59,15 @@ Primary: Deep Blue | Secondary: Pure White | Accent: Soft Teal
   }
 
   .dark {
-    --background: 220 13% 9%; /* Dark blue-gray */
+    --background: 185 15% 9%; /* Dark teal-gray */
     --foreground: 0 0% 98%;
-    --primary: 220 91% 45%; /* Lighter blue for dark mode */
-    --card: 220 13% 12%;
+    --primary: 185 75% 45%; /* Lighter teal for dark mode */
+    --card: 185 15% 12%;
     --card-foreground: 0 0% 98%;
-    --border: 220 13% 20%;
-    --input: 220 13% 15%;
-    --muted: 220 13% 15%;
-    --muted-foreground: 220 9% 65%;
+    --border: 185 15% 20%;
+    --input: 185 15% 15%;
+    --muted: 185 15% 15%;
+    --muted-foreground: 185 10% 65%;
   }
 }
 
