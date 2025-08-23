@@ -4,7 +4,7 @@ import { PuzzleGrid, PuzzleCard } from '@/components/PuzzleGrid';
 import { TherapistCard } from '@/components/TherapistCard';
 import { CommunityCard } from '@/components/CommunityCard';
 import { FloatingNodes } from '@/components/FloatingNodes';
-import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star } from 'lucide-react';
+import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 import heroImage from '@/assets/hero-healio.jpg';
 import therapist1 from '@/assets/therapist-1.jpg';
@@ -430,22 +430,119 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted/50 py-12 px-4">
+      <footer className="bg-muted/50 py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center">
-            <h2 className="text-3xl font-playfair font-bold healio-gradient-text mb-4">
-              Healio
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              <strong>Suntem aici pentru tine.</strong> Healio nu e doar o platformă - e o mișcare de oameni 
-              care cred că <span className="text-healio-turquoise">sănătatea mentală e un drept, nu un privilegiu.</span> 
-              Împreună construim o lume mai empatică, o conversație la timpul potrivit.
-            </p>
-            <div className="flex justify-center gap-8 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Despre noi</a>
-              <a href="#" className="hover:text-foreground transition-colors">Confidențialitate</a>
-              <a href="#" className="hover:text-foreground transition-colors">Termeni</a>
-              <a href="#" className="hover:text-foreground transition-colors">Contact</a>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+            
+            {/* Company Info */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-healio-turquoise rounded-full flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-healio-turquoise-foreground" />
+                </div>
+                <h2 className="text-2xl font-playfair font-bold">Healio</h2>
+              </div>
+              
+              <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+                Platforma digitală de sănătate mentală din România care combină terapia profesională cu 
+                căldura unei comunități de suport.
+              </p>
+              
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-healio-turquoise" />
+                  <span>+40 21 123 4567</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-healio-turquoise" />
+                  <span>contact@healio.ro</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MapPin className="w-4 h-4 text-healio-turquoise" />
+                  <span>București, România</span>
+                </div>
+              </div>
+              
+              <div className="flex gap-4 mt-6">
+                <a href="#" className="w-8 h-8 bg-healio-mint/20 rounded-full flex items-center justify-center hover:bg-healio-mint/40 transition-colors">
+                  <Facebook className="w-4 h-4 text-healio-mint-foreground" />
+                </a>
+                <a href="#" className="w-8 h-8 bg-healio-mint/20 rounded-full flex items-center justify-center hover:bg-healio-mint/40 transition-colors">
+                  <Instagram className="w-4 h-4 text-healio-mint-foreground" />
+                </a>
+                <a href="#" className="w-8 h-8 bg-healio-mint/20 rounded-full flex items-center justify-center hover:bg-healio-mint/40 transition-colors">
+                  <Linkedin className="w-4 h-4 text-healio-mint-foreground" />
+                </a>
+              </div>
+            </div>
+            
+            {/* Services */}
+            <div>
+              <h3 className="font-playfair font-semibold text-lg mb-4">Servicii</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Terapie Online</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Comunitate</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Resurse Educaționale</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Evenimente & Workshop-uri</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Pentru Companii</a></li>
+              </ul>
+            </div>
+            
+            {/* Support */}
+            <div>
+              <h3 className="font-playfair font-semibold text-lg mb-4">Suport</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Centru de Ajutor</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Întrebări Frecvente</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Contact</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Feedback</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Raportează o Problemă</a></li>
+              </ul>
+            </div>
+            
+            {/* Legal */}
+            <div>
+              <h3 className="font-playfair font-semibold text-lg mb-4">Legal</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Termeni și Condiții</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Politica de Confidențialitate</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Politica Cookie</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">GDPR</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Cod de Conduită</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Emergency Section */}
+          <div className="border-t border-border pt-8 mb-8">
+            <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 border-l-4 border-red-400">
+              <div className="flex items-start gap-3">
+                <Phone className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-playfair font-semibold text-lg text-red-700 mb-2">
+                    Urgență Psihiatrică
+                  </h4>
+                  <p className="text-sm text-red-600 mb-3">
+                    Dacă ești în criză sau ai gânduri suicidale, contactează imediat: 
+                    <span className="font-bold text-red-500"> 0800 801 200</span> (Telefonul Vieții) sau 
+                    <span className="font-bold text-red-500"> 112</span> pentru urgențe.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Bottom Bar */}
+          <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-sm text-muted-foreground">
+              © 2025 Healio. Toate drepturile rezervate.
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-muted-foreground">Certificat de</span>
+              <div className="flex items-center gap-1 text-healio-turquoise font-medium">
+                <Heart className="w-4 h-4" />
+                <span>Colegiul Psihologilor din România</span>
+              </div>
             </div>
           </div>
         </div>
