@@ -145,16 +145,16 @@ const Index = () => {
       <section className="py-12 md:py-20 px-4 relative hero-background">
         <div className="container mx-auto max-w-6xl">
           <PuzzleGrid className="gap-4 md:gap-6">
-            <PuzzleCard size="2x2" className="hero-glass-card flex items-center justify-center relative overflow-hidden min-h-[500px] md:min-h-[600px]">
+            <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[500px] md:min-h-[600px]">
               <FloatingNodes />
               <img 
                 src={heroImage} 
                 alt="Healio - Echilibru interior"
-                className="absolute inset-0 w-full h-full object-cover opacity-5"
+                className="absolute inset-0 w-full h-full object-cover opacity-3"
               />
               <div className="relative z-10 text-center p-6 md:p-10">
                 <div className="mb-6 md:mb-8">
-                  <Badge className="hero-badge text-white mb-4 text-xs md:text-sm px-4 py-2 hero-animate-headline">
+                  <Badge className="hero-badge neuro-outset text-white mb-4 text-xs md:text-sm px-4 py-2 hero-animate-headline">
                     ✨ Platforma #1 pentru sănătatea mentală în România
                   </Badge>
                 </div>
@@ -172,15 +172,15 @@ const Index = () => {
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10 text-sm hero-proof-text hero-animate-subheadline">
-                  <div className="flex items-center gap-2 justify-center hero-subheadline">
+                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-4 py-2 rounded-xl">
                     <Shield className="h-4 md:h-5 w-4 md:w-5 text-healio-turquoise flex-shrink-0" />
                     <span>100% Confidențial</span>
                   </div>
-                  <div className="flex items-center gap-2 justify-center hero-subheadline">
+                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-4 py-2 rounded-xl">
                     <Clock className="h-4 md:h-5 w-4 md:w-5 text-healio-mint flex-shrink-0" />
                     <span>Disponibil 24/7</span>
                   </div>
-                  <div className="flex items-center gap-2 justify-center hero-subheadline">
+                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-4 py-2 rounded-xl">
                     <Star className="h-4 md:h-5 w-4 md:w-5 text-healio-orange flex-shrink-0" />
                     <span>Terapeuți verificați</span>
                   </div>
@@ -189,7 +189,7 @@ const Index = () => {
                 <div className="flex flex-col gap-4 md:gap-6 justify-center max-w-md mx-auto md:max-w-none md:flex-row px-2 hero-animate-cta">
                   <Button 
                     size="lg" 
-                    className="hero-cta-primary text-sm sm:text-base md:text-lg"
+                    className="cta-premium text-white font-bold text-sm sm:text-base md:text-lg"
                   >
                     <Users className="mr-2 h-4 md:h-5 w-4 md:w-5 flex-shrink-0" />
                     <span className="truncate">Vorbește cu terapeut ACUM</span>
@@ -197,14 +197,14 @@ const Index = () => {
                   <Button 
                     size="lg" 
                     variant="outline"
-                    className="text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 border-2 border-healio-orange text-healio-orange hover:bg-healio-orange hover:text-white shadow-lg hover:shadow-xl transition-all w-full md:w-auto rounded-2xl font-medium"
+                    className="btn-skeuomorphic text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 text-healio-orange hover:text-white font-medium rounded-2xl"
                   >
                     <Heart className="mr-2 h-4 md:h-5 w-4 md:w-5 flex-shrink-0" />
                     <span className="truncate">Alătură-te comunității</span>
                   </Button>
                 </div>
                 
-                <p className="text-xs md:text-sm hero-proof-text mt-6 md:mt-8 hero-subheadline hero-animate-cta">
+                <p className="text-xs md:text-sm hero-proof-text mt-6 md:mt-8 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
                   <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
                 </p>
               </div>
@@ -421,7 +421,7 @@ const Index = () => {
           </div>
 
           {/* CTA Card mare */}
-          <div className="relative rounded-3xl bg-[#FFE4BE]/70 backdrop-blur-xl ring-1 ring-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow p-6 sm:p-8 lg:p-10 mb-8 sm:mb-10">
+          <div className="relative rounded-3xl bg-[#FFE4BE]/70 backdrop-blur-xl ring-1 ring-white/60 card-neuro hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-shadow p-6 sm:p-8 lg:p-10 mb-8 sm:mb-10 texture-fabric">
             {/* subtle inner border */}
             <div className="absolute inset-0 rounded-3xl ring-1 ring-black/5 pointer-events-none"></div>
 
@@ -439,15 +439,15 @@ const Index = () => {
               <div className="mt-6 flex items-center justify-center gap-4 flex-wrap">
                 {/* Buton primar */}
                 <Button 
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#4EC9B0] text-white font-semibold px-5 py-3 shadow-[0_8px_24px_rgba(78,201,176,0.35)] hover:shadow-[0_12px_32px_rgba(78,201,176,0.45)] hover:translate-y-[-1px] active:translate-y-0 transition-all"
+                  className="cta-premium text-white font-bold px-6 py-3 rounded-xl"
                 >
-                  <Plus className="w-5 h-5" /> Începe să vorbești
+                  <Plus className="w-5 h-5 mr-2" /> Începe să vorbești
                 </Button>
 
                 {/* Buton secundar (contur) */}
                 <Button 
                   variant="outline"
-                  className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white/60 backdrop-blur text-[#1F3B3A] font-semibold px-5 py-3 hover:bg-white hover:border-black/15 transition"
+                  className="btn-skeuomorphic text-[#1F3B3A] font-semibold px-6 py-3 rounded-xl"
                 >
                   Vezi discuțiile
                 </Button>
@@ -456,15 +456,15 @@ const Index = () => {
               {/* Trust row */}
               <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#4A4A4A]">
                 <div className="inline-flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 ring-1 ring-black/5">🔒</span>
+                  <span className="neuro-inset inline-flex h-8 w-8 items-center justify-center rounded-full text-xs">🔒</span>
                   Confidențial 100%
                 </div>
                 <div className="inline-flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 ring-1 ring-black/5">🕒</span>
+                  <span className="neuro-inset inline-flex h-8 w-8 items-center justify-center rounded-full text-xs">🕒</span>
                   Răspuns rapid
                 </div>
                 <div className="inline-flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 ring-1 ring-black/5">👥</span>
+                  <span className="neuro-inset inline-flex h-8 w-8 items-center justify-center rounded-full text-xs">👥</span>
                   Fără judecăți
                 </div>
               </div>
