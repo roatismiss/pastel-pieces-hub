@@ -232,11 +232,6 @@ const Index = () => {
               <PuzzleCard 
                 key={therapist.id} 
                 size={index === 0 ? '2x1' : index === 1 ? '1x2' : '1x1'}
-                className={
-                  index === 0 ? 'md:puzzle-2x1 puzzle-mobile-wide' : 
-                  index === 1 ? 'md:puzzle-1x2 puzzle-mobile-vertical' : 
-                  'md:puzzle-1x1 puzzle-mobile-square'
-                }
               >
                 <TherapistCard 
                   therapist={therapist} 
@@ -246,7 +241,7 @@ const Index = () => {
             ))}
             
             {/* Add more therapist placeholder cards */}
-            <PuzzleCard size="1x1" variant="mint" className="md:puzzle-1x1 puzzle-mobile-half">
+            <PuzzleCard size="1x1" variant="mint">
               <div className="p-4 text-center">
                 <Plus className="w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 text-healio-mint-foreground/60" />
                 <p className="text-xs md:text-sm font-medium">Vezi mai mulți terapeuți</p>
@@ -272,7 +267,7 @@ const Index = () => {
 
           <PuzzleGrid>
             {/* Write post CTA */}
-            <PuzzleCard size="2x1" variant="orange" className="md:puzzle-2x1 puzzle-mobile-wide">
+            <PuzzleCard size="2x1" variant="orange">
               <div className="p-4 md:p-6 text-center">
                 <h3 className="text-lg md:text-xl font-playfair font-semibold mb-2 md:mb-3">
                   Ce simți chiar acum? Spune-ne...
@@ -304,12 +299,6 @@ const Index = () => {
                   index === 1 ? 'turquoise' :
                   index === 2 ? 'mint' : 'default'
                 }
-                className={
-                  index === 0 ? 'md:puzzle-2x2 puzzle-mobile-vertical' : 
-                  index === 1 ? 'md:puzzle-1x1 puzzle-mobile-tall' : 
-                  index === 2 ? 'md:puzzle-2x1 puzzle-mobile-half' : 
-                  'md:puzzle-1x2 puzzle-mobile-square'
-                }
               >
                 <CommunityCard 
                   post={post}
@@ -340,7 +329,7 @@ const Index = () => {
           </div>
 
           <PuzzleGrid>
-            <PuzzleCard size="1x2" variant="turquoise" className="md:puzzle-1x2 puzzle-mobile-tall">
+            <PuzzleCard size="1x2" variant="turquoise">
               <div className="p-6">
                 <BookOpen className="w-8 h-8 mb-3 text-healio-turquoise-foreground" />
                 <h3 className="text-lg font-playfair font-semibold mb-2">
@@ -359,7 +348,7 @@ const Index = () => {
               </div>
             </PuzzleCard>
 
-            <PuzzleCard size="2x1" className="md:puzzle-2x1 puzzle-mobile-wide">
+            <PuzzleCard size="2x1">
               <div className="p-6">
                 <h3 className="text-xl font-playfair font-semibold mb-3">
                   Stresul îți distruge viața? Nu mai lăsa!
@@ -374,7 +363,7 @@ const Index = () => {
               </div>
             </PuzzleCard>
 
-            <PuzzleCard size="1x1" variant="mint" className="md:puzzle-1x1 puzzle-mobile-half">
+            <PuzzleCard size="1x1" variant="mint">
               <div className="p-4 text-center">
                 <div className="text-2xl mb-2">🧘‍♀️</div>
                 <h4 className="font-medium mb-2">Micro-curs Mindfulness</h4>
