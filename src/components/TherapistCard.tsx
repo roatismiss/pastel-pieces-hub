@@ -57,10 +57,10 @@ export const TherapistCard = ({ therapist, size = '1x1', onClick }: TherapistCar
 
       <div className="flex flex-wrap gap-1 mb-2 md:mb-3">
         {therapist.languages.map((lang) => (
-          <Badge 
+           <Badge 
             key={lang} 
             variant="secondary" 
-            className="text-xs bg-healio-mint text-healio-mint-foreground"
+            className="text-xs bg-healio-mint text-healio-mint-foreground rounded-none"
           >
             {lang}
           </Badge>
