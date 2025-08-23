@@ -232,10 +232,10 @@ const Index = () => {
               <Filter className="mr-1 md:mr-2 h-3 md:h-4 w-3 md:w-4" />
               Specializare
             </Button>
-            <Badge variant="secondary" className="bg-healio-mint text-xs">Anxietate</Badge>
-            <Badge variant="secondary" className="bg-healio-turquoise text-xs">Depresie</Badge>
-            <Badge variant="secondary" className="bg-healio-orange text-xs">Stres</Badge>
-            <Badge variant="secondary" className="text-xs">Relații</Badge>
+            <Badge variant="secondary" className="bg-healio-orange text-xs rounded-none">Anxietate</Badge>
+            <Badge variant="secondary" className="bg-healio-orange text-xs rounded-none">Depresie</Badge>
+            <Badge variant="secondary" className="bg-healio-orange text-xs rounded-none">Stres</Badge>
+            <Badge variant="secondary" className="bg-healio-orange text-xs rounded-none">Relații</Badge>
           </div>
 
           <PuzzleGrid>
