@@ -800,4 +800,73 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transform: translateY(-1px);
   }
+
+  /* Claymorphism styles */
+  .clay-card {
+    background: linear-gradient(135deg, #f7f4f0 0%, #ede7e0 100%);
+    border-radius: 28px;
+    box-shadow: 
+      12px 12px 24px rgba(139, 126, 102, 0.15),
+      -8px -8px 16px rgba(255, 255, 255, 0.8),
+      inset 2px 2px 4px rgba(139, 126, 102, 0.05);
+    border: 1px solid rgba(139, 126, 102, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clay-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(139, 126, 102, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(168, 162, 158, 0.02) 0%, transparent 50%);
+    border-radius: inherit;
+  }
+
+  .clay-card:hover {
+    box-shadow: 
+      16px 16px 32px rgba(139, 126, 102, 0.2),
+      -12px -12px 24px rgba(255, 255, 255, 0.9),
+      inset 3px 3px 6px rgba(139, 126, 102, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .clay-avatar {
+    border-radius: 50%;
+    box-shadow: 
+      4px 4px 8px rgba(139, 126, 102, 0.2),
+      -2px -2px 4px rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .clay-button {
+    background: linear-gradient(135deg, #e8ddd4 0%, #d4c4b0 100%);
+    color: #5d5347;
+    border-radius: 20px;
+    box-shadow: 
+      4px 4px 8px rgba(139, 126, 102, 0.25),
+      -2px -2px 4px rgba(255, 255, 255, 0.8),
+      inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(139, 126, 102, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .clay-button:hover {
+    box-shadow: 
+      6px 6px 12px rgba(139, 126, 102, 0.3),
+      -3px -3px 6px rgba(255, 255, 255, 0.9),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .clay-badge {
+    background: linear-gradient(135deg, #f0ebe4 0%, #e3d8cc 100%);
+    color: #6b5d51;
+    border-radius: 16px;
+    box-shadow: 
+      2px 2px 4px rgba(139, 126, 102, 0.2),
+      -1px -1px 2px rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(139, 126, 102, 0.1);
+  }
 }
