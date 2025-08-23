@@ -124,6 +124,9 @@ const Index = () => {
                 <a href="#events" className="text-sm hover:text-primary transition-colors">
                   Evenimente
                 </a>
+                <a href="/admin" className="text-sm hover:text-primary transition-colors">
+                  Admin
+                </a>
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-3">
