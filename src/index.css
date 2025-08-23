@@ -98,10 +98,19 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
     font-weight: 500;
   }
 
-  /* Special emphasis for therapist names and important headings */
-  .therapist-name, .card-title, .section-title {
-    font-family: 'Merriweather', serif;
-    font-weight: 700;
+  /* Animated gradient text for logo */
+  .animated-gradient-text {
+    background: linear-gradient(-45deg, 
+      hsl(var(--healio-orange)), 
+      hsl(var(--healio-turquoise)), 
+      hsl(var(--healio-mint)), 
+      hsl(var(--healio-orange)));
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    animation: gradient-shift 10s ease-in-out infinite;
   }
 
   /* Puzzle Grid System */

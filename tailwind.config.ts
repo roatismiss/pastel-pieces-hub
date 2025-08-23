@@ -135,45 +135,42 @@ export default {
 				'logo-bounce': {
 					'0%, 100%': { 
 						transform: 'translateY(0px) scale(1) rotate(0deg)',
-						textShadow: '0 0 20px rgba(132, 204, 191, 0.8), 0 0 40px rgba(132, 204, 191, 0.4)',
-						filter: 'hue-rotate(0deg) brightness(1.2)'
-					},
-					'25%': { 
-						transform: 'translateY(-15px) scale(1.15) rotate(3deg)',
-						textShadow: '0 0 30px rgba(255, 179, 132, 1), 0 0 60px rgba(255, 179, 132, 0.6)',
-						filter: 'hue-rotate(90deg) brightness(1.5)'
+						textShadow: '0 0 30px rgba(132, 204, 191, 0.6), 0 0 60px rgba(132, 204, 191, 0.3)'
 					},
 					'50%': { 
-						transform: 'translateY(-10px) scale(1.1) rotate(-2deg)',
-						textShadow: '0 0 25px rgba(179, 255, 204, 0.9), 0 0 50px rgba(179, 255, 204, 0.5)',
-						filter: 'hue-rotate(180deg) brightness(1.3)'
-					},
-					'75%': { 
-						transform: 'translateY(-8px) scale(1.08) rotate(1deg)',
-						textShadow: '0 0 35px rgba(255, 179, 132, 0.8), 0 0 70px rgba(255, 179, 132, 0.4)',
-						filter: 'hue-rotate(270deg) brightness(1.4)'
+						transform: 'translateY(-8px) scale(1.02) rotate(0.5deg)',
+						textShadow: '0 0 40px rgba(255, 179, 132, 0.7), 0 0 80px rgba(255, 179, 132, 0.4)'
 					}
 				},
 				'logo-glow': {
 					'0%, 100%': { 
-						filter: 'hue-rotate(0deg) brightness(1.5) saturate(1.5)',
-						textShadow: '0 0 30px rgba(132, 204, 191, 1), 0 0 60px rgba(132, 204, 191, 0.7), 0 0 90px rgba(132, 204, 191, 0.3)'
+						filter: 'hue-rotate(0deg) brightness(1.2) saturate(1.3)',
+						textShadow: '0 0 25px rgba(132, 204, 191, 0.8), 0 0 50px rgba(132, 204, 191, 0.4)'
 					},
-					'33%': { 
-						filter: 'hue-rotate(120deg) brightness(2) saturate(2)',
-						textShadow: '0 0 40px rgba(255, 179, 132, 1), 0 0 80px rgba(255, 179, 132, 0.8), 0 0 120px rgba(255, 179, 132, 0.4)'
+					'25%': { 
+						filter: 'hue-rotate(90deg) brightness(1.3) saturate(1.4)',
+						textShadow: '0 0 30px rgba(255, 179, 132, 0.8), 0 0 60px rgba(255, 179, 132, 0.4)'
 					},
-					'66%': { 
-						filter: 'hue-rotate(240deg) brightness(1.8) saturate(1.8)',
-						textShadow: '0 0 35px rgba(179, 255, 204, 1), 0 0 70px rgba(179, 255, 204, 0.8), 0 0 105px rgba(179, 255, 204, 0.4)'
+					'50%': { 
+						filter: 'hue-rotate(180deg) brightness(1.4) saturate(1.5)',
+						textShadow: '0 0 35px rgba(179, 255, 204, 0.8), 0 0 70px rgba(179, 255, 204, 0.4)'
+					},
+					'75%': { 
+						filter: 'hue-rotate(270deg) brightness(1.3) saturate(1.4)',
+						textShadow: '0 0 30px rgba(255, 179, 132, 0.8), 0 0 60px rgba(255, 179, 132, 0.4)'
 					}
 				},
 				'letter-dance': {
 					'0%, 100%': { transform: 'translateY(0px) rotate(0deg) scale(1)' },
-					'20%': { transform: 'translateY(-8px) rotate(5deg) scale(1.1)' },
-					'40%': { transform: 'translateY(4px) rotate(-3deg) scale(0.95)' },
-					'60%': { transform: 'translateY(-6px) rotate(4deg) scale(1.05)' },
-					'80%': { transform: 'translateY(2px) rotate(-2deg) scale(1.02)' }
+					'50%': { transform: 'translateY(-4px) rotate(1deg) scale(1.01)' }
+				},
+				'gradient-shift': {
+					'0%, 100%': { 
+						backgroundPosition: '0% 50%'
+					},
+					'50%': { 
+						backgroundPosition: '100% 50%'
+					}
 				}
 			},
 			animation: {
@@ -183,9 +180,10 @@ export default {
 				'float-reverse': 'float-reverse 8s ease-in-out infinite',
 				'float-slow': 'float-slow 12s ease-in-out infinite',
 				'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
-				'logo-bounce': 'logo-bounce 3s ease-in-out infinite',
-				'logo-glow': 'logo-glow 4s ease-in-out infinite',
-				'letter-dance': 'letter-dance 2s ease-in-out infinite'
+				'logo-bounce': 'logo-bounce 8s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'logo-glow': 'logo-glow 12s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'letter-dance': 'letter-dance 6s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'gradient-shift': 'gradient-shift 10s ease-in-out infinite'
 			}
 		}
 	},

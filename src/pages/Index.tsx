@@ -101,15 +101,15 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 md:gap-8">
               <div className="relative group">
-                <h1 className="text-2xl md:text-4xl font-orbitron font-black healio-gradient-text animate-logo-bounce hover:animate-logo-glow cursor-pointer transition-all duration-500 drop-shadow-2xl">
-                  <span className="inline-block animate-letter-dance text-healio-orange" style={{ animationDelay: '0s' }}>H</span>
-                  <span className="inline-block animate-letter-dance text-healio-turquoise" style={{ animationDelay: '0.15s' }}>e</span>
-                  <span className="inline-block animate-letter-dance text-healio-mint" style={{ animationDelay: '0.3s' }}>a</span>
-                  <span className="inline-block animate-letter-dance text-healio-orange" style={{ animationDelay: '0.45s' }}>l</span>
-                  <span className="inline-block animate-letter-dance text-healio-turquoise" style={{ animationDelay: '0.6s' }}>i</span>
-                  <span className="inline-block animate-letter-dance text-healio-mint" style={{ animationDelay: '0.75s' }}>o</span>
+                <h1 className="text-2xl md:text-4xl font-orbitron font-black animated-gradient-text animate-logo-bounce hover:animate-logo-glow cursor-pointer transition-all duration-1000 drop-shadow-2xl">
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0s' }}>H</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '1s' }}>e</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '2s' }}>a</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '3s' }}>l</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '4s' }}>i</span>
+                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '5s' }}>o</span>
                 </h1>
-                <div className="absolute -inset-4 bg-gradient-to-r from-healio-orange/30 via-healio-turquoise/30 to-healio-mint/30 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-2xl animate-pulse-glow"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10 blur-2xl animate-gradient-shift"></div>
               </div>
               <div className="hidden md:flex items-center gap-6">
                 <a href="#marketplace" className="text-sm hover:text-primary transition-colors">
