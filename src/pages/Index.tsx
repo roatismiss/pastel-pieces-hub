@@ -201,6 +201,9 @@ const Index = () => {
                 <a href="#marketplace" className="text-sm hover:text-primary transition-colors">
                   Terapeuți
                 </a>
+                <Link to="/therapist-feed" className="text-sm hover:text-primary transition-colors">
+                  Articole
+                </Link>
                 <a href="#community" className="text-sm hover:text-primary transition-colors">
                   Comunitate
                 </a>

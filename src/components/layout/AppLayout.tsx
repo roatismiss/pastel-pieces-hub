@@ -60,6 +60,7 @@ function AppSidebar() {
 
   const menuItems = [
     { path: '/dashboard', icon: Home, label: 'Dashboard', group: 'main' },
+    { path: '/therapist-feed', icon: BookOpen, label: 'Articole', group: 'main' },
     { path: '/community', icon: MessageSquare, label: 'Comunitate', group: 'main' },
     ...(isTherapist ? [
       { path: '/therapist-profile', icon: User, label: 'Profil Terapeut', group: 'therapist' },
