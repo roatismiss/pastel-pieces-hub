@@ -49,11 +49,7 @@ const App = () => {
               />
               <Route 
                 path="/therapist-application" 
-                element={
-                  <ProtectedRoute>
-                    <TherapistApplication />
-                  </ProtectedRoute>
-                } 
+                element={<TherapistApplication />} 
               />
               <Route 
                 path="/admin/*" 
