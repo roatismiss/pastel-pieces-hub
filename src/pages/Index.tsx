@@ -231,8 +231,8 @@ const Index = () => {
         <div className="absolute inset-0">
           {/* Main background image */}
           <img 
-            src="/lovable-uploads/5681b338-11b2-4ffe-8f13-36d8e8681936.png"
-            alt="Beautiful pastel background with floral elements"
+            src="/hero-pastel-background.jpg"
+            alt="4K high quality pastel colorful abstract background"
             className="absolute inset-0 w-full h-full object-cover"
           />
           
