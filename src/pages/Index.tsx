@@ -181,8 +181,8 @@ const Index = () => {
                 {/* Healtio Logo Image */}
                 <div className="relative flex items-center justify-center px-4 py-1">
                   <img 
-                    src="/lovable-uploads/9d69c4a6-b602-444b-a872-cf5dbcb40af2.png"
-                    alt="Healtio Logo"
+                    src="/lovable-uploads/047bebca-e8da-4d8c-83e5-7c166829fa57.png"
+                    alt="Healio Logo"
                     className="h-16 md:h-20 w-auto object-contain filter-none"
                     style={{ 
                       imageRendering: 'crisp-edges'
