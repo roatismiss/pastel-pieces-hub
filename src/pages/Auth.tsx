@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,13 +13,39 @@ import { Loader2, Heart, Users, Calendar, Shield } from 'lucide-react';
 
 export default function Auth() {
   const { user, loading, signIn, signUp, signInWithGoogle, signInWithApple } = useAuth();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
+  // Functie pentru redirectionare bazată pe tipul utilizatorului
+  const redirectUserBasedOnType = async (userId: string) => {
+    try {
+      // Verifică dacă este terapeut
+      const { data: therapistData } = await supabase
+        .from('therapists')
+        .select('id')
+        .eq('user_id', userId)
+        .single();
+
+      if (therapistData) {
+        navigate('/therapist-dashboard');
+      } else {
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      // Dacă nu găsește terapeut, redirecționez la dashboard normal
+      navigate('/dashboard');
+    }
+  };
+
   // Redirect if already authenticated
   if (user && !loading) {
-    return <Navigate to="/dashboard" replace />;
+    // Redirectionare asincronă bazată pe tipul utilizatorului
+    redirectUserBasedOnType(user.id);
+    return <div className="min-h-screen flex items-center justify-center">
+      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+    </div>;
   }
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,9 +61,9 @@ export default function Auth() {
     
     if (error) {
       setError(error.message);
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
+    // Dacă nu e eroare, nu setez isLoading(false) pentru că se face redirect automat
   };
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,11 +81,11 @@ export default function Auth() {
     
     if (error) {
       setError(error.message);
+      setIsLoading(false);
     } else {
       setSuccess('Check your email for the confirmation link!');
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   };
 
   const handleGoogleSignIn = async () => {
