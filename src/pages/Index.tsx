@@ -207,6 +207,9 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-3">
+              <Button variant="outline" size="sm" className="hidden md:inline-flex border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
+                <Link to="/therapist-dashboard">Dashboard Terapeut</Link>
+              </Button>
               <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
                 <Link to="/auth">Conectează-te</Link>
               </Button>
