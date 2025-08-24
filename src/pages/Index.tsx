@@ -297,68 +297,11 @@ const Index = () => {
           <div className="container mx-auto max-w-6xl">
             <PuzzleGrid className="gap-3 sm:gap-4 md:gap-6">
               <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-                <FloatingNodes />
                 <img 
-                  src={heroImage} 
-                  alt="Healio - Echilibru interior"
-                  className="absolute inset-0 w-full h-full object-cover opacity-3"
+                  src="/lovable-uploads/2f23c86b-f384-4477-b093-0ff44afe7db4.png" 
+                  alt="Beautiful gradient background with floral elements"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="relative z-10 text-center p-4 sm:p-6 md:p-10">
-                <div className="mb-4 sm:mb-6 md:mb-8">
-                  <Badge className="hero-badge neuro-outset text-white mb-3 sm:mb-4 text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 hero-animate-headline">
-                    ✨ Platforma #1 pentru sănătatea mentală în România
-                  </Badge>
-                </div>
-                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-merriweather hero-headline mb-4 sm:mb-6 md:mb-8 leading-tight hero-animate-headline">
-                  Nu mai suferi în 
-                  <span className="hero-gradient-text"> tăcere</span>
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
-                  Găsește-ți echilibrul cu Healio
-                </h1>
-                <p className="text-xs sm:text-sm md:text-base lg:text-xl hero-subheadline mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed px-1 sm:px-2 hero-animate-subheadline">
-                  <strong className="hero-headline">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
-                  rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
-                  <span className="hero-gradient-text font-medium italic">Fără judecăți. Doar sprijin.</span>
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm hero-proof-text hero-animate-subheadline">
-                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
-                    <Shield className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-turquoise flex-shrink-0" />
-                    <span>100% Confidențial</span>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
-                    <Clock className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-mint flex-shrink-0" />
-                    <span>Disponibil 24/7</span>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
-                    <Star className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-orange flex-shrink-0" />
-                    <span>Terapeuți verificați</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 justify-center max-w-xs sm:max-w-md mx-auto md:max-w-none md:flex-row px-1 sm:px-2 hero-animate-cta">
-                  <Button 
-                    size="lg" 
-                    className="cta-premium text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg py-3 px-4 sm:px-6"
-                  >
-                    <Users className="mr-1 sm:mr-2 h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 flex-shrink-0" />
-                    <span className="truncate">Vorbește cu terapeut ACUM</span>
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="btn-skeuomorphic text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-6 lg:px-8 py-3 md:py-4 text-healio-orange hover:text-white font-medium rounded-2xl"
-                  >
-                    <Heart className="mr-1 sm:mr-2 h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 flex-shrink-0" />
-                    <span className="truncate">Alătură-te comunității</span>
-                  </Button>
-                </div>
-                
-                <p className="text-xs md:text-sm hero-proof-text mt-6 md:mt-8 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
-                  <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
-                </p>
-                </div>
               </PuzzleCard>
             </PuzzleGrid>
           </div>
