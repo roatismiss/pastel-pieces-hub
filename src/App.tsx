@@ -13,6 +13,7 @@ import { Admin } from "./pages/Admin";
 import TherapistProfile from "./pages/TherapistProfile";
 import TherapistDashboard from "./pages/TherapistDashboard";
 import TherapistApplication from "./pages/TherapistApplication";
+import TherapistFeedPage from "./pages/TherapistFeed";
 import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/community" element={<Community />} />
+              <Route path="/therapist-feed" element={<TherapistFeedPage />} />
               <Route 
                 path="/dashboard" 
                 element={
