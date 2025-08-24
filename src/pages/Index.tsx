@@ -718,14 +718,12 @@ const Index = () => {
             </PuzzleCard>
 
             <PuzzleCard size="1x1">
-              <div className="p-4 text-center flex flex-col items-center justify-center h-full">
+              <div className="p-6 flex flex-col items-center justify-center h-full bg-gradient-to-br from-amber-50 to-orange-50">
                 <img 
                   src="/lovable-uploads/2dba6fd7-ee5c-4ff2-8b80-6e85644344ba.png" 
                   alt="Confused person with questions"
-                  className="w-20 h-20 object-contain mb-3"
+                  className="w-full h-full object-contain"
                 />
-                <h4 className="font-medium mb-2">Ai întrebări?</h4>
-                <p className="text-xs text-muted-foreground">Începe să explorezi</p>
               </div>
             </PuzzleCard>
 
