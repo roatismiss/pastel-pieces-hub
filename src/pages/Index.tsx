@@ -703,8 +703,8 @@ const Index = () => {
               <div className="p-4 text-center">
                 <div className="mb-2 flex justify-center">
                   <img 
-                    src="/lovable-uploads/f3b7f652-a582-4647-b4b7-844e13bcdc5d.png"
-                    alt="Therapy session illustration"
+                    src="/lovable-uploads/ff72bcab-db99-4114-a48d-10d4251d90a4.png"
+                    alt="Person meditating in peaceful lotus position"
                     className="w-12 h-12 object-contain"
                   />
                 </div>
