@@ -58,7 +58,7 @@ const TherapistApplication = () => {
         await updateApplication(formData);
         toast.success('Aplicația a fost actualizată cu succes!');
       }
-      navigate('/dashboard');
+      // Nu mai redirectionez automat la dashboard
     } catch (error) {
       console.error('Error submitting application:', error);
       toast.error('A apărut o eroare. Vă rugăm să încercați din nou.');
@@ -349,7 +349,7 @@ const TherapistApplication = () => {
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => navigate('/dashboard')}
+                  onClick={() => navigate(-1)}
                 >
                   Înapoi
                 </Button>
