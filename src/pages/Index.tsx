@@ -179,12 +179,15 @@ const Index = () => {
             <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
               <div className="relative group flex items-center gap-4 md:gap-6">
                 {/* Healtio Logo Image */}
-                <div className="relative flex items-center px-2">
+                <div className="relative flex items-center justify-center px-2">
                   <img 
                     src="/lovable-uploads/9d69c4a6-b602-444b-a872-cf5dbcb40af2.png"
                     alt="Healtio Logo"
-                    className="h-9 md:h-12 w-auto drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 object-contain"
-                    style={{ imageRendering: 'crisp-edges' }}
+                    className="h-9 md:h-12 w-auto object-contain transition-all duration-300 filter-none"
+                    style={{ 
+                      imageRendering: '-webkit-optimize-contrast',
+                      maxHeight: '48px'
+                    }}
                   />
                 </div>
                 
