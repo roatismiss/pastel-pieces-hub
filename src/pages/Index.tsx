@@ -614,13 +614,6 @@ const Index = () => {
             </PuzzleCard>
 
             {communityPosts.map((post, index) => {
-              const cardColors = [
-                'bg-gradient-to-br from-healio-orange/10 to-healio-orange/20 shadow-[8px_8px_16px_rgba(234,88,12,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]',
-                'bg-gradient-to-br from-healio-turquoise/10 to-healio-turquoise/20 shadow-[8px_8px_16px_rgba(20,184,166,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]',
-                'bg-gradient-to-br from-healio-mint/10 to-healio-mint/20 shadow-[8px_8px_16px_rgba(34,197,94,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]',
-                'bg-gradient-to-br from-purple-100/50 to-purple-200/50 shadow-[8px_8px_16px_rgba(147,51,234,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]'
-              ];
-              
               return (
                 <PuzzleCard 
                   key={post.id}
@@ -629,7 +622,7 @@ const Index = () => {
                     index === 1 ? '1x1' : 
                     index === 2 ? '2x1' : '1x2'
                   }
-                  className={`${cardColors[index % cardColors.length]} rounded-[20px] border-0`}
+                  className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-[20px] border-0 shadow-[8px_8px_16px_rgba(254,215,170,0.3),-8px_-8px_16px_rgba(255,255,255,0.8)]"
                 >
                 <div className="p-4 md:p-6 h-full">
                   <div className="flex items-start gap-3 mb-3">
