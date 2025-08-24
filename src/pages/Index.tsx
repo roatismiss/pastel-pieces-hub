@@ -18,7 +18,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useAdmin } from '@/hooks/useAdmin';
 import { toast } from 'sonner';
 
-import heroImage from '@/assets/hero-healio.jpg';
+const heroImage = '/lovable-uploads/3f37623b-547b-450b-94dc-624e137077dc.png';
 import therapist1 from '@/assets/therapist-1.jpg';
 import therapist2 from '@/assets/therapist-2.jpg';
 import therapist3 from '@/assets/therapist-3.jpg';
