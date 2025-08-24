@@ -183,7 +183,7 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/36f9d7b1-e29b-41dd-aafa-520f8fff7482.png"
                     alt="Healio Logo"
-                    className="h-20 md:h-24 w-auto object-contain filter-none"
+                    className="h-40 md:h-48 w-auto object-contain filter-none"
                     style={{ 
                       imageRendering: 'crisp-edges'
                     }}
