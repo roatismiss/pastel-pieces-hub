@@ -139,6 +139,21 @@ const CloudNodes: React.FC = () => {
       }
     };
   }, []);
-  return;
+  return (
+    <div className="relative w-full h-80 rounded-2xl border-4 border-white/30 backdrop-blur-sm shadow-2xl overflow-hidden">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full rounded-xl"
+        style={{ background: 'transparent' }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center rounded-xl overflow-hidden">
+        <img 
+          src="/lovable-uploads/22468ab0-12dc-4c52-b455-a825e61d061d.png"
+          alt="Community members illustration"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  );
 };
 export default CloudNodes;
