@@ -153,17 +153,17 @@ const CloudNodes: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-64 overflow-hidden">
+    <div className="relative w-full h-80 overflow-hidden rounded-2xl border-4 border-white/30 backdrop-blur-sm shadow-2xl">
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full rounded-2xl"
         style={{ filter: 'blur(0.5px)' }}
       />
       
       {/* Floating text overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center rounded-2xl overflow-hidden">
         <img 
-          src="/lovable-uploads/0f800fd3-d5bc-4775-8c5c-5f7b5f983b29.png"
+          src="/lovable-uploads/de5aff26-29e2-47dd-b70f-bb052623d1ae.png"
           alt="Community support - people connecting and helping each other"
           className="w-full h-full object-cover animate-fade-in"
         />
