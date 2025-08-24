@@ -15,6 +15,9 @@ import TherapistDashboard from "./pages/TherapistDashboard";
 import TherapistApplication from "./pages/TherapistApplication";
 import TherapistFeedPage from "./pages/TherapistFeed";
 import Community from "./pages/Community";
+import Therapists from "./pages/Therapists";
+import Education from "./pages/Education";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -37,6 +40,9 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/therapists" element={<Therapists />} />
+              <Route path="/education" element={<Education />} />
+              <Route path="/events" element={<Events />} />
               <Route path="/community" element={<Community />} />
               <Route path="/therapist-feed" element={<TherapistFeedPage />} />
               <Route 

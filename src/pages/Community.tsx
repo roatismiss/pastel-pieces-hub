@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { AppLayout } from '@/components/layout/AppLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import CommunityFeed from '@/components/community/CommunityFeed';
 import CommunityPostForm from '@/components/community/CommunityPostForm';
-import { Users, MessageSquare, ThumbsUp, TrendingUp } from 'lucide-react';
+import { Users, MessageSquare, ThumbsUp, TrendingUp, LogIn } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Community = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [showPostForm, setShowPostForm] = useState(false);
 
   const handlePostCreated = () => {
@@ -22,7 +23,45 @@ const Community = () => {
   };
 
   return (
-    <AppLayout>
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-2">
+              <img 
+                src="/lovable-uploads/36f9d7b1-e29b-41dd-aafa-520f8fff7482.png"
+                alt="Healio Logo"
+                className="h-12 w-auto"
+              />
+            </Link>
+            <div className="flex items-center gap-4">
+              <Link to="/" className="text-sm hover:text-primary transition-colors">
+                Acasă
+              </Link>
+              <Link to="/therapists" className="text-sm hover:text-primary transition-colors">
+                Terapeuți
+              </Link>
+              <Link to="/education" className="text-sm hover:text-primary transition-colors">
+                Educație
+              </Link>
+              <Link to="/events" className="text-sm hover:text-primary transition-colors">
+                Evenimente
+              </Link>
+              {user ? (
+                <Button variant="ghost" size="sm" onClick={() => navigate('/dashboard')}>
+                  Dashboard
+                </Button>
+              ) : (
+                <Button size="sm" asChild>
+                  <Link to="/auth">Conectează-te</Link>
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <div className="p-6 max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -32,13 +71,22 @@ const Community = () => {
               Un spațiu sigur pentru partajarea experiențelor și sprijinul reciproc
             </p>
           </div>
-          {user && (
+          {user ? (
             <Button
               onClick={() => setShowPostForm(true)}
               className="gap-2"
             >
               <MessageSquare className="w-4 h-4" />
               Postare Nouă
+            </Button>
+          ) : (
+            <Button
+              onClick={() => navigate('/auth')}
+              className="gap-2"
+              variant="outline"
+            >
+              <LogIn className="w-4 h-4" />
+              Conectează-te pentru a posta
             </Button>
           )}
         </div>
@@ -147,7 +195,7 @@ const Community = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </AppLayout>
+    </div>
   );
 };
 

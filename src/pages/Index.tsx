@@ -198,24 +198,18 @@ const Index = () => {
                 <div className="absolute -inset-6 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10 blur-2xl animate-gradient-shift"></div>
               </div>
               <div className="hidden md:flex items-center gap-6">
-                <a href="#marketplace" className="text-sm hover:text-primary transition-colors">
+                <Link to="/therapists" className="text-sm hover:text-primary transition-colors">
                   Terapeuți
-                </a>
-                <Link to="/therapist-feed" className="text-sm hover:text-primary transition-colors">
-                  Articole
                 </Link>
-                <a href="#community" className="text-sm hover:text-primary transition-colors">
+                <Link to="/community" className="text-sm hover:text-primary transition-colors">
                   Comunitate
-                </a>
-                <a href="#education" className="text-sm hover:text-primary transition-colors">
+                </Link>
+                <Link to="/education" className="text-sm hover:text-primary transition-colors">
                   Educație
-                </a>
-                <a href="#events" className="text-sm hover:text-primary transition-colors">
+                </Link>
+                <Link to="/events" className="text-sm hover:text-primary transition-colors">
                   Evenimente
-                </a>
-                <a href="/admin" className="text-sm hover:text-primary transition-colors">
-                  Admin
-                </a>
+                </Link>
               </div>
             </div>
               <div className="flex items-center gap-2 md:gap-3">
@@ -341,7 +335,7 @@ const Index = () => {
                 className="bg-gradient-to-r from-healio-turquoise to-healio-mint text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 asChild
               >
-                <Link to="#marketplace">
+                <Link to="/therapists">
                   <Users className="mr-2 h-5 w-5" />
                   Vorbește cu terapeut ACUM
                 </Link>
@@ -350,9 +344,12 @@ const Index = () => {
                 size="lg" 
                 variant="outline"
                 className="bg-white/30 backdrop-blur-sm border-2 border-white/40 text-slate-700 hover:bg-white/40 font-semibold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                asChild
               >
-                <Heart className="mr-2 h-5 w-5" />
-                Alătură-te comunității
+                <Link to="/community">
+                  <Heart className="mr-2 h-5 w-5" />
+                  Alătură-te comunității
+                </Link>
               </Button>
             </div>
             
@@ -456,10 +453,10 @@ const Index = () => {
               
               {/* Add more therapist placeholder cards */}
               <PuzzleCard size="1x1" variant="mint">
-                <div className="p-4 text-center">
+                <Link to="/therapists" className="block p-4 text-center h-full flex flex-col justify-center">
                   <Plus className="w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 text-healio-mint-foreground/60" />
                   <p className="text-xs md:text-sm font-medium">Vezi mai mulți terapeuți</p>
-                </div>
+                </Link>
               </PuzzleCard>
             </PuzzleGrid>
           )}
@@ -718,8 +715,10 @@ const Index = () => {
                   <strong>Ghidul complet</strong> cu 15+ tehnici dovedite științific pentru a-ți recâștiga controlul. 
                   Includes exerciții practice pentru rezultate imediate.
                 </p>
-                <Button size="sm">
-                  Citește ghidul
+                <Button size="sm" asChild>
+                  <Link to="/education">
+                    Citește ghidul
+                  </Link>
                 </Button>
               </div>
             </PuzzleCard>
@@ -803,8 +802,11 @@ const Index = () => {
                 <Button 
                   variant="outline"
                   className="btn-skeuomorphic text-[#1F3B3A] font-semibold px-6 py-3 rounded-xl"
+                  asChild
                 >
-                  Vezi discuțiile
+                  <Link to="/community">
+                    Vezi discuțiile
+                  </Link>
                 </Button>
               </div>
 
