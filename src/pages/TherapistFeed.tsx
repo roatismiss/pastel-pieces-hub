@@ -3,18 +3,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BookOpen, Calendar, Users, TrendingUp, Star, Award } from 'lucide-react';
 import TherapistFeed from '@/components/therapist/TherapistFeed';
+import { AppLayout } from '@/components/layout/AppLayout';
 
 const TherapistFeedPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <AppLayout>
+      <div className="p-6 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-4">
             Conținut de la Terapeuți Licențiați
           </h1>
           <p className="text-lg text-muted-foreground mb-6">
-            Articole profesionale, evenimente și resurse de la terapeuții verificați pe Healio
+            Articole profesionale, evenimente și resurse de la terapeuților verificați pe Healio
           </p>
         </div>
 
@@ -109,7 +110,7 @@ const TherapistFeedPage = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </AppLayout>
   );
 };
 
