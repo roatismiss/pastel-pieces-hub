@@ -613,16 +613,24 @@ const Index = () => {
               </div>
             </PuzzleCard>
 
-            {communityPosts.map((post, index) => (
-              <PuzzleCard 
-                key={post.id}
-                size={
-                  index === 0 ? '2x2' : 
-                  index === 1 ? '1x1' : 
-                  index === 2 ? '2x1' : '1x2'
-                }
-                className="bg-[#f0f0f3] rounded-[20px] shadow-[8px_8px_16px_#d1d1d4,-8px_-8px_16px_#ffffff] border-0"
-              >
+            {communityPosts.map((post, index) => {
+              const cardColors = [
+                'bg-gradient-to-br from-healio-orange/10 to-healio-orange/20 shadow-[8px_8px_16px_rgba(234,88,12,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]',
+                'bg-gradient-to-br from-healio-turquoise/10 to-healio-turquoise/20 shadow-[8px_8px_16px_rgba(20,184,166,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]',
+                'bg-gradient-to-br from-healio-mint/10 to-healio-mint/20 shadow-[8px_8px_16px_rgba(34,197,94,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]',
+                'bg-gradient-to-br from-purple-100/50 to-purple-200/50 shadow-[8px_8px_16px_rgba(147,51,234,0.1),-8px_-8px_16px_rgba(255,255,255,0.8)]'
+              ];
+              
+              return (
+                <PuzzleCard 
+                  key={post.id}
+                  size={
+                    index === 0 ? '2x2' : 
+                    index === 1 ? '1x1' : 
+                    index === 2 ? '2x1' : '1x2'
+                  }
+                  className={`${cardColors[index % cardColors.length]} rounded-[20px] border-0`}
+                >
                 <div className="p-4 md:p-6 h-full">
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-8 h-8 bg-[#f0f0f3] rounded-full shadow-[4px_4px_8px_#d1d1d4,-4px_-4px_8px_#ffffff] flex items-center justify-center flex-shrink-0">
@@ -653,8 +661,9 @@ const Index = () => {
                     ))}
                   </div>
                 </div>
-              </PuzzleCard>
-            ))}
+                </PuzzleCard>
+              );
+            })}
           </PuzzleGrid>
         </div>
       </section>
