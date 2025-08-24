@@ -231,13 +231,8 @@ const Index = () => {
                   </svg>
                 </div>
                 
-                <h1 className="text-xl sm:text-2xl md:text-4xl font-orbitron font-black animated-gradient-text animate-logo-bounce hover:animate-logo-glow cursor-pointer transition-all duration-1000 drop-shadow-2xl">
-                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '0s' }}>H</span>
-                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '1s' }}>e</span>
-                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '2s' }}>a</span>
-                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '3s' }}>l</span>
-                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '4s' }}>i</span>
-                  <span className="inline-block animate-letter-dance" style={{ animationDelay: '5s' }}>o</span>
+                <h1 className="text-xl sm:text-2xl md:text-4xl font-orbitron font-black animated-gradient-text cursor-pointer transition-all duration-300 drop-shadow-2xl">
+                  Healio
                 </h1>
                 <div className="absolute -inset-4 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10 blur-2xl animate-gradient-shift"></div>
               </div>
