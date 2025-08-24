@@ -35,7 +35,7 @@ interface TherapistPost {
 }
 
 interface TherapistPostsManagerProps {
-  therapistId: string;
+  therapistId: string | null;
 }
 
 const CATEGORIES = [
@@ -68,6 +68,12 @@ const TherapistPostsManager: React.FC<TherapistPostsManagerProps> = ({ therapist
 
   const fetchPosts = async () => {
     try {
+      if (!therapistId) {
+        setPosts([]);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('therapist_posts')
         .select('*')
@@ -113,6 +119,15 @@ const TherapistPostsManager: React.FC<TherapistPostsManagerProps> = ({ therapist
     }
 
     try {
+      if (!therapistId) {
+        toast({
+          title: "Se încarcă profilul",
+          description: "Te rugăm să aștepți o secundă până se încarcă profilul tău de terapeut.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const postData = {
         ...formData,
         therapist_id: therapistId,
