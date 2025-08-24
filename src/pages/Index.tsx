@@ -669,8 +669,16 @@ const Index = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-16 px-4" style={{ backgroundColor: '#F5E6D3' }}>
-        <div className="container mx-auto max-w-6xl">
+      <section id="education" className="py-16 px-4 relative" style={{ backgroundColor: '#F4E4D1' }}>
+        {/* Subtle noise texture overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
+          style={{
+            backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.4"/></svg>')`
+          }}
+        ></div>
+        
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-playfair font-bold mb-4">
               Înțelege-te mai bine cu resurse gratuite
@@ -717,8 +725,8 @@ const Index = () => {
               </div>
             </PuzzleCard>
 
-            <div className="relative">
-              <div className="p-6 flex flex-col items-center justify-center h-full" style={{ backgroundColor: '#F5E6D3' }}>
+            <div className="relative rounded-lg overflow-hidden" style={{ backgroundColor: '#F4E4D1' }}>
+              <div className="p-6 flex flex-col items-center justify-center h-full">
                 <img 
                   src="/lovable-uploads/2dba6fd7-ee5c-4ff2-8b80-6e85644344ba.png" 
                   alt="Confused person with questions"
