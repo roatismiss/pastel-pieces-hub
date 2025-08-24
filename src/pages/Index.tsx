@@ -182,13 +182,13 @@ const Index = () => {
         <div className="container mx-auto px-3 sm:px-4 py-1">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
-              <div className="relative group flex items-center gap-4 md:gap-6">
-                {/* Healtio Logo Image */}
-                <div className="relative flex items-center justify-center px-2 py-0.5">
+              <div className="relative group flex items-center gap-2 sm:gap-4 md:gap-6">
+                {/* Healio Logo Image */}
+                <div className="relative flex items-center justify-center px-1 sm:px-2 py-0.5">
                   <img 
                     src="/lovable-uploads/36f9d7b1-e29b-41dd-aafa-520f8fff7482.png"
                     alt="Healio Logo"
-                    className="h-32 md:h-36 w-auto object-contain filter-none"
+                    className="h-20 sm:h-28 md:h-32 lg:h-36 w-auto object-contain filter-none"
                     style={{ 
                       imageRendering: 'crisp-edges'
                     }}
@@ -197,7 +197,7 @@ const Index = () => {
                 
                 <div className="absolute -inset-6 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10 blur-2xl animate-gradient-shift"></div>
               </div>
-              <div className="hidden md:flex items-center gap-6">
+              <div className="hidden lg:flex items-center gap-4 xl:gap-6">
                 <Link to="/therapists" className="text-sm hover:text-primary transition-colors">
                   Terapeuți
                 </Link>
@@ -214,18 +214,18 @@ const Index = () => {
             </div>
               <div className="flex items-center gap-2 md:gap-3">
                 {authLoading ? (
-                  <div className="h-8 w-20 animate-pulse bg-muted rounded"></div>
+                  <div className="h-6 sm:h-8 w-16 sm:w-20 animate-pulse bg-muted rounded"></div>
                 ) : user ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="flex items-center gap-2 px-2 md:px-3">
+                      <Button variant="ghost" className="flex items-center gap-1 sm:gap-2 px-2 md:px-3">
                         <Avatar className="h-6 w-6 md:h-8 md:w-8">
                           <AvatarImage src="/placeholder.svg" />
                           <AvatarFallback>
                             <UserIcon className="h-3 w-3 md:h-4 md:w-4" />
                           </AvatarFallback>
                         </Avatar>
-                        <span className="hidden md:inline text-sm font-medium">My Healio</span>
+                        <span className="hidden sm:inline text-xs sm:text-sm font-medium">My Healio</span>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
@@ -241,10 +241,10 @@ const Index = () => {
                   </DropdownMenu>
                 ) : (
                   <>
-                    <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
+                    <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-xs sm:text-sm" asChild>
                       <Link to="/auth">Conectează-te</Link>
                     </Button>
-                    <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4" asChild>
+                    <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs sm:text-sm px-2 sm:px-3 md:px-4" asChild>
                       <Link to="/auth">Începe acum</Link>
                     </Button>
                   </>
@@ -275,17 +275,17 @@ const Index = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-2 sm:px-4 py-8 sm:py-12">
           <div className="text-center max-w-4xl mx-auto">
             {/* Badge */}
-            <div className="mb-8">
-              <Badge className="hero-badge bg-white/30 backdrop-blur-sm border border-white/40 text-slate-700 mb-4 text-sm px-6 py-2 shadow-lg">
+            <div className="mb-6 sm:mb-8">
+              <Badge className="hero-badge bg-white/30 backdrop-blur-sm border border-white/40 text-slate-700 mb-4 text-xs sm:text-sm px-4 sm:px-6 py-1.5 sm:py-2 shadow-lg">
                 ✨ Platforma #1 pentru sănătatea mentală în România
               </Badge>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-merriweather font-bold mb-8 leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-merriweather font-bold mb-6 sm:mb-8 leading-tight px-4">
               <span className="text-slate-800">Nu mai suferi în</span>
               <br />
               <span className="bg-gradient-to-r from-healio-turquoise via-healio-mint to-healio-orange bg-clip-text text-transparent">
@@ -296,65 +296,65 @@ const Index = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
               <strong className="text-slate-700">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
               rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat.
-              <br className="hidden md:block" />
+              <br className="hidden sm:block" />
               <em className="font-medium text-slate-700">Fără judecăți. Doar sprijin autentic.</em>
             </p>
             
             {/* Trust indicators */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-2xl mx-auto">
-              <div className="flex items-center justify-center gap-3 bg-white/30 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/30">
-                <Shield className="h-5 w-5 text-healio-turquoise flex-shrink-0" />
-                <span className="text-slate-700 font-medium">100% Confidențial</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
+              <div className="flex items-center justify-center gap-2 sm:gap-3 bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 border border-white/30">
+                <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-healio-turquoise flex-shrink-0" />
+                <span className="text-slate-700 font-medium text-sm sm:text-base">100% Confidențial</span>
               </div>
-              <div className="flex items-center justify-center gap-3 bg-white/30 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/30">
-                <Clock className="h-5 w-5 text-healio-mint flex-shrink-0" />
-                <span className="text-slate-700 font-medium">Disponibil 24/7</span>
+              <div className="flex items-center justify-center gap-2 sm:gap-3 bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 border border-white/30">
+                <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-healio-mint flex-shrink-0" />
+                <span className="text-slate-700 font-medium text-sm sm:text-base">Disponibil 24/7</span>
               </div>
-              <div className="flex items-center justify-center gap-3 bg-white/30 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/30">
-                <Star className="h-5 w-5 text-healio-orange flex-shrink-0" />
-                <span className="text-slate-700 font-medium">Terapeuți verificați</span>
+              <div className="flex items-center justify-center gap-2 sm:gap-3 bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 border border-white/30">
+                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-healio-orange flex-shrink-0" />
+                <span className="text-slate-700 font-medium text-sm sm:text-base">Terapeuți verificați</span>
               </div>
              </div>
 
              {/* Therapy Illustration */}
-             <div className="mb-10 flex justify-center">
+             <div className="mb-8 sm:mb-10 flex justify-center px-4">
                <img 
                  src="/lovable-uploads/f3b7f652-a582-4647-b4b7-844e13bcdc5d.png"
                  alt="Therapy session illustration showing therapist and patient in conversation"
-                 className="w-80 md:w-96 h-auto"
+                 className="w-64 sm:w-80 md:w-96 h-auto"
                />
              </div>
 
              {/* CTA Buttons */}
-            <div className="flex flex-col md:flex-row gap-4 justify-center max-w-lg mx-auto mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-lg mx-auto mb-6 sm:mb-8 px-4">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-healio-turquoise to-healio-mint text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-gradient-to-r from-healio-turquoise to-healio-mint text-white font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 asChild
               >
                 <Link to="/therapists">
-                  <Users className="mr-2 h-5 w-5" />
-                  Vorbește cu terapeut ACUM
+                  <Users className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="whitespace-nowrap">Vorbește cu terapeut ACUM</span>
                 </Link>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline"
-                className="bg-white/30 backdrop-blur-sm border-2 border-white/40 text-slate-700 hover:bg-white/40 font-semibold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-white/30 backdrop-blur-sm border-2 border-white/40 text-slate-700 hover:bg-white/40 font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 asChild
               >
                 <Link to="/community">
-                  <Heart className="mr-2 h-5 w-5" />
-                  Alătură-te comunității
+                  <Heart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="whitespace-nowrap">Alătură-te comunității</span>
                 </Link>
               </Button>
             </div>
             
             {/* Social proof */}
-            <p className="text-sm text-slate-600 bg-white/25 backdrop-blur-sm px-6 py-3 rounded-full inline-block border border-white/30">
+            <p className="text-xs sm:text-sm text-slate-600 bg-white/25 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full inline-block border border-white/30 mx-4">
               <strong className="text-slate-700">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
             </p>
           </div>
@@ -367,11 +367,11 @@ const Index = () => {
       </section>
 
       {/* Marketplace Section */}
-      <section id="marketplace" className="py-8 sm:py-12 md:py-16 px-3 sm:px-4 relative overflow-hidden" style={{ backgroundColor: '#F4E4D1' }}>
+      <section id="marketplace" className="py-6 sm:py-8 md:py-12 lg:py-16 px-3 sm:px-4 relative overflow-hidden" style={{ backgroundColor: '#F4E4D1' }}>
         <ConnectedParticles />
-        <div className="container mx-auto max-w-6xl relative z-10 neuro-inset-deep p-4 sm:p-6 md:p-8 lg:p-12 rounded-2xl sm:rounded-3xl bg-background/40 backdrop-blur-sm">
-          <div className="text-center mb-6 sm:mb-8 md:mb-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-playfair font-bold mb-2 sm:mb-3 md:mb-4">
+        <div className="container mx-auto max-w-6xl relative z-10 neuro-inset-deep p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 rounded-xl sm:rounded-2xl md:rounded-3xl bg-background/40 backdrop-blur-sm">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-playfair font-bold mb-2 sm:mb-3 md:mb-4 px-2">
               Terapeutul perfect te așteaptă
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-2 sm:px-0">
