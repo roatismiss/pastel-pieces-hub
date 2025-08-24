@@ -183,9 +183,9 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/9d69c4a6-b602-444b-a872-cf5dbcb40af2.png"
                     alt="Healtio Logo"
-                    className="h-20 md:h-24 w-auto object-contain transition-all duration-300 filter-none hover:scale-105 drop-shadow-md hover:drop-shadow-lg"
+                    className="h-16 md:h-20 w-auto object-contain filter-none"
                     style={{ 
-                      imageRendering: '-webkit-optimize-contrast'
+                      imageRendering: 'crisp-edges'
                     }}
                   />
                 </div>
