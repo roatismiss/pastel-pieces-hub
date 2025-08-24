@@ -1,98 +1,129 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Users, Heart, MessageCircle, TrendingUp } from 'lucide-react';
-import CommunityPostForm from '@/components/community/CommunityPostForm';
 import CommunityFeed from '@/components/community/CommunityFeed';
+import CommunityPostForm from '@/components/community/CommunityPostForm';
+import { Users, MessageSquare, ThumbsUp, TrendingUp } from 'lucide-react';
 
 const Community = () => {
   const { user } = useAuth();
   const [showPostForm, setShowPostForm] = useState(false);
 
+  const handlePostCreated = () => {
+    setShowPostForm(false);
+  };
+
+  const handleCancelPost = () => {
+    setShowPostForm(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <AppLayout>
+      <div className="p-6 max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            Comunitatea Healio
-          </h1>
-          <p className="text-lg text-muted-foreground mb-6">
-            Un spațiu sigur pentru împărtășirea experiențelor și sprijinul mutual
-          </p>
-          
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">Comunitatea Healio</h1>
+            <p className="text-muted-foreground mt-2">
+              Un spațiu sigur pentru partajarea experiențelor și sprijinul reciproc
+            </p>
+          </div>
           {user && (
             <Button
-              onClick={() => setShowPostForm(!showPostForm)}
-              className="mb-6"
+              onClick={() => setShowPostForm(true)}
+              className="gap-2"
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <MessageSquare className="w-4 h-4" />
               Postare Nouă
             </Button>
           )}
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        {/* Community Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card>
-            <CardContent className="flex items-center p-6">
-              <Users className="h-8 w-8 text-primary mr-3" />
-              <div>
-                <p className="text-2xl font-bold">1,234</p>
-                <p className="text-sm text-muted-foreground">Membri activi</p>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">1,234</p>
+                  <p className="text-sm text-muted-foreground">Membri activi</p>
+                </div>
               </div>
             </CardContent>
           </Card>
+
           <Card>
-            <CardContent className="flex items-center p-6">
-              <MessageCircle className="h-8 w-8 text-primary mr-3" />
-              <div>
-                <p className="text-2xl font-bold">567</p>
-                <p className="text-sm text-muted-foreground">Postări astăzi</p>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                  <MessageSquare className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">89</p>
+                  <p className="text-sm text-muted-foreground">Postări astăzi</p>
+                </div>
               </div>
             </CardContent>
           </Card>
+
           <Card>
-            <CardContent className="flex items-center p-6">
-              <Heart className="h-8 w-8 text-primary mr-3" />
-              <div>
-                <p className="text-2xl font-bold">2,890</p>
-                <p className="text-sm text-muted-foreground">Reacții pozitive</p>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                  <ThumbsUp className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">456</p>
+                  <p className="text-sm text-muted-foreground">Reacții pozitive</p>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
+        {/* Main Content */}
         <Tabs defaultValue="feed" className="space-y-6">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="feed">Feed Comunitate</TabsTrigger>
-            <TabsTrigger value="trending">În Tendințe</TabsTrigger>
+            <TabsTrigger value="feed">Fluxul Comunității</TabsTrigger>
+            <TabsTrigger value="trending">Trending</TabsTrigger>
           </TabsList>
 
           <TabsContent value="feed" className="space-y-6">
-            {/* Post Form */}
             {showPostForm && (
               <CommunityPostForm
-                onPostCreated={() => setShowPostForm(false)}
-                onCancel={() => setShowPostForm(false)}
+                onPostCreated={handlePostCreated}
+                onCancel={handleCancelPost}
               />
             )}
 
             {/* Community Guidelines */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Liniile Directoare ale Comunității</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">Respectă ceilalți</Badge>
+                  <Badge variant="secondary">Păstrează confidențialitatea</Badge>
+                  <Badge variant="secondary">Oferă suport constructiv</Badge>
+                  <Badge variant="secondary">Evită diagnosticele medicale</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
             {!user && (
-              <Card className="border-primary/20">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-primary" />
-                    Alăturați-vă comunității noastre
-                  </CardTitle>
-                  <CardDescription>
-                    Pentru a posta și a interacționa în comunitate, vă rugăm să vă autentificați
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <p className="text-muted-foreground mb-4">
+                    Pentru a vedea și interacționa cu postările comunității, te rugăm să te autentifici.
+                  </p>
                   <Button onClick={() => window.location.href = '/auth'}>
                     Autentificare
                   </Button>
@@ -100,48 +131,23 @@ const Community = () => {
               </Card>
             )}
 
-            {/* Community Guidelines */}
-            <Card className="bg-primary/5 border-primary/20">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-primary">
-                  <Heart className="w-5 h-5" />
-                  Regulile Comunității
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm space-y-2">
-                <p>• Tratați-vă cu respect și empatie</p>
-                <p>• Nu împărtășiți informații personale sensibile</p>
-                <p>• Postările anonime sunt permise pentru confidențialitate</p>
-                <p>• Raportați conținutul nepotrivit</p>
-                <p>• Căutați ajutor profesional pentru probleme grave</p>
-              </CardContent>
-            </Card>
-
-            {/* Community Feed */}
             <CommunityFeed />
           </TabsContent>
 
           <TabsContent value="trending" className="space-y-6">
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5" />
-                  Postări Populare
-                </CardTitle>
-                <CardDescription>
-                  Cele mai apreciate postări din această săptămână
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-center text-muted-foreground py-8">
-                  Funcționalitatea "În Tendințe" va fi disponibilă în curând
+              <CardContent className="p-6 text-center">
+                <TrendingUp className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Trending în curând</h3>
+                <p className="text-muted-foreground">
+                  Această secțiune va afișa postările cu cele mai multe interacțiuni din comunitate.
                 </p>
               </CardContent>
             </Card>
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </AppLayout>
   );
 };
 

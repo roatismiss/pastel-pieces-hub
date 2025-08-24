@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { useAuth } from '@/hooks/useAuth';
+import { useTherapist } from '@/hooks/useTherapist';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/use-toast';
@@ -22,26 +24,9 @@ import TherapistCalendar from '@/components/therapist/TherapistCalendar';
 import TherapistEarnings from '@/components/therapist/TherapistEarnings';
 import TherapistChat from '@/components/therapist/TherapistChat';
 
-// Create supabase client without types to avoid infinite recursion
-const supabase = createClient(
-  "https://txovwucfngggijkmwsox.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4b3Z3dWNmbmdnZ2lqa213c294Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NTk0MjMsImV4cCI6MjA3MTUzNTQyM30.8hU4sGCNw0rHXk8haoAHsdbbC6KGlidy56acCc57sg0"
-);
-
-interface TherapistStats {
-  totalPosts: number;
-  totalPostViews: number;
-  totalEvents: number;
-  totalFollowers: number;
-  profileViews: number;
-  totalEarnings: number;
-  thisMonthEarnings: number;
-  totalAppointments: number;
-  upcomingAppointments: number;
-}
-
 const TherapistDashboard = () => {
   const { user } = useAuth();
+  const { isTherapist, therapistProfile } = useTherapist();
   const { toast } = useToast();
   
   const [therapistId, setTherapistId] = useState<string | null>(null);
@@ -59,62 +44,90 @@ const TherapistDashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Mock therapist ID for testing
-    setTherapistId('mock-therapist-id');
-    fetchStats('mock-therapist-id');
-    setLoading(false);
-  }, []);
-
-  const fetchTherapistProfile = async () => {
-    try {
-      if (!user?.id) return;
-      
-      // First, check if the user has a therapist profile
-      const therapistResponse: any = await supabase
-        .from('therapists')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
-
-      if (therapistResponse.error || !therapistResponse.data) {
-        toast({
-          title: "Acces interzis",
-          description: "Nu aveți un profil de terapeut asociat acestui cont.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      setTherapistId(therapistResponse.data.id);
-      await fetchStats(therapistResponse.data.id);
-    } catch (error) {
-      console.error('Error fetching therapist profile:', error);
-      toast({
-        title: "Eroare",
-        description: "Nu am putut încărca profilul de terapeut",
-        variant: "destructive",
-      });
-    } finally {
+    if (user && isTherapist && therapistProfile) {
+      setTherapistId(therapistProfile.id);
+      fetchStats(therapistProfile.id);
+      setLoading(false);
+    } else if (!isTherapist && user) {
       setLoading(false);
     }
-  };
+  }, [user, isTherapist, therapistProfile]);
 
   const fetchStats = async (therapistId: string) => {
     try {
-      // Mock stats pentru testing
+      // Fetch real data from Supabase
+      const [postsResponse, eventsResponse, followersResponse, earningsResponse, appointmentsResponse] = await Promise.all([
+        // Posts stats
+        supabase
+          .from('therapist_posts')
+          .select('id, view_count')
+          .eq('therapist_id', therapistId),
+        
+        // Events stats
+        supabase
+          .from('therapist_events')
+          .select('id')
+          .eq('therapist_id', therapistId),
+        
+        // Followers stats
+        supabase
+          .from('therapist_followers')
+          .select('id')
+          .eq('therapist_id', therapistId),
+        
+        // Earnings stats
+        supabase
+          .from('therapist_earnings')
+          .select('amount, created_at')
+          .eq('therapist_id', therapistId),
+        
+        // Appointments stats
+        supabase
+          .from('therapist_appointments')
+          .select('id, appointment_date, status')
+          .eq('therapist_id', therapistId)
+      ]);
+
+      const posts = postsResponse.data || [];
+      const totalPostViews = posts.reduce((sum, post) => sum + (post.view_count || 0), 0);
+      const events = eventsResponse.data || [];
+      const followers = followersResponse.data || [];
+      const earnings = earningsResponse.data || [];
+      const appointments = appointmentsResponse.data || [];
+
+      // Calculate earnings this month
+      const now = new Date();
+      const thisMonth = earnings.filter(e => {
+        const earningDate = new Date(e.created_at);
+        return earningDate.getMonth() === now.getMonth() && earningDate.getFullYear() === now.getFullYear();
+      });
+
+      const thisMonthEarnings = thisMonth.reduce((sum, e) => sum + Number(e.amount), 0);
+      const totalEarnings = earnings.reduce((sum, e) => sum + Number(e.amount), 0);
+
+      // Calculate upcoming appointments
+      const upcomingAppointments = appointments.filter(a => 
+        new Date(a.appointment_date) > now && a.status === 'scheduled'
+      ).length;
+
       setStats({
-        totalPosts: 12,
-        totalPostViews: 3456,
-        totalEvents: 8,
-        totalFollowers: 234,
-        profileViews: 1567,
-        totalEarnings: 4350.50,
-        thisMonthEarnings: 650.25,
-        totalAppointments: 89,
-        upcomingAppointments: 7,
+        totalPosts: posts.length,
+        totalPostViews,
+        totalEvents: events.length,
+        totalFollowers: followers.length,
+        profileViews: 0, // This would need to be implemented
+        totalEarnings,
+        thisMonthEarnings,
+        totalAppointments: appointments.length,
+        upcomingAppointments,
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
+      toast({
+        title: "Eroare",
+        description: "Nu s-au putut încărca statisticile",
+        variant: "destructive",
+      });
     }
   };
 
@@ -126,23 +139,25 @@ const TherapistDashboard = () => {
     );
   }
 
-  if (!therapistId) {
+  if (!isTherapist) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Award className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-4">Acces interzis</h2>
-          <p className="text-muted-foreground">
-            Nu aveți un profil de terapeut asociat acestui cont.
-          </p>
+      <AppLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <Award className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-4">Acces interzis</h2>
+            <p className="text-muted-foreground">
+              Nu aveți un profil de terapeut asociat acestui cont.
+            </p>
+          </div>
         </div>
-      </div>
+      </AppLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-      <div className="container mx-auto px-4 py-8">
+    <AppLayout>
+      <div className="p-6 max-w-6xl mx-auto space-y-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Dashboard Terapeut</h1>
           <p className="text-muted-foreground">
@@ -295,8 +310,20 @@ const TherapistDashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </AppLayout>
   );
 };
+
+interface TherapistStats {
+  totalPosts: number;
+  totalPostViews: number;
+  totalEvents: number;
+  totalFollowers: number;
+  profileViews: number;
+  totalEarnings: number;
+  thisMonthEarnings: number;
+  totalAppointments: number;
+  upcomingAppointments: number;
+}
 
 export default TherapistDashboard;

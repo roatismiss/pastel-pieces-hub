@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { AppLayout } from '@/components/layout/AppLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,9 +17,7 @@ import {
   Clock,
   CheckCircle,
   BookOpen,
-  TrendingUp,
-  LogOut,
-  Bell
+  TrendingUp
 } from 'lucide-react';
 
 interface Profile {
@@ -122,45 +121,15 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5">
-      {/* Header */}
-      <header className="bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <Heart className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold text-foreground">Healio Dashboard</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm">
-                <Bell className="h-4 w-4" />
-              </Button>
-              <div className="flex items-center space-x-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={profile?.avatar_url || ""} />
-                  <AvatarFallback>{getInitials(profile?.full_name)}</AvatarFallback>
-                </Avatar>
-                <span className="text-sm font-medium text-foreground">
-                  {profile?.full_name || user?.email}
-                </span>
-              </div>
-              <Button variant="outline" size="sm" onClick={handleSignOut}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <AppLayout>
+      <div className="p-6 max-w-6xl mx-auto space-y-6">
+        {/* Header */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">
-            Welcome back, {profile?.full_name?.split(' ')[0] || 'there'}!
+            Bună ziua, {profile?.full_name?.split(' ')[0] || 'acolo'}!
           </h2>
           <p className="text-muted-foreground">
-            Here's your mental wellness dashboard for today.
+            Acesta este dashboard-ul de wellness mental pentru astăzi.
           </p>
         </div>
 
@@ -374,7 +343,7 @@ export default function Dashboard() {
             </Card>
           </TabsContent>
         </Tabs>
-      </main>
-    </div>
+      </div>
+    </AppLayout>
   );
 }

@@ -8,6 +8,7 @@ import { Loader2, MessageCircle, Heart, MoreVertical, Flag } from 'lucide-react'
 import { supabase } from '@/integrations/supabase/client';
 import { formatDistanceToNow } from 'date-fns';
 import { ro } from 'date-fns/locale';
+import { CommunityComments } from './CommunityComments';
 
 interface CommunityPost {
   id: string;
@@ -249,13 +250,17 @@ const CommunityFeed = () => {
                       <Heart className="h-4 w-4 mr-1" />
                       {post.like_count}
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-muted-foreground">
-                      <MessageCircle className="h-4 w-4 mr-1" />
-                      {post.comment_count}
-                    </Button>
                     <Button variant="ghost" size="sm" className="ml-auto text-muted-foreground">
                       <Flag className="h-4 w-4" />
                     </Button>
+                  </div>
+                  
+                  {/* Comments Section */}
+                  <div className="mt-4">
+                    <CommunityComments 
+                      postId={post.id} 
+                      commentCount={post.comment_count} 
+                    />
                   </div>
                 </CardContent>
               </Card>
