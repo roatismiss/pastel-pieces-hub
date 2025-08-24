@@ -669,7 +669,7 @@ const Index = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-16 px-4 bg-muted/30">
+      <section id="education" className="py-16 px-4" style={{ backgroundColor: '#F5E6D3' }}>
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-playfair font-bold mb-4">
@@ -714,6 +714,18 @@ const Index = () => {
                 <Button size="sm">
                   Citește ghidul
                 </Button>
+              </div>
+            </PuzzleCard>
+
+            <PuzzleCard size="1x1">
+              <div className="p-4 text-center flex flex-col items-center justify-center h-full">
+                <img 
+                  src="/lovable-uploads/2dba6fd7-ee5c-4ff2-8b80-6e85644344ba.png" 
+                  alt="Confused person with questions"
+                  className="w-20 h-20 object-contain mb-3"
+                />
+                <h4 className="font-medium mb-2">Ai întrebări?</h4>
+                <p className="text-xs text-muted-foreground">Începe să explorezi</p>
               </div>
             </PuzzleCard>
 
