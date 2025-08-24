@@ -224,14 +224,9 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative hero-background">
         {/* Mobile full-screen hero */}
-        <div className="md:hidden min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="md:hidden min-h-screen flex flex-col items-center justify-center relative overflow-hidden p-4">
           <FloatingNodes />
-          <img 
-            src={heroImage} 
-            alt="Healio - Echilibru interior"
-            className="absolute inset-0 w-full h-full object-cover opacity-3"
-          />
-          <div className="relative z-10 text-center p-4 w-full">
+          <div className="relative z-10 text-center w-full max-w-md">
             <div className="mb-4 sm:mb-6">
               <Badge className="hero-badge neuro-outset text-white mb-3 text-xs px-3 py-1 hero-animate-headline">
                 ✨ Platforma #1 pentru sănătatea mentală în România
@@ -243,11 +238,64 @@ const Index = () => {
               <br />
               Găsește-ți echilibrul cu Healio
             </h1>
-            <p className="text-sm hero-subheadline mb-6 max-w-md mx-auto leading-relaxed hero-animate-subheadline">
+            <p className="text-sm hero-subheadline mb-6 leading-relaxed hero-animate-subheadline">
               <strong className="hero-headline">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
               rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
               <span className="hero-gradient-text font-medium italic">Fără judecăți. Doar sprijin.</span>
             </p>
+            
+            {/* Mobile Illustration */}
+            <div className="mb-6 flex justify-center">
+              <div className="w-3/4 max-w-xs neuro-glass p-4 rounded-xl">
+                <svg
+                  viewBox="0 0 400 400"
+                  className="w-full h-auto drop-shadow-lg"
+                >
+                  {/* Desk */}
+                  <ellipse cx="200" cy="350" rx="150" ry="30" fill="#8B4513" opacity="0.8"/>
+                  
+                  {/* Papers */}
+                  <rect x="130" y="325" width="30" height="20" rx="2" fill="#ffffff" opacity="0.9" transform="rotate(-15 145 335)"/>
+                  <rect x="250" y="320" width="25" height="18" rx="2" fill="#ffffff" opacity="0.9" transform="rotate(20 262 329)"/>
+                  
+                  {/* Laptop */}
+                  <rect x="175" y="305" width="50" height="30" rx="3" fill="#2D3748"/>
+                  <rect x="177" y="307" width="46" height="26" rx="2" fill="#4299E1" opacity="0.8"/>
+                  
+                  {/* Mug */}
+                  <ellipse cx="290" cy="315" rx="12" ry="15" fill="#87CEEB"/>
+                  <rect x="287" y="295" width="2" height="20" fill="#8B4513"/>
+                  <rect x="291" y="290" width="2" height="25" fill="#FF6B35"/>
+                  
+                  {/* Person */}
+                  <ellipse cx="200" cy="250" rx="35" ry="45" fill="#E6B17A"/>
+                  <ellipse cx="200" cy="265" rx="30" ry="35" fill="#4A5568"/>
+                  <circle cx="200" cy="180" r="28" fill="#E6B17A"/>
+                  
+                  {/* Hair */}
+                  <path d="M172 165 C168 148, 185 140, 200 143 C215 140, 232 148, 228 165 C228 173, 224 180, 216 183 C208 186, 192 186, 184 183 C176 180, 172 173, 172 165 Z" fill="#2D3748"/>
+                  
+                  {/* Face */}
+                  <circle cx="190" cy="175" r="2" fill="#2D3748"/>
+                  <circle cx="210" cy="175" r="2" fill="#2D3748"/>
+                  <path d="M192 190 Q200 186, 208 190" stroke="#2D3748" strokeWidth="1.5" fill="none"/>
+                  
+                  {/* Arms */}
+                  <ellipse cx="170" cy="195" rx="12" ry="20" fill="#E6B17A" transform="rotate(-30 170 195)"/>
+                  <ellipse cx="230" cy="195" rx="12" ry="20" fill="#E6B17A" transform="rotate(30 230 195)"/>
+                  
+                  {/* Hands */}
+                  <circle cx="175" cy="170" r="10" fill="#E6B17A"/>
+                  <circle cx="225" cy="170" r="10" fill="#E6B17A"/>
+                  
+                  {/* Question marks */}
+                  <text x="130" y="130" fontSize="18" fill="#FF6B6B" fontWeight="bold" opacity="0.7">?</text>
+                  <text x="270" y="120" fontSize="16" fill="#4ECDC4" fontWeight="bold" opacity="0.6">?</text>
+                  <text x="290" y="160" fontSize="14" fill="#45B7D1" fontWeight="bold" opacity="0.5">?</text>
+                  <text x="120" y="180" fontSize="12" fill="#F7931E" fontWeight="bold" opacity="0.7">?</text>
+                </svg>
+              </div>
+            </div>
             
             <div className="grid grid-cols-1 gap-2 mb-6 text-xs hero-proof-text hero-animate-subheadline">
               <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
@@ -264,10 +312,10 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 justify-center max-w-xs mx-auto hero-animate-cta">
+            <div className="flex flex-col gap-3 justify-center hero-animate-cta">
               <Button 
                 size="lg" 
-                className="cta-premium text-white font-bold text-sm py-3 px-4"
+                className="cta-premium text-white font-bold text-sm py-3 px-4 w-full"
               >
                 <Users className="mr-2 h-4 w-4 flex-shrink-0" />
                 <span>Vorbește cu terapeut ACUM</span>
@@ -275,7 +323,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="btn-skeuomorphic text-sm px-4 py-3 text-healio-orange hover:text-white font-medium rounded-2xl"
+                className="btn-skeuomorphic text-sm px-4 py-3 text-healio-orange hover:text-white font-medium rounded-2xl w-full"
               >
                 <Heart className="mr-2 h-4 w-4 flex-shrink-0" />
                 <span>Alătură-te comunității</span>
@@ -288,75 +336,152 @@ const Index = () => {
           </div>
         </div>
         
-        {/* Desktop card-style hero */}
+        {/* Desktop two-column hero */}
         <div className="hidden md:block py-8 sm:py-12 md:py-20 px-3 sm:px-4">
           <div className="container mx-auto max-w-6xl">
-            <PuzzleGrid className="gap-3 sm:gap-4 md:gap-6">
-              <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-                <FloatingNodes />
-                <img 
-                  src={heroImage} 
-                  alt="Healio - Echilibru interior"
-                  className="absolute inset-0 w-full h-full object-cover opacity-3"
-                />
-                <div className="relative z-10 text-center p-4 sm:p-6 md:p-10">
-                <div className="mb-4 sm:mb-6 md:mb-8">
-                  <Badge className="hero-badge neuro-outset text-white mb-3 sm:mb-4 text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 hero-animate-headline">
-                    ✨ Platforma #1 pentru sănătatea mentală în România
-                  </Badge>
-                </div>
-                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-merriweather hero-headline mb-4 sm:mb-6 md:mb-8 leading-tight hero-animate-headline">
-                  Nu mai suferi în 
-                  <span className="hero-gradient-text"> tăcere</span>
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
-                  Găsește-ți echilibrul cu Healio
-                </h1>
-                <p className="text-xs sm:text-sm md:text-base lg:text-xl hero-subheadline mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed px-1 sm:px-2 hero-animate-subheadline">
-                  <strong className="hero-headline">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
-                  rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
-                  <span className="hero-gradient-text font-medium italic">Fără judecăți. Doar sprijin.</span>
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm hero-proof-text hero-animate-subheadline">
-                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
-                    <Shield className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-turquoise flex-shrink-0" />
-                    <span>100% Confidențial</span>
+            <div className="hero-neuro-glass texture-paper relative overflow-hidden min-h-[600px] rounded-3xl">
+              <FloatingNodes />
+              <div className="relative z-10 flex items-center h-full">
+                {/* Left Content */}
+                <div className="w-full md:w-3/5 p-6 md:p-10 lg:p-12">
+                  <div className="mb-4 sm:mb-6 md:mb-8">
+                    <Badge className="hero-badge neuro-outset text-white mb-3 sm:mb-4 text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 hero-animate-headline">
+                      ✨ Platforma #1 pentru sănătatea mentală în România
+                    </Badge>
                   </div>
-                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
-                    <Clock className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-mint flex-shrink-0" />
-                    <span>Disponibil 24/7</span>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-merriweather hero-headline mb-4 sm:mb-6 md:mb-8 leading-tight hero-animate-headline text-left">
+                    Nu mai suferi în 
+                    <span className="hero-gradient-text"> tăcere</span>
+                    <br />
+                    Găsește-ți echilibrul cu Healio
+                  </h1>
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg hero-subheadline mb-6 sm:mb-8 md:mb-10 leading-relaxed hero-animate-subheadline text-left">
+                    <strong className="hero-headline">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
+                    rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
+                    <span className="hero-gradient-text font-medium italic">Fără judecăți. Doar sprijin.</span>
+                  </p>
+                  
+                  <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm hero-proof-text hero-animate-subheadline">
+                    <div className="flex items-center gap-2 hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
+                      <Shield className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-turquoise flex-shrink-0" />
+                      <span>100% Confidențial</span>
+                    </div>
+                    <div className="flex items-center gap-2 hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
+                      <Clock className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-mint flex-shrink-0" />
+                      <span>Disponibil 24/7</span>
+                    </div>
+                    <div className="flex items-center gap-2 hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
+                      <Star className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-orange flex-shrink-0" />
+                      <span>Terapeuți verificați</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 sm:px-4 py-2 rounded-xl">
-                    <Star className="h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 text-healio-orange flex-shrink-0" />
-                    <span>Terapeuți verificați</span>
+
+                  <div className="flex flex-col gap-3 sm:gap-4 justify-start hero-animate-cta">
+                    <Button 
+                      size="lg" 
+                      className="cta-premium text-white font-bold text-xs sm:text-sm md:text-base py-3 px-4 sm:px-6 w-full sm:w-auto"
+                    >
+                      <Users className="mr-1 sm:mr-2 h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 flex-shrink-0" />
+                      <span>Vorbește cu terapeut ACUM</span>
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="btn-skeuomorphic text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 text-healio-orange hover:text-white font-medium rounded-2xl w-full sm:w-auto"
+                    >
+                      <Heart className="mr-1 sm:mr-2 h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 flex-shrink-0" />
+                      <span>Alătură-te comunității</span>
+                    </Button>
                   </div>
+                  
+                  <p className="text-xs md:text-sm hero-proof-text mt-6 md:mt-8 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
+                    <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
+                  </p>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 justify-center max-w-xs sm:max-w-md mx-auto md:max-w-none md:flex-row px-1 sm:px-2 hero-animate-cta">
-                  <Button 
-                    size="lg" 
-                    className="cta-premium text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg py-3 px-4 sm:px-6"
-                  >
-                    <Users className="mr-1 sm:mr-2 h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 flex-shrink-0" />
-                    <span className="truncate">Vorbește cu terapeut ACUM</span>
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="btn-skeuomorphic text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-6 lg:px-8 py-3 md:py-4 text-healio-orange hover:text-white font-medium rounded-2xl"
-                  >
-                    <Heart className="mr-1 sm:mr-2 h-3 sm:h-4 md:h-5 w-3 sm:w-4 md:w-5 flex-shrink-0" />
-                    <span className="truncate">Alătură-te comunității</span>
-                  </Button>
+                {/* Right Illustration */}
+                <div className="hidden md:block w-2/5 lg:w-2/5 h-full relative">
+                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                    <div className="w-full max-w-sm lg:max-w-md neuro-glass p-6 rounded-2xl relative">
+                      {/* SVG Meditation Illustration */}
+                      <svg
+                        viewBox="0 0 400 400"
+                        className="w-full h-auto drop-shadow-2xl"
+                        style={{
+                          filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.1)) drop-shadow(0 4px 6px rgba(0,0,0,0.05))',
+                        }}
+                      >
+                        {/* Desk */}
+                        <ellipse cx="200" cy="350" rx="180" ry="40" fill="#8B4513" opacity="0.8"/>
+                        
+                        {/* Papers on desk */}
+                        <rect x="120" y="320" width="40" height="30" rx="2" fill="#ffffff" opacity="0.9" transform="rotate(-15 140 335)"/>
+                        <rect x="260" y="315" width="35" height="25" rx="2" fill="#ffffff" opacity="0.9" transform="rotate(20 277 327)"/>
+                        <rect x="300" y="330" width="30" height="20" rx="2" fill="#ffffff" opacity="0.9" transform="rotate(-10 315 340)"/>
+                        
+                        {/* Laptop */}
+                        <rect x="170" y="300" width="60" height="40" rx="4" fill="#2D3748"/>
+                        <rect x="172" y="302" width="56" height="36" rx="2" fill="#4299E1" opacity="0.8"/>
+                        
+                        {/* Mug with pencils */}
+                        <ellipse cx="320" cy="310" rx="15" ry="20" fill="#87CEEB"/>
+                        <rect x="315" y="285" width="3" height="25" fill="#8B4513"/>
+                        <rect x="320" y="280" width="3" height="30" fill="#FF6B35"/>
+                        <rect x="325" y="285" width="3" height="25" fill="#4169E1"/>
+                        
+                        {/* Person body */}
+                        <ellipse cx="200" cy="250" rx="45" ry="55" fill="#E6B17A"/>
+                        
+                        {/* Person shirt */}
+                        <ellipse cx="200" cy="270" rx="40" ry="45" fill="#4A5568"/>
+                        
+                        {/* Person head */}
+                        <circle cx="200" cy="180" r="35" fill="#E6B17A"/>
+                        
+                        {/* Hair */}
+                        <path d="M165 160 C160 140, 180 130, 200 135 C220 130, 240 140, 235 160 C235 170, 230 180, 220 185 C210 190, 190 190, 180 185 C170 180, 165 170, 165 160 Z" fill="#2D3748"/>
+                        
+                        {/* Face features */}
+                        {/* Left eye */}
+                        <circle cx="185" cy="175" r="3" fill="#2D3748"/>
+                        {/* Right eye */}
+                        <circle cx="215" cy="175" r="3" fill="#2D3748"/>
+                        {/* Sad mouth */}
+                        <path d="M190 195 Q200 190, 210 195" stroke="#2D3748" strokeWidth="2" fill="none"/>
+                        
+                        {/* Arms holding head */}
+                        <ellipse cx="160" cy="200" rx="15" ry="25" fill="#E6B17A" transform="rotate(-30 160 200)"/>
+                        <ellipse cx="240" cy="200" rx="15" ry="25" fill="#E6B17A" transform="rotate(30 240 200)"/>
+                        
+                        {/* Hands on head */}
+                        <circle cx="170" cy="170" r="12" fill="#E6B17A"/>
+                        <circle cx="230" cy="170" r="12" fill="#E6B17A"/>
+                        
+                        {/* Question marks */}
+                        <g className="animate-float" style={{animationDelay: '0s'}}>
+                          <text x="120" y="120" fontSize="24" fill="#FF6B6B" fontWeight="bold" opacity="0.8">?</text>
+                        </g>
+                        <g className="animate-float" style={{animationDelay: '0.5s'}}>
+                          <text x="280" y="100" fontSize="20" fill="#4ECDC4" fontWeight="bold" opacity="0.7">?</text>
+                        </g>
+                        <g className="animate-float" style={{animationDelay: '1s'}}>
+                          <text x="320" y="140" fontSize="18" fill="#45B7D1" fontWeight="bold" opacity="0.6">?</text>
+                        </g>
+                        <g className="animate-float" style={{animationDelay: '1.5s'}}>
+                          <text x="100" y="180" fontSize="16" fill="#F7931E" fontWeight="bold" opacity="0.8">?</text>
+                        </g>
+                        <g className="animate-float" style={{animationDelay: '2s'}}>
+                          <text x="300" y="200" fontSize="22" fill="#FF6B6B" fontWeight="bold" opacity="0.7">?</text>
+                        </g>
+                        <g className="animate-float" style={{animationDelay: '2.5s'}}>
+                          <text x="140" y="80" fontSize="14" fill="#96CEB4" fontWeight="bold" opacity="0.6">?</text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-                
-                <p className="text-xs md:text-sm hero-proof-text mt-6 md:mt-8 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
-                  <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
-                </p>
-                </div>
-              </PuzzleCard>
-            </PuzzleGrid>
+              </div>
+            </div>
           </div>
         </div>
       </section>

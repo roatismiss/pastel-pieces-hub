@@ -322,6 +322,24 @@ All colors MUST be HSL. Beautiful puzzle/mosaic layout with healing vibes.
   }
 
   /* Enhanced hero glassmorphism */
+  /* Neumorphic glass effect for illustrations */
+  .neuro-glass {
+    background: linear-gradient(145deg, 
+      rgba(255, 255, 255, 0.15), 
+      rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* Float animation for question marks */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
   .hero-neuro-glass {
     background: 
       linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 248, 248, 0.8)),
