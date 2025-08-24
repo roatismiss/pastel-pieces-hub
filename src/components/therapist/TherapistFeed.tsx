@@ -8,6 +8,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { formatDistanceToNow } from 'date-fns';
 import { ro } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
+import { usePostViews } from '@/hooks/usePostViews';
 
 interface TherapistPost {
   id: string;
@@ -57,6 +58,7 @@ type FeedItem = (TherapistPost & { type: 'post' }) | (TherapistEvent & { type: '
 
 const TherapistFeed = () => {
   const navigate = useNavigate();
+  const { trackPostView } = usePostViews();
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'posts' | 'events'>('all');
@@ -162,7 +164,10 @@ const TherapistFeed = () => {
     }
   };
 
-  const handleItemClick = (item: FeedItem) => {
+  const handleItemClick = async (item: FeedItem) => {
+    // Track view before navigation
+    await trackPostView(item.id, item.type);
+    
     if (item.therapists) {
       navigate(`/therapist/${item.therapists.id}`);
     }
