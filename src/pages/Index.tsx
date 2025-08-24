@@ -174,24 +174,23 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-        <div className="container mx-auto px-3 sm:px-4 py-2 md:py-4">
+        <div className="container mx-auto px-3 sm:px-4 py-3 md:py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
               <div className="relative group flex items-center gap-4 md:gap-6">
                 {/* Healtio Logo Image */}
-                <div className="relative flex items-center justify-center px-2">
+                <div className="relative flex items-center justify-center px-4 py-2">
                   <img 
                     src="/lovable-uploads/9d69c4a6-b602-444b-a872-cf5dbcb40af2.png"
                     alt="Healtio Logo"
-                    className="h-9 md:h-12 w-auto object-contain transition-all duration-300 filter-none"
+                    className="h-14 md:h-18 w-auto object-contain transition-all duration-300 filter-none hover:scale-105 drop-shadow-md hover:drop-shadow-lg"
                     style={{ 
-                      imageRendering: '-webkit-optimize-contrast',
-                      maxHeight: '48px'
+                      imageRendering: '-webkit-optimize-contrast'
                     }}
                   />
                 </div>
                 
-                <div className="absolute -inset-4 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10 blur-2xl animate-gradient-shift"></div>
+                <div className="absolute -inset-6 bg-gradient-to-r from-healio-orange/20 via-healio-turquoise/20 to-healio-mint/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10 blur-2xl animate-gradient-shift"></div>
               </div>
               <div className="hidden md:flex items-center gap-6">
                 <a href="#marketplace" className="text-sm hover:text-primary transition-colors">
