@@ -52,36 +52,33 @@ const TherapistApplication = () => {
 
     setIsSubmitting(true);
     try {
-      if (canApply) {
-        // Submitem aplicația
-        const applicationData = await submitApplication(formData);
-        
-        // Creăm automat profilul de terapeut (pentru testare)
-        const { data: therapistProfile, error: therapistError } = await supabase
-          .from('therapists')
-          .insert({
-            name: formData.full_name,
-            specialization: formData.specialization,
-            bio: formData.bio,
-            price: 150, // preț default
-            languages: formData.languages,
-            user_id: user.id,
-            application_id: applicationData.id,
-            is_verified: true // pentru testare îi facem verificați automat
-          })
-          .select()
-          .single();
-
-        if (therapistError) throw therapistError;
-
-        toast.success('Felicitări! Contul de terapeut a fost creat cu succes!');
-        navigate('/therapist-dashboard');
-      } else if (canEditApplication) {
-        await updateApplication(formData);
-        toast.success('Aplicația a fost actualizată cu succes!');
+      // Validez că are specializare obligatorie
+      if (!formData.specialization) {
+        toast.error('Specializarea este obligatorie');
+        return;
       }
+
+      // Creez direct profilul de terapeut (nu mai trec prin aplicație)
+      const { data: therapistProfile, error: therapistError } = await supabase
+        .from('therapists')
+        .insert({
+          name: formData.full_name,
+          specialization: formData.specialization,
+          bio: formData.bio,
+          price: 150, // preț default
+          languages: formData.languages,
+          user_id: user.id,
+          is_verified: true // îi facem verificați automat pentru testare
+        })
+        .select()
+        .single();
+
+      if (therapistError) throw therapistError;
+
+      toast.success('Felicitări! Contul de terapeut a fost creat cu succes!');
+      navigate('/therapist-dashboard');
     } catch (error) {
-      console.error('Error submitting application:', error);
+      console.error('Error creating therapist profile:', error);
       toast.error('A apărut o eroare. Vă rugăm să încercați din nou.');
     } finally {
       setIsSubmitting(false);
@@ -155,26 +152,18 @@ const TherapistApplication = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-4">
-            {hasApplication ? 'Aplicația Dumneavoastră' : 'Aplicare ca Terapeut'}
+            Devino Terapeut pe Healio
           </h1>
           <p className="text-lg text-muted-foreground">
-            {hasApplication 
-              ? 'Vizualizați și editați aplicația pentru a deveni terapeut licențiat pe Healio'
-              : 'Completați formularul pentru a deveni terapeut licențiat pe Healio'
-            }
+            Completați formularul pentru a vă crea contul de terapeut licențiat pe Healio
           </p>
-          {hasApplication && (
-            <div className="mt-4 flex justify-center">
-              {getStatusBadge()}
-            </div>
-          )}
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle>Informații Personale și Profesionale</CardTitle>
             <CardDescription>
-              Completați toate câmpurile cu informații corecte și actualizate
+              Creați-vă contul de terapeut completând informațiile de mai jos
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -187,7 +176,6 @@ const TherapistApplication = () => {
                     value={formData.full_name}
                     onChange={(e) => setFormData(prev => ({ ...prev, full_name: e.target.value }))}
                     required
-                    disabled={!canApply && !canEditApplication}
                   />
                 </div>
 
@@ -199,7 +187,6 @@ const TherapistApplication = () => {
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     required
-                    disabled={!canApply && !canEditApplication}
                   />
                 </div>
 
@@ -209,7 +196,6 @@ const TherapistApplication = () => {
                     id="phone"
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    disabled={!canApply && !canEditApplication}
                   />
                 </div>
 
@@ -218,7 +204,7 @@ const TherapistApplication = () => {
                   <Select 
                     value={formData.specialization} 
                     onValueChange={(value) => setFormData(prev => ({ ...prev, specialization: value }))}
-                    disabled={!canApply && !canEditApplication}
+                    required
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Selectați specializarea" />
@@ -241,7 +227,6 @@ const TherapistApplication = () => {
                     value={formData.license_number}
                     onChange={(e) => setFormData(prev => ({ ...prev, license_number: e.target.value }))}
                     required
-                    disabled={!canApply && !canEditApplication}
                   />
                 </div>
 
@@ -255,7 +240,6 @@ const TherapistApplication = () => {
                     value={formData.years_experience}
                     onChange={(e) => setFormData(prev => ({ ...prev, years_experience: parseInt(e.target.value) || 0 }))}
                     required
-                    disabled={!canApply && !canEditApplication}
                   />
                 </div>
               </div>
@@ -269,7 +253,6 @@ const TherapistApplication = () => {
                   onChange={(e) => setFormData(prev => ({ ...prev, education: e.target.value }))}
                   required
                   rows={3}
-                  disabled={!canApply && !canEditApplication}
                 />
               </div>
 
@@ -281,7 +264,6 @@ const TherapistApplication = () => {
                   value={formData.bio}
                   onChange={(e) => setFormData(prev => ({ ...prev, bio: e.target.value }))}
                   rows={4}
-                  disabled={!canApply && !canEditApplication}
                 />
               </div>
 
@@ -293,12 +275,10 @@ const TherapistApplication = () => {
                     value={newCertification}
                     onChange={(e) => setNewCertification(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCertification())}
-                    disabled={!canApply && !canEditApplication}
                   />
                   <Button 
                     type="button" 
                     onClick={addCertification}
-                    disabled={!canApply && !canEditApplication}
                   >
                     Adaugă
                   </Button>
@@ -307,15 +287,13 @@ const TherapistApplication = () => {
                   {formData.certifications.map((cert, index) => (
                     <Badge key={index} variant="secondary" className="cursor-pointer">
                       {cert}
-                      {(canApply || canEditApplication) && (
-                        <button
-                          type="button"
-                          className="ml-2 text-red-500 hover:text-red-700"
-                          onClick={() => removeCertification(cert)}
-                        >
-                          ×
-                        </button>
-                      )}
+                      <button
+                        type="button"
+                        className="ml-2 text-red-500 hover:text-red-700"
+                        onClick={() => removeCertification(cert)}
+                      >
+                        ×
+                      </button>
                     </Badge>
                   ))}
                 </div>
@@ -329,12 +307,10 @@ const TherapistApplication = () => {
                     value={newLanguage}
                     onChange={(e) => setNewLanguage(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addLanguage())}
-                    disabled={!canApply && !canEditApplication}
                   />
                   <Button 
                     type="button" 
                     onClick={addLanguage}
-                    disabled={!canApply && !canEditApplication}
                   >
                     Adaugă
                   </Button>
@@ -343,7 +319,7 @@ const TherapistApplication = () => {
                   {formData.languages.map((lang, index) => (
                     <Badge key={index} variant="secondary" className="cursor-pointer">
                       {lang}
-                      {(canApply || canEditApplication) && formData.languages.length > 1 && (
+                      {formData.languages.length > 1 && (
                         <button
                           type="button"
                           className="ml-2 text-red-500 hover:text-red-700"
@@ -357,15 +333,6 @@ const TherapistApplication = () => {
                 </div>
               </div>
 
-              {hasApplication && application?.admin_notes && (
-                <div className="space-y-2">
-                  <Label>Note Administrator</Label>
-                  <div className="p-4 bg-muted rounded-lg">
-                    <p className="text-sm text-muted-foreground">{application.admin_notes}</p>
-                  </div>
-                </div>
-              )}
-
               <div className="flex gap-4">
                 <Button
                   type="button"
@@ -375,16 +342,14 @@ const TherapistApplication = () => {
                   Înapoi
                 </Button>
                 
-                {(canApply || canEditApplication) && (
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1"
-                  >
-                    {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                    {canApply ? 'Trimite Aplicația' : 'Actualizează Aplicația'}
-                  </Button>
-                )}
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex-1"
+                >
+                  {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  Creează Cont Terapeut
+                </Button>
               </div>
             </form>
           </CardContent>
