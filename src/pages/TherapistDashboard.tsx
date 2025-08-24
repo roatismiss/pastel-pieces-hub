@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { createClient } from '@supabase/supabase-js';
 import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/use-toast';
 import { 
@@ -22,6 +21,12 @@ import TherapistEventsManager from '@/components/therapist/TherapistEventsManage
 import TherapistCalendar from '@/components/therapist/TherapistCalendar';
 import TherapistEarnings from '@/components/therapist/TherapistEarnings';
 import TherapistChat from '@/components/therapist/TherapistChat';
+
+// Create supabase client without types to avoid infinite recursion
+const supabase = createClient(
+  "https://txovwucfngggijkmwsox.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4b3Z3dWNmbmdnZ2lqa213c294Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NTk0MjMsImV4cCI6MjA3MTUzNTQyM30.8hU4sGCNw0rHXk8haoAHsdbbC6KGlidy56acCc57sg0"
+);
 
 interface TherapistStats {
   totalPosts: number;
@@ -61,14 +66,16 @@ const TherapistDashboard = () => {
 
   const fetchTherapistProfile = async () => {
     try {
+      if (!user?.id) return;
+      
       // First, check if the user has a therapist profile
-      const { data: therapistData, error: therapistError } = await supabase
+      const therapistResponse: any = await supabase
         .from('therapists')
         .select('id')
-        .eq('user_id', user?.id)
+        .eq('user_id', user.id)
         .single();
 
-      if (therapistError || !therapistData) {
+      if (therapistResponse.error || !therapistResponse.data) {
         toast({
           title: "Acces interzis",
           description: "Nu aveți un profil de terapeut asociat acestui cont.",
@@ -77,8 +84,8 @@ const TherapistDashboard = () => {
         return;
       }
 
-      setTherapistId(therapistData.id);
-      await fetchStats(therapistData.id);
+      setTherapistId(therapistResponse.data.id);
+      await fetchStats(therapistResponse.data.id);
     } catch (error) {
       console.error('Error fetching therapist profile:', error);
       toast({
@@ -93,32 +100,32 @@ const TherapistDashboard = () => {
 
   const fetchStats = async (therapistId: string) => {
     try {
-      // Fetch posts count and views
-      const { data: posts } = await supabase
+      // Fetch posts count and views with explicit typing
+      const postsResponse: any = await supabase
         .from('therapist_posts')
         .select('view_count')
         .eq('therapist_id', therapistId);
 
       // Fetch events count
-      const { count: eventsCount } = await supabase
+      const eventsResponse: any = await supabase
         .from('therapist_events')
         .select('*', { count: 'exact', head: true })
         .eq('therapist_id', therapistId);
 
       // Fetch followers count
-      const { count: followersCount } = await supabase
+      const followersResponse: any = await supabase
         .from('therapist_followers')
         .select('*', { count: 'exact', head: true })
         .eq('therapist_id', therapistId);
 
       // Fetch profile views count
-      const { count: profileViewsCount } = await supabase
+      const profileViewsResponse: any = await supabase
         .from('therapist_profile_views')
         .select('*', { count: 'exact', head: true })
         .eq('therapist_id', therapistId);
 
       // Fetch earnings
-      const { data: earnings } = await supabase
+      const earningsResponse: any = await supabase
         .from('therapist_earnings')
         .select('amount, created_at')
         .eq('therapist_id', therapistId)
@@ -126,40 +133,43 @@ const TherapistDashboard = () => {
         .eq('status', 'completed');
 
       // Fetch appointments
-      const { count: totalAppointments } = await supabase
+      const totalAppointmentsResponse: any = await supabase
         .from('therapist_appointments')
         .select('*', { count: 'exact', head: true })
         .eq('therapist_id', therapistId);
 
-      const { count: upcomingAppointments } = await supabase
+      const upcomingAppointmentsResponse: any = await supabase
         .from('therapist_appointments')
         .select('*', { count: 'exact', head: true })
         .eq('therapist_id', therapistId)
         .gte('appointment_date', new Date().toISOString());
 
       // Calculate stats
-      const totalPosts = posts?.length || 0;
-      const totalPostViews = posts?.reduce((sum, post) => sum + (post.view_count || 0), 0) || 0;
-      const totalEarnings = earnings?.reduce((sum, earning) => sum + parseFloat(earning.amount.toString()), 0) || 0;
+      const posts = postsResponse.data || [];
+      const earnings = earningsResponse.data || [];
+      
+      const totalPosts = posts.length;
+      const totalPostViews = posts.reduce((sum: number, post: any) => sum + (post.view_count || 0), 0);
+      const totalEarnings = earnings.reduce((sum: number, earning: any) => sum + parseFloat(earning.amount.toString()), 0);
       
       const thisMonthStart = new Date();
       thisMonthStart.setDate(1);
       thisMonthStart.setHours(0, 0, 0, 0);
       
-      const thisMonthEarnings = earnings?.filter(earning => 
-        new Date(earning.created_at) >= thisMonthStart
-      ).reduce((sum, earning) => sum + parseFloat(earning.amount.toString()), 0) || 0;
+      const thisMonthEarnings = earnings
+        .filter((earning: any) => new Date(earning.created_at) >= thisMonthStart)
+        .reduce((sum: number, earning: any) => sum + parseFloat(earning.amount.toString()), 0);
 
       setStats({
         totalPosts,
         totalPostViews,
-        totalEvents: eventsCount || 0,
-        totalFollowers: followersCount || 0,
-        profileViews: profileViewsCount || 0,
+        totalEvents: eventsResponse.count || 0,
+        totalFollowers: followersResponse.count || 0,
+        profileViews: profileViewsResponse.count || 0,
         totalEarnings,
         thisMonthEarnings,
-        totalAppointments: totalAppointments || 0,
-        upcomingAppointments: upcomingAppointments || 0,
+        totalAppointments: totalAppointmentsResponse.count || 0,
+        upcomingAppointments: upcomingAppointmentsResponse.count || 0,
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
