@@ -177,13 +177,14 @@ const Index = () => {
         <div className="container mx-auto px-3 sm:px-4 py-2 md:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
-              <div className="relative group flex items-center gap-3">
+              <div className="relative group flex items-center gap-4 md:gap-6">
                 {/* Healtio Logo Image */}
-                <div className="relative">
+                <div className="relative flex items-center px-2">
                   <img 
                     src="/lovable-uploads/9d69c4a6-b602-444b-a872-cf5dbcb40af2.png"
                     alt="Healtio Logo"
-                    className="h-8 sm:h-10 md:h-12 w-auto drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
+                    className="h-9 md:h-12 w-auto drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 object-contain"
+                    style={{ imageRendering: 'crisp-edges' }}
                   />
                 </div>
                 
