@@ -935,7 +935,7 @@ const Index = () => {
                 <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Pentru Companii</a></li>
                 <li>
                   <Link 
-                    to="/therapist-application" 
+                    to="/therapist-registration" 
                     className="text-healio-orange font-semibold hover:text-healio-orange/80 transition-colors flex items-center gap-1"
                   >
                     🤝 Devino Partener
