@@ -371,7 +371,7 @@ const Index = () => {
       </section>
 
       {/* Marketplace Section */}
-      <section id="marketplace" className="py-8 sm:py-12 md:py-16 px-3 sm:px-4 relative overflow-hidden neuro-background texture-paper">
+      <section id="marketplace" className="py-8 sm:py-12 md:py-16 px-3 sm:px-4 relative overflow-hidden" style={{ backgroundColor: '#F4E4D1' }}>
         <ConnectedParticles />
         <div className="container mx-auto max-w-6xl relative z-10 neuro-inset-deep p-4 sm:p-6 md:p-8 lg:p-12 rounded-2xl sm:rounded-3xl bg-background/40 backdrop-blur-sm">
           <div className="text-center mb-6 sm:mb-8 md:mb-12">
