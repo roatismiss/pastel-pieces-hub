@@ -1,5 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { PuzzleGrid, PuzzleCard } from '@/components/PuzzleGrid';
 import { TherapistCard } from '@/components/TherapistCard';
 import { CommunityCard } from '@/components/CommunityCard';
@@ -7,54 +12,126 @@ import { FloatingNodes } from '@/components/FloatingNodes';
 import ConnectedParticles from '@/components/ConnectedParticles';
 import CloudNodes from '@/components/CloudNodes';
 import { Link } from 'react-router-dom';
-import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Edit, Save, X } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
+import { useAdmin } from '@/hooks/useAdmin';
+import { toast } from 'sonner';
 
 import heroImage from '@/assets/hero-healio.jpg';
 import therapist1 from '@/assets/therapist-1.jpg';
 import therapist2 from '@/assets/therapist-2.jpg';
 import therapist3 from '@/assets/therapist-3.jpg';
 
+interface Therapist {
+  id: string;
+  name: string;
+  avatar_url?: string;
+  specialization: string;
+  rating?: number;
+  review_count?: number;
+  price: number;
+  languages?: string[];
+  availability?: string;
+  bio?: string;
+  is_verified?: boolean;
+}
+
 const Index = () => {
   console.log('Index component is rendering');
   
-  const therapists = [
-    {
-      id: '1',
-      name: 'Dr. Ana Popescu',
-      avatar: therapist1,
-      specialization: 'Anxietate și Depresie',
-      rating: 4.9,
-      reviewCount: 127,
-      price: '200 lei',
-      languages: ['Română', 'Engleză'],
-      availability: 'Disponibilă azi',
-      bio: 'Experiență de 15 ani în terapia cognitiv-comportamentală. Specialist în anxietate, depresie și tulburări de stres post-traumatic.'
-    },
-    {
-      id: '2', 
-      name: 'Psih. Mihai Ionescu',
-      avatar: therapist2,
-      specialization: 'Terapie de Cuplu',
-      rating: 4.8,
-      reviewCount: 89,
-      price: '180 lei',
-      languages: ['Română'],
-      availability: 'Disponibil mâine',
-      bio: 'Psiholog clinician cu focalizare pe relații și comunicare în cuplu. Abordare sistemică și humanistă.'
-    },
-    {
-      id: '3',
-      name: 'Dr. Elena Radu',
-      avatar: therapist3,
-      specialization: 'Mindfulness și Stres',
-      rating: 5.0,
-      reviewCount: 203,
-      price: '220 lei',
-      languages: ['Română', 'Engleză', 'Germană'],
-      availability: 'Disponibilă acum',
-      bio: 'Expert în tehnici de mindfulness și gestionarea stresului. Combină terapia tradițională cu practici meditative.'
+  const { user } = useAuth();
+  const { isAdmin, loading: adminLoading } = useAdmin();
+  const [therapists, setTherapists] = useState<Therapist[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [editingTherapist, setEditingTherapist] = useState<Therapist | null>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+
+  // Fetch therapists from Supabase
+  useEffect(() => {
+    fetchTherapists();
+  }, []);
+
+  const fetchTherapists = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('therapists')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching therapists:', error);
+        toast.error('Eroare la încărcarea terapeuților');
+        return;
+      }
+
+      setTherapists(data || []);
+    } catch (error) {
+      console.error('Error fetching therapists:', error);
+      toast.error('Eroare la încărcarea terapeuților');
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  const handleEditTherapist = (therapist: Therapist) => {
+    setEditingTherapist(therapist);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleSaveTherapist = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!editingTherapist) return;
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const updatedData = {
+        name: formData.get('name') as string,
+        specialization: formData.get('specialization') as string,
+        price: parseFloat(formData.get('price') as string),
+        bio: formData.get('bio') as string,
+        avatar_url: formData.get('avatar_url') as string,
+        availability: formData.get('availability') as string,
+        languages: (formData.get('languages') as string).split(',').map(lang => lang.trim()).filter(Boolean),
+        rating: parseFloat(formData.get('rating') as string) || 0,
+        review_count: parseInt(formData.get('review_count') as string) || 0,
+      };
+
+      const { error } = await supabase
+        .from('therapists')
+        .update(updatedData)
+        .eq('id', editingTherapist.id);
+
+      if (error) throw error;
+
+      toast.success('Terapeutul a fost actualizat cu succes!');
+      setIsEditDialogOpen(false);
+      setEditingTherapist(null);
+      fetchTherapists();
+    } catch (error) {
+      console.error('Error updating therapist:', error);
+      toast.error('Eroare la actualizarea terapeutului');
+    }
+  };
+
+  const handleDeleteTherapist = async (therapistId: string) => {
+    if (!confirm('Ești sigur că vrei să ștergi acest terapeut?')) return;
+
+    try {
+      const { error } = await supabase
+        .from('therapists')
+        .delete()
+        .eq('id', therapistId);
+
+      if (error) throw error;
+
+      toast.success('Terapeutul a fost șters cu succes!');
+      fetchTherapists();
+    } catch (error) {
+      console.error('Error deleting therapist:', error);
+      toast.error('Eroare la ștergerea terapeutului');
+    }
+  };
 
   const communityPosts = [
     {
@@ -319,28 +396,188 @@ const Index = () => {
             <Badge variant="secondary" className="bg-healio-orange text-xs px-2 py-1">Relații</Badge>
           </div>
 
-          <PuzzleGrid>
-            {therapists.map((therapist, index) => (
-              <PuzzleCard 
-                key={therapist.id} 
-                size={index === 0 ? '2x1' : index === 1 ? '1x2' : '1x1'}
-              >
-                <TherapistCard 
-                  therapist={therapist} 
+          {loading ? (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground">Se încarcă terapeuții...</p>
+            </div>
+          ) : (
+            <PuzzleGrid>
+              {therapists.map((therapist, index) => (
+                <PuzzleCard 
+                  key={therapist.id} 
                   size={index === 0 ? '2x1' : index === 1 ? '1x2' : '1x1'}
-                />
+                  className="relative group"
+                >
+                  {isAdmin && !adminLoading && (
+                    <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={() => handleEditTherapist(therapist)}
+                          className="bg-blue-500 hover:bg-blue-600 text-white"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => handleDeleteTherapist(therapist.id)}
+                          className="bg-red-500 hover:bg-red-600"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                  <TherapistCard 
+                    therapist={{
+                      id: therapist.id,
+                      name: therapist.name,
+                      avatar: therapist.avatar_url || therapist1,
+                      specialization: therapist.specialization,
+                      rating: therapist.rating || 0,
+                      reviewCount: therapist.review_count || 0,
+                      price: `${therapist.price} lei`,
+                      languages: therapist.languages || ['Română'],
+                      availability: therapist.availability || 'Disponibil',
+                      bio: therapist.bio
+                    }} 
+                    size={index === 0 ? '2x1' : index === 1 ? '1x2' : '1x1'}
+                  />
+                </PuzzleCard>
+              ))}
+              
+              {/* Add more therapist placeholder cards */}
+              <PuzzleCard size="1x1" variant="mint">
+                <div className="p-4 text-center">
+                  <Plus className="w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 text-healio-mint-foreground/60" />
+                  <p className="text-xs md:text-sm font-medium">Vezi mai mulți terapeuți</p>
+                </div>
               </PuzzleCard>
-            ))}
-            
-            {/* Add more therapist placeholder cards */}
-            <PuzzleCard size="1x1" variant="mint">
-              <div className="p-4 text-center">
-                <Plus className="w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 text-healio-mint-foreground/60" />
-                <p className="text-xs md:text-sm font-medium">Vezi mai mulți terapeuți</p>
-              </div>
-            </PuzzleCard>
-          </PuzzleGrid>
+            </PuzzleGrid>
+          )}
         </div>
+
+        {/* Edit Therapist Dialog */}
+        <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Editează Terapeut</DialogTitle>
+            </DialogHeader>
+            {editingTherapist && (
+              <form onSubmit={handleSaveTherapist} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Nume</Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    defaultValue={editingTherapist.name}
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="specialization">Specializare</Label>
+                  <Input
+                    id="specialization"
+                    name="specialization"
+                    defaultValue={editingTherapist.specialization}
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="price">Preț (lei)</Label>
+                  <Input
+                    id="price"
+                    name="price"
+                    type="number"
+                    defaultValue={editingTherapist.price}
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="avatar_url">URL Avatar</Label>
+                  <Input
+                    id="avatar_url"
+                    name="avatar_url"
+                    defaultValue={editingTherapist.avatar_url || ''}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="availability">Disponibilitate</Label>
+                  <Input
+                    id="availability"
+                    name="availability"
+                    defaultValue={editingTherapist.availability || ''}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="languages">Limbi (separate prin virgulă)</Label>
+                  <Input
+                    id="languages"
+                    name="languages"
+                    defaultValue={editingTherapist.languages?.join(', ') || 'Română'}
+                  />
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="rating">Rating</Label>
+                    <Input
+                      id="rating"
+                      name="rating"
+                      type="number"
+                      min="0"
+                      max="5"
+                      step="0.1"
+                      defaultValue={editingTherapist.rating || 0}
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="review_count">Nr. Recenzii</Label>
+                    <Input
+                      id="review_count"
+                      name="review_count"
+                      type="number"
+                      min="0"
+                      defaultValue={editingTherapist.review_count || 0}
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="bio">Biografie</Label>
+                  <Textarea
+                    id="bio"
+                    name="bio"
+                    defaultValue={editingTherapist.bio || ''}
+                    rows={3}
+                  />
+                </div>
+                
+                <div className="flex justify-end gap-2 pt-4">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={() => setIsEditDialogOpen(false)}
+                  >
+                    Anulează
+                  </Button>
+                  <Button type="submit" className="bg-healio-orange hover:bg-healio-orange/90">
+                    <Save className="h-4 w-4 mr-2" />
+                    Salvează
+                  </Button>
+                </div>
+              </form>
+            )}
+          </DialogContent>
+        </Dialog>
       </section>
 
       {/* Community Feed Section */}
