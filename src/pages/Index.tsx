@@ -142,17 +142,84 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-8 sm:py-12 md:py-20 px-3 sm:px-4 relative hero-background">
-        <div className="container mx-auto max-w-6xl">
-          <PuzzleGrid className="gap-3 sm:gap-4 md:gap-6">
-            <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-              <FloatingNodes />
-              <img 
-                src={heroImage} 
-                alt="Healio - Echilibru interior"
-                className="absolute inset-0 w-full h-full object-cover opacity-3"
-              />
-              <div className="relative z-10 text-center p-4 sm:p-6 md:p-10">
+      <section className="relative hero-background">
+        {/* Mobile full-screen hero */}
+        <div className="md:hidden min-h-screen flex items-center justify-center relative overflow-hidden">
+          <FloatingNodes />
+          <img 
+            src={heroImage} 
+            alt="Healio - Echilibru interior"
+            className="absolute inset-0 w-full h-full object-cover opacity-3"
+          />
+          <div className="relative z-10 text-center p-4 w-full">
+            <div className="mb-4 sm:mb-6">
+              <Badge className="hero-badge neuro-outset text-white mb-3 text-xs px-3 py-1 hero-animate-headline">
+                ✨ Platforma #1 pentru sănătatea mentală în România
+              </Badge>
+            </div>
+            <h1 className="text-2xl font-merriweather hero-headline mb-4 leading-tight hero-animate-headline">
+              Nu mai suferi în 
+              <span className="hero-gradient-text"> tăcere</span>
+              <br />
+              Găsește-ți echilibrul cu Healio
+            </h1>
+            <p className="text-sm hero-subheadline mb-6 max-w-md mx-auto leading-relaxed hero-animate-subheadline">
+              <strong className="hero-headline">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
+              rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
+              <span className="hero-gradient-text font-medium italic">Fără judecăți. Doar sprijin.</span>
+            </p>
+            
+            <div className="grid grid-cols-1 gap-2 mb-6 text-xs hero-proof-text hero-animate-subheadline">
+              <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
+                <Shield className="h-3 w-3 text-healio-turquoise flex-shrink-0" />
+                <span>100% Confidențial</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
+                <Clock className="h-3 w-3 text-healio-mint flex-shrink-0" />
+                <span>Disponibil 24/7</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
+                <Star className="h-3 w-3 text-healio-orange flex-shrink-0" />
+                <span>Terapeuți verificați</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 justify-center max-w-xs mx-auto hero-animate-cta">
+              <Button 
+                size="lg" 
+                className="cta-premium text-white font-bold text-sm py-3 px-4"
+              >
+                <Users className="mr-2 h-4 w-4 flex-shrink-0" />
+                <span>Vorbește cu terapeut ACUM</span>
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="btn-skeuomorphic text-sm px-4 py-3 text-healio-orange hover:text-white font-medium rounded-2xl"
+              >
+                <Heart className="mr-2 h-4 w-4 flex-shrink-0" />
+                <span>Alătură-te comunității</span>
+              </Button>
+            </div>
+            
+            <p className="text-xs hero-proof-text mt-6 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
+              <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
+            </p>
+          </div>
+        </div>
+        
+        {/* Desktop card-style hero */}
+        <div className="hidden md:block py-8 sm:py-12 md:py-20 px-3 sm:px-4">
+          <div className="container mx-auto max-w-6xl">
+            <PuzzleGrid className="gap-3 sm:gap-4 md:gap-6">
+              <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
+                <FloatingNodes />
+                <img 
+                  src={heroImage} 
+                  alt="Healio - Echilibru interior"
+                  className="absolute inset-0 w-full h-full object-cover opacity-3"
+                />
+                <div className="relative z-10 text-center p-4 sm:p-6 md:p-10">
                 <div className="mb-4 sm:mb-6 md:mb-8">
                   <Badge className="hero-badge neuro-outset text-white mb-3 sm:mb-4 text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 hero-animate-headline">
                     ✨ Platforma #1 pentru sănătatea mentală în România
@@ -207,9 +274,10 @@ const Index = () => {
                 <p className="text-xs md:text-sm hero-proof-text mt-6 md:mt-8 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
                   <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
                 </p>
-              </div>
-            </PuzzleCard>
-          </PuzzleGrid>
+                </div>
+              </PuzzleCard>
+            </PuzzleGrid>
+          </div>
         </div>
       </section>
 
