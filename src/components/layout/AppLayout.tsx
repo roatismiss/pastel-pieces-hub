@@ -63,7 +63,10 @@ function AppSidebar() {
     ...(!isTherapist ? [
       { path: '/dashboard', icon: Home, label: 'Dashboard', group: 'main' },
     ] : []),
-    { path: '/therapist-feed', icon: BookOpen, label: 'Articole', group: 'main' },
+    // Articole - doar pentru utilizatori logați
+    ...(user ? [
+      { path: '/therapist-feed', icon: BookOpen, label: 'Articole', group: 'main' },
+    ] : []),
     { path: '/community', icon: MessageSquare, label: 'Comunitate', group: 'main' },
     // Therapist navigation - doar pentru terapeuți
     ...(isTherapist ? [
