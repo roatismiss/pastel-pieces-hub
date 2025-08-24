@@ -304,9 +304,12 @@ const Index = () => {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-healio-turquoise to-healio-mint text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                asChild
               >
-                <Users className="mr-2 h-5 w-5" />
-                Vorbește cu terapeut ACUM
+                <Link to="#marketplace">
+                  <Users className="mr-2 h-5 w-5" />
+                  Vorbește cu terapeut ACUM
+                </Link>
               </Button>
               <Button 
                 size="lg" 
