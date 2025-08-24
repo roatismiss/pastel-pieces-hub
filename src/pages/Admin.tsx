@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 // Import additional admin components
 import { TherapistsManager } from '@/components/admin/TherapistsManager';
+import TherapistApplicationsManager from '@/components/admin/TherapistApplicationsManager';
 import { AdminSettings } from '@/components/admin/AdminSettings';
 
 export const Admin = () => {
@@ -59,15 +60,16 @@ export const Admin = () => {
       <AdminSidebar />
       <main className="flex-1 overflow-hidden">
         <div className="h-full p-6 overflow-y-auto">
-          <Routes>
-            <Route index element={<AdminDashboard />} />
-            <Route path="users" element={<UsersManager />} />
-            <Route path="events" element={<EventsManager />} />
-            <Route path="posts" element={<PostsManager />} />
-            <Route path="therapists" element={<TherapistsManager />} />
-            <Route path="settings" element={<AdminSettings />} />
-            <Route path="*" element={<Navigate to="/admin" replace />} />
-          </Routes>
+              <Routes>
+                <Route index element={<AdminDashboard />} />
+                <Route path="users" element={<UsersManager />} />
+                <Route path="events" element={<EventsManager />} />
+                <Route path="posts" element={<PostsManager />} />
+                <Route path="therapists" element={<TherapistsManager />} />
+                <Route path="therapist-applications" element={<TherapistApplicationsManager />} />
+                <Route path="settings" element={<AdminSettings />} />
+                <Route path="*" element={<Navigate to="/admin" replace />} />
+              </Routes>
         </div>
       </main>
     </div>

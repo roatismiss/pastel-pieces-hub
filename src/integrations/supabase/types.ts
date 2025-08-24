@@ -14,6 +14,95 @@ export type Database = {
   }
   public: {
     Tables: {
+      community_comments: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          is_active: boolean | null
+          like_count: number | null
+          post_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          like_count?: number | null
+          post_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          like_count?: number | null
+          post_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "community_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      community_posts: {
+        Row: {
+          comment_count: number | null
+          content: string
+          created_at: string
+          id: string
+          is_active: boolean | null
+          is_anonymous: boolean | null
+          like_count: number | null
+          mood: string | null
+          tags: string[] | null
+          title: string | null
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          comment_count?: number | null
+          content: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          is_anonymous?: boolean | null
+          like_count?: number | null
+          mood?: string | null
+          tags?: string[] | null
+          title?: string | null
+          type?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          comment_count?: number | null
+          content?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          is_anonymous?: boolean | null
+          like_count?: number | null
+          mood?: string | null
+          tags?: string[] | null
+          title?: string | null
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           created_at: string
@@ -128,6 +217,81 @@ export type Database = {
           id?: string
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      therapist_applications: {
+        Row: {
+          admin_notes: string | null
+          applied_at: string
+          bio: string | null
+          certificate_urls: string[] | null
+          certifications: string[] | null
+          created_at: string
+          cv_document_url: string | null
+          education: string
+          email: string
+          full_name: string
+          id: string
+          languages: string[] | null
+          license_document_url: string | null
+          license_number: string
+          phone: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          specialization: string
+          status: string
+          updated_at: string
+          user_id: string
+          years_experience: number
+        }
+        Insert: {
+          admin_notes?: string | null
+          applied_at?: string
+          bio?: string | null
+          certificate_urls?: string[] | null
+          certifications?: string[] | null
+          created_at?: string
+          cv_document_url?: string | null
+          education: string
+          email: string
+          full_name: string
+          id?: string
+          languages?: string[] | null
+          license_document_url?: string | null
+          license_number: string
+          phone?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          specialization: string
+          status?: string
+          updated_at?: string
+          user_id: string
+          years_experience: number
+        }
+        Update: {
+          admin_notes?: string | null
+          applied_at?: string
+          bio?: string | null
+          certificate_urls?: string[] | null
+          certifications?: string[] | null
+          created_at?: string
+          cv_document_url?: string | null
+          education?: string
+          email?: string
+          full_name?: string
+          id?: string
+          languages?: string[] | null
+          license_document_url?: string | null
+          license_number?: string
+          phone?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          specialization?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+          years_experience?: number
         }
         Relationships: []
       }
@@ -433,6 +597,7 @@ export type Database = {
       }
       therapists: {
         Row: {
+          application_id: string | null
           availability: string | null
           avatar_url: string | null
           bio: string | null
@@ -446,8 +611,10 @@ export type Database = {
           review_count: number | null
           specialization: string
           updated_at: string | null
+          user_id: string | null
         }
         Insert: {
+          application_id?: string | null
           availability?: string | null
           avatar_url?: string | null
           bio?: string | null
@@ -461,8 +628,10 @@ export type Database = {
           review_count?: number | null
           specialization: string
           updated_at?: string | null
+          user_id?: string | null
         }
         Update: {
+          application_id?: string | null
           availability?: string | null
           avatar_url?: string | null
           bio?: string | null
@@ -476,6 +645,7 @@ export type Database = {
           review_count?: number | null
           specialization?: string
           updated_at?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }

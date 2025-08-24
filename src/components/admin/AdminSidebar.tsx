@@ -8,6 +8,7 @@ import {
   UserCheck, 
   Settings,
   Menu,
+  ClipboardList,
   X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -38,6 +39,11 @@ const adminRoutes = [
     title: 'Therapists',
     href: '/admin/therapists',
     icon: UserCheck,
+  },
+  {
+    title: 'Therapist Applications',
+    href: '/admin/therapist-applications',
+    icon: ClipboardList,
   },
   {
     title: 'Settings',

@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard";
 import { Admin } from "./pages/Admin";
 import TherapistProfile from "./pages/TherapistProfile";
 import TherapistDashboard from "./pages/TherapistDashboard";
+import TherapistApplication from "./pages/TherapistApplication";
+import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -34,11 +36,20 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/community" element={<Community />} />
               <Route 
                 path="/dashboard" 
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/therapist-application" 
+                element={
+                  <ProtectedRoute>
+                    <TherapistApplication />
                   </ProtectedRoute>
                 } 
               />
