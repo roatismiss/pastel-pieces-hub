@@ -53,11 +53,7 @@ const App = () => {
               <Route path="/therapist/:id" element={<TherapistProfile />} />
               <Route 
                 path="/therapist-dashboard" 
-                element={
-                  <ProtectedRoute>
-                    <TherapistDashboard />
-                  </ProtectedRoute>
-                } 
+                element={<TherapistDashboard />} 
               />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
