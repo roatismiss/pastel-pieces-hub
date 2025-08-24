@@ -229,40 +229,18 @@ const Index = () => {
       <section className="relative min-h-screen overflow-hidden">
         {/* Beautiful Pastel 2D Background */}
         <div className="absolute inset-0">
-          {/* Main gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-healio-turquoise via-healio-mint to-healio-orange opacity-40"></div>
+          {/* Main background image */}
+          <img 
+            src="/lovable-uploads/5681b338-11b2-4ffe-8f13-36d8e8681936.png"
+            alt="Beautiful pastel background with floral elements"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           
-          {/* Organic floating shapes */}
-          <div className="absolute top-10 left-10 w-64 h-64 bg-healio-turquoise/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-32 right-20 w-80 h-80 bg-healio-orange/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 left-32 w-72 h-72 bg-healio-mint/35 rounded-full blur-3xl animate-pulse delay-2000"></div>
-          <div className="absolute bottom-32 right-10 w-56 h-56 bg-healio-turquoise/20 rounded-full blur-3xl animate-pulse delay-3000"></div>
-          
-          {/* Lotus/floral decorative elements */}
-          <div className="absolute top-20 left-1/4 opacity-20">
-            <div className="w-32 h-32 bg-gradient-to-tr from-healio-orange to-healio-mint rounded-full opacity-60 transform rotate-12"></div>
-            <div className="absolute top-4 left-4 w-24 h-24 bg-gradient-to-br from-healio-turquoise to-healio-orange rounded-full opacity-40 transform -rotate-12"></div>
-          </div>
-          
-          <div className="absolute bottom-32 right-1/4 opacity-25">
-            <div className="w-40 h-40 bg-gradient-to-tl from-healio-mint to-healio-turquoise rounded-full opacity-50 transform rotate-45"></div>
-            <div className="absolute top-6 left-6 w-28 h-28 bg-gradient-to-br from-healio-orange/60 to-healio-mint/60 rounded-full opacity-60 transform -rotate-45"></div>
-          </div>
-          
-          {/* Subtle wave patterns */}
-          <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-healio-mint/20 to-transparent">
-            <svg className="absolute bottom-0 w-full h-32" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z" 
-                    fill="currentColor" className="text-healio-turquoise/15"/>
-            </svg>
-            <svg className="absolute bottom-4 w-full h-28" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,40 C400,80 800,0 1200,40 L1200,120 L0,120 Z" 
-                    fill="currentColor" className="text-healio-mint/20"/>
-            </svg>
-          </div>
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-white/10"></div>
           
           {/* Gentle particle dots */}
-          <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-healio-orange rounded-full animate-ping"></div>
             <div className="absolute top-2/3 left-1/4 w-1.5 h-1.5 bg-healio-turquoise rounded-full animate-ping delay-1000"></div>
             <div className="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-healio-mint rounded-full animate-ping delay-2000"></div>
@@ -275,7 +253,7 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             {/* Badge */}
             <div className="mb-8">
-              <Badge className="hero-badge bg-white/20 backdrop-blur-sm border border-white/30 text-slate-700 mb-4 text-sm px-6 py-2 shadow-lg">
+              <Badge className="hero-badge bg-white/30 backdrop-blur-sm border border-white/40 text-slate-700 mb-4 text-sm px-6 py-2 shadow-lg">
                 ✨ Platforma #1 pentru sănătatea mentală în România
               </Badge>
             </div>
@@ -301,15 +279,15 @@ const Index = () => {
             
             {/* Trust indicators */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-2xl mx-auto">
-              <div className="flex items-center justify-center gap-3 bg-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/20">
+              <div className="flex items-center justify-center gap-3 bg-white/30 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/30">
                 <Shield className="h-5 w-5 text-healio-turquoise flex-shrink-0" />
                 <span className="text-slate-700 font-medium">100% Confidențial</span>
               </div>
-              <div className="flex items-center justify-center gap-3 bg-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/20">
+              <div className="flex items-center justify-center gap-3 bg-white/30 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/30">
                 <Clock className="h-5 w-5 text-healio-mint flex-shrink-0" />
                 <span className="text-slate-700 font-medium">Disponibil 24/7</span>
               </div>
-              <div className="flex items-center justify-center gap-3 bg-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/20">
+              <div className="flex items-center justify-center gap-3 bg-white/30 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/30">
                 <Star className="h-5 w-5 text-healio-orange flex-shrink-0" />
                 <span className="text-slate-700 font-medium">Terapeuți verificați</span>
               </div>
@@ -327,7 +305,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-slate-700 hover:bg-white/30 font-semibold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-white/30 backdrop-blur-sm border-2 border-white/40 text-slate-700 hover:bg-white/40 font-semibold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 <Heart className="mr-2 h-5 w-5" />
                 Alătură-te comunității
@@ -335,7 +313,7 @@ const Index = () => {
             </div>
             
             {/* Social proof */}
-            <p className="text-sm text-slate-600 bg-white/15 backdrop-blur-sm px-6 py-3 rounded-full inline-block border border-white/20">
+            <p className="text-sm text-slate-600 bg-white/25 backdrop-blur-sm px-6 py-3 rounded-full inline-block border border-white/30">
               <strong className="text-slate-700">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
             </p>
           </div>
