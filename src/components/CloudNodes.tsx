@@ -162,14 +162,11 @@ const CloudNodes: React.FC = () => {
       
       {/* Floating text overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-merriweather font-bold text-healio-turquoise mb-4 animate-pulse-glow">
-            Healio
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground/80 animate-float">
-            Plutind prin nori de vindecați
-          </p>
-        </div>
+        <img 
+          src="/lovable-uploads/7890c7da-c90c-400a-acaf-ecaeaa15124d.png"
+          alt="Community support - people connecting and helping each other"
+          className="w-full h-full object-contain max-w-2xl animate-fade-in"
+        />
       </div>
     </div>
   );
