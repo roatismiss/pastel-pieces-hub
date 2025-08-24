@@ -225,85 +225,119 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative hero-background">
-        {/* Mobile full-screen hero */}
-        <div className="md:hidden min-h-screen flex items-center justify-center relative overflow-hidden">
-          <FloatingNodes />
-          <img 
-            src={heroImage} 
-            alt="Healio - Echilibru interior"
-            className="absolute inset-0 w-full h-full object-cover opacity-3"
-          />
-          <div className="relative z-10 text-center p-4 w-full">
-            <div className="mb-4 sm:mb-6">
-              <Badge className="hero-badge neuro-outset text-white mb-3 text-xs px-3 py-1 hero-animate-headline">
+      {/* Hero Section - Beautiful Pastel 2D Background */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Beautiful Pastel 2D Background */}
+        <div className="absolute inset-0">
+          {/* Main gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-healio-turquoise via-healio-mint to-healio-orange opacity-40"></div>
+          
+          {/* Organic floating shapes */}
+          <div className="absolute top-10 left-10 w-64 h-64 bg-healio-turquoise/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-32 right-20 w-80 h-80 bg-healio-orange/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-20 left-32 w-72 h-72 bg-healio-mint/35 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute bottom-32 right-10 w-56 h-56 bg-healio-turquoise/20 rounded-full blur-3xl animate-pulse delay-3000"></div>
+          
+          {/* Lotus/floral decorative elements */}
+          <div className="absolute top-20 left-1/4 opacity-20">
+            <div className="w-32 h-32 bg-gradient-to-tr from-healio-orange to-healio-mint rounded-full opacity-60 transform rotate-12"></div>
+            <div className="absolute top-4 left-4 w-24 h-24 bg-gradient-to-br from-healio-turquoise to-healio-orange rounded-full opacity-40 transform -rotate-12"></div>
+          </div>
+          
+          <div className="absolute bottom-32 right-1/4 opacity-25">
+            <div className="w-40 h-40 bg-gradient-to-tl from-healio-mint to-healio-turquoise rounded-full opacity-50 transform rotate-45"></div>
+            <div className="absolute top-6 left-6 w-28 h-28 bg-gradient-to-br from-healio-orange/60 to-healio-mint/60 rounded-full opacity-60 transform -rotate-45"></div>
+          </div>
+          
+          {/* Subtle wave patterns */}
+          <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-healio-mint/20 to-transparent">
+            <svg className="absolute bottom-0 w-full h-32" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z" 
+                    fill="currentColor" className="text-healio-turquoise/15"/>
+            </svg>
+            <svg className="absolute bottom-4 w-full h-28" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,40 C400,80 800,0 1200,40 L1200,120 L0,120 Z" 
+                    fill="currentColor" className="text-healio-mint/20"/>
+            </svg>
+          </div>
+          
+          {/* Gentle particle dots */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-healio-orange rounded-full animate-ping"></div>
+            <div className="absolute top-2/3 left-1/4 w-1.5 h-1.5 bg-healio-turquoise rounded-full animate-ping delay-1000"></div>
+            <div className="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-healio-mint rounded-full animate-ping delay-2000"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-2 h-2 bg-healio-orange rounded-full animate-ping delay-3000"></div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Badge */}
+            <div className="mb-8">
+              <Badge className="hero-badge bg-white/20 backdrop-blur-sm border border-white/30 text-slate-700 mb-4 text-sm px-6 py-2 shadow-lg">
                 ✨ Platforma #1 pentru sănătatea mentală în România
               </Badge>
             </div>
-            <h1 className="text-2xl font-merriweather hero-headline mb-4 leading-tight hero-animate-headline">
-              Nu mai suferi în 
-              <span className="hero-gradient-text"> tăcere</span>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-merriweather font-bold mb-8 leading-tight">
+              <span className="text-slate-800">Nu mai suferi în</span>
               <br />
-              Găsește-ți echilibrul cu Healio
+              <span className="bg-gradient-to-r from-healio-turquoise via-healio-mint to-healio-orange bg-clip-text text-transparent">
+                tăcere absolută
+              </span>
+              <br />
+              <span className="text-slate-700">Găsește-ți echilibrul</span>
             </h1>
-            <p className="text-sm hero-subheadline mb-6 max-w-md mx-auto leading-relaxed hero-animate-subheadline">
-              <strong className="hero-headline">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
-              rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat. 
-              <span className="hero-gradient-text font-medium italic">Fără judecăți. Doar sprijin.</span>
+
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+              <strong className="text-slate-700">Știm că e greu să ceri ajutor.</strong> De aceea am creat Healio - locul unde găsești 
+              rapid terapeuți licențiați de încredere și o comunitate care te înțelege cu adevărat.
+              <br className="hidden md:block" />
+              <em className="font-medium text-slate-700">Fără judecăți. Doar sprijin autentic.</em>
             </p>
             
-            <div className="grid grid-cols-1 gap-2 mb-6 text-xs hero-proof-text hero-animate-subheadline">
-              <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
-                <Shield className="h-3 w-3 text-healio-turquoise flex-shrink-0" />
-                <span>100% Confidențial</span>
+            {/* Trust indicators */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-2xl mx-auto">
+              <div className="flex items-center justify-center gap-3 bg-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/20">
+                <Shield className="h-5 w-5 text-healio-turquoise flex-shrink-0" />
+                <span className="text-slate-700 font-medium">100% Confidențial</span>
               </div>
-              <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
-                <Clock className="h-3 w-3 text-healio-mint flex-shrink-0" />
-                <span>Disponibil 24/7</span>
+              <div className="flex items-center justify-center gap-3 bg-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/20">
+                <Clock className="h-5 w-5 text-healio-mint flex-shrink-0" />
+                <span className="text-slate-700 font-medium">Disponibil 24/7</span>
               </div>
-              <div className="flex items-center gap-2 justify-center hero-subheadline neuro-inset px-3 py-2 rounded-xl">
-                <Star className="h-3 w-3 text-healio-orange flex-shrink-0" />
-                <span>Terapeuți verificați</span>
+              <div className="flex items-center justify-center gap-3 bg-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/20">
+                <Star className="h-5 w-5 text-healio-orange flex-shrink-0" />
+                <span className="text-slate-700 font-medium">Terapeuți verificați</span>
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 justify-center max-w-xs mx-auto hero-animate-cta">
+            {/* CTA Buttons */}
+            <div className="flex flex-col md:flex-row gap-4 justify-center max-w-lg mx-auto mb-8">
               <Button 
                 size="lg" 
-                className="cta-premium text-white font-bold text-sm py-3 px-4"
+                className="bg-gradient-to-r from-healio-turquoise to-healio-mint text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
-                <Users className="mr-2 h-4 w-4 flex-shrink-0" />
-                <span>Vorbește cu terapeut ACUM</span>
+                <Users className="mr-2 h-5 w-5" />
+                Vorbește cu terapeut ACUM
               </Button>
               <Button 
                 size="lg" 
                 variant="outline"
-                className="btn-skeuomorphic text-sm px-4 py-3 text-healio-orange hover:text-white font-medium rounded-2xl"
+                className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-slate-700 hover:bg-white/30 font-semibold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
-                <Heart className="mr-2 h-4 w-4 flex-shrink-0" />
-                <span>Alătură-te comunității</span>
+                <Heart className="mr-2 h-5 w-5" />
+                Alătură-te comunității
               </Button>
             </div>
             
-            <p className="text-xs hero-proof-text mt-6 hero-subheadline hero-animate-cta neuro-inset-deep px-4 py-2 rounded-full inline-block">
-              <strong className="hero-headline">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
+            {/* Social proof */}
+            <p className="text-sm text-slate-600 bg-white/15 backdrop-blur-sm px-6 py-3 rounded-full inline-block border border-white/20">
+              <strong className="text-slate-700">Peste 10.000+ români</strong> și-au regăsit echilibrul cu ajutorul Healio
             </p>
-          </div>
-        </div>
-        
-        {/* Desktop card-style hero */}
-        <div className="hidden md:block py-8 sm:py-12 md:py-20 px-3 sm:px-4">
-          <div className="container mx-auto max-w-6xl">
-            <PuzzleGrid className="gap-3 sm:gap-4 md:gap-6">
-              <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-                <img 
-                  src="/lovable-uploads/2f23c86b-f384-4477-b093-0ff44afe7db4.png" 
-                  alt="Beautiful gradient background with floral elements"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </PuzzleCard>
-            </PuzzleGrid>
           </div>
         </div>
       </section>
