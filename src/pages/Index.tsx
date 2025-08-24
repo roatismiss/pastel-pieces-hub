@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,10 +13,11 @@ import { CommunityCard } from '@/components/CommunityCard';
 import { FloatingNodes } from '@/components/FloatingNodes';
 import ConnectedParticles from '@/components/ConnectedParticles';
 import CloudNodes from '@/components/CloudNodes';
-import { Link } from 'react-router-dom';
-import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Edit, Save, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Edit, Save, X, LogOut, User as UserIcon } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
+import { useTherapist } from '@/hooks/useTherapist';
 import { useAdmin } from '@/hooks/useAdmin';
 import { toast } from 'sonner';
 
@@ -40,7 +43,9 @@ interface Therapist {
 const Index = () => {
   console.log('Index component is rendering');
   
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user, signOut, loading: authLoading } = useAuth();
+  const { isTherapist } = useTherapist();
   const { isAdmin, loading: adminLoading } = useAdmin();
   const [therapists, setTherapists] = useState<Therapist[]>([]);
   const [loading, setLoading] = useState(true);
@@ -211,12 +216,42 @@ const Index = () => {
               </div>
             </div>
               <div className="flex items-center gap-2 md:gap-3">
-                <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
-                  <Link to="/auth">Conectează-te</Link>
-                </Button>
-                <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4" asChild>
-                  <Link to="/auth">Începe acum</Link>
-                </Button>
+                {authLoading ? (
+                  <div className="h-8 w-20 animate-pulse bg-muted rounded"></div>
+                ) : user ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="flex items-center gap-2 px-2 md:px-3">
+                        <Avatar className="h-6 w-6 md:h-8 md:w-8">
+                          <AvatarImage src="/placeholder.svg" />
+                          <AvatarFallback>
+                            <UserIcon className="h-3 w-3 md:h-4 md:w-4" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <span className="hidden md:inline text-sm font-medium">My Healio</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      <DropdownMenuItem onClick={() => navigate(isTherapist ? '/therapist-dashboard' : '/dashboard')}>
+                        <UserIcon className="mr-2 h-4 w-4" />
+                        <span>Dashboard</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => signOut()}>
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>Deconectare</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <>
+                    <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
+                      <Link to="/auth">Conectează-te</Link>
+                    </Button>
+                    <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4" asChild>
+                      <Link to="/auth">Începe acum</Link>
+                    </Button>
+                  </>
+                )}
               </div>
           </div>
         </div>
