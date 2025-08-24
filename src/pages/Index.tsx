@@ -174,16 +174,16 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-        <div className="container mx-auto px-3 sm:px-4 py-2 md:py-3">
+        <div className="container mx-auto px-3 sm:px-4 py-1">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
               <div className="relative group flex items-center gap-4 md:gap-6">
                 {/* Healtio Logo Image */}
-                <div className="relative flex items-center justify-center px-4 py-1">
+                <div className="relative flex items-center justify-center px-2 py-0.5">
                   <img 
                     src="/lovable-uploads/36f9d7b1-e29b-41dd-aafa-520f8fff7482.png"
                     alt="Healio Logo"
-                    className="h-40 md:h-48 w-auto object-contain filter-none"
+                    className="h-32 md:h-36 w-auto object-contain filter-none"
                     style={{ 
                       imageRendering: 'crisp-edges'
                     }}
