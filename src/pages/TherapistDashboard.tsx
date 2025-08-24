@@ -56,7 +56,7 @@ const TherapistDashboard = () => {
   const fetchStats = async (therapistId: string) => {
     try {
       // Fetch real data from Supabase
-      const [postsResponse, eventsResponse, followersResponse, earningsResponse, appointmentsResponse] = await Promise.all([
+      const [postsResponse, eventsResponse, followersResponse, earningsResponse, appointmentsResponse, viewsResponse] = await Promise.all([
         // Posts stats
         supabase
           .from('therapist_posts')
@@ -85,6 +85,12 @@ const TherapistDashboard = () => {
         supabase
           .from('therapist_appointments')
           .select('id, appointment_date, status')
+          .eq('therapist_id', therapistId),
+        
+        // Profile views stats
+        supabase
+          .from('therapist_profile_views')
+          .select('id, viewed_at')
           .eq('therapist_id', therapistId)
       ]);
 
@@ -94,6 +100,7 @@ const TherapistDashboard = () => {
       const followers = followersResponse.data || [];
       const earnings = earningsResponse.data || [];
       const appointments = appointmentsResponse.data || [];
+      const profileViews = viewsResponse.data || [];
 
       // Calculate earnings this month
       const now = new Date();
@@ -115,7 +122,7 @@ const TherapistDashboard = () => {
         totalPostViews,
         totalEvents: events.length,
         totalFollowers: followers.length,
-        profileViews: 0, // This would need to be implemented
+        profileViews: profileViews.length,
         totalEarnings,
         thisMonthEarnings,
         totalAppointments: appointments.length,

@@ -210,17 +210,14 @@ const Index = () => {
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-2 md:gap-3">
-              <Button variant="outline" size="sm" className="hidden md:inline-flex border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
-                <Link to="/therapist-dashboard">Dashboard Terapeut</Link>
-              </Button>
-              <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
-                <Link to="/auth">Conectează-te</Link>
-              </Button>
-              <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4" asChild>
-                <Link to="/auth">Începe acum</Link>
-              </Button>
-            </div>
+              <div className="flex items-center gap-2 md:gap-3">
+                <Button variant="ghost" size="sm" className="hidden sm:inline-flex" asChild>
+                  <Link to="/auth">Conectează-te</Link>
+                </Button>
+                <Button size="sm" className="bg-healio-orange hover:bg-healio-orange/90 text-xs md:text-sm px-3 md:px-4" asChild>
+                  <Link to="/auth">Începe acum</Link>
+                </Button>
+              </div>
           </div>
         </div>
       </nav>
@@ -936,6 +933,14 @@ const Index = () => {
                 <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Resurse Educaționale</a></li>
                 <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Evenimente & Workshop-uri</a></li>
                 <li><a href="#" className="text-muted-foreground hover:text-healio-turquoise transition-colors">Pentru Companii</a></li>
+                <li>
+                  <Link 
+                    to="/therapist-application" 
+                    className="text-healio-orange font-semibold hover:text-healio-orange/80 transition-colors flex items-center gap-1"
+                  >
+                    🤝 Devino Partener
+                  </Link>
+                </li>
               </ul>
             </div>
             
