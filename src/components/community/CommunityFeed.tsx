@@ -13,7 +13,7 @@ import { CommunityComments } from './CommunityComments';
 interface CommunityPost {
   id: string;
   user_id: string;
-  type: 'post' | 'question' | 'mood';
+  type: 'post' | 'question' | 'mood' | 'therapist_post';
   title?: string;
   content: string;
   mood?: string;
@@ -25,6 +25,12 @@ interface CommunityPost {
   profiles?: {
     full_name?: string;
   };
+  therapist?: {
+    name?: string;
+    specialization?: string;
+    is_verified?: boolean;
+  };
+  source?: 'community' | 'therapist';
 }
 
 const moodEmojis = {
@@ -47,8 +53,8 @@ const CommunityFeed = () => {
   useEffect(() => {
     fetchPosts();
     
-    // Set up real-time subscription
-    const channel = supabase
+    // Set up real-time subscription for both community and therapist posts
+    const communityChannel = supabase
       .channel('community-posts-changes')
       .on(
         'postgres_changes',
@@ -61,14 +67,29 @@ const CommunityFeed = () => {
       )
       .subscribe();
 
+    const therapistChannel = supabase
+      .channel('therapist-posts-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'therapist_posts'
+        },
+        () => fetchPosts()
+      )
+      .subscribe();
+
     return () => {
-      supabase.removeChannel(channel);
+      supabase.removeChannel(communityChannel);
+      supabase.removeChannel(therapistChannel);
     };
   }, [filter]);
 
   const fetchPosts = async () => {
     try {
-      let query = supabase
+      // Fetch community posts
+      let communityQuery = supabase
         .from('community_posts')
         .select(`
           *,
@@ -76,18 +97,78 @@ const CommunityFeed = () => {
             full_name
           )
         `)
-        .eq('is_active', true)
-        .order('created_at', { ascending: false })
-        .limit(20);
+        .eq('is_active', true);
 
-      if (filter !== 'all') {
-        query = query.eq('type', filter);
+      if (filter !== 'all' && filter !== 'post') {
+        communityQuery = communityQuery.eq('type', filter);
       }
 
-      const { data, error } = await query;
+      // Fetch therapist posts
+      const therapistQuery = supabase
+        .from('therapist_posts')
+        .select(`
+          id,
+          title,
+          content,
+          tags,
+          created_at,
+          therapists!therapist_posts_therapist_id_fkey (
+            name,
+            specialization,
+            is_verified,
+            user_id
+          )
+        `)
+        .eq('is_published', true);
 
-      if (error) throw error;
-      setPosts(data as CommunityPost[] || []);
+      const [communityResponse, therapistResponse] = await Promise.all([
+        communityQuery,
+        therapistQuery
+      ]);
+
+      if (communityResponse.error) throw communityResponse.error;
+      if (therapistResponse.error) throw therapistResponse.error;
+
+      const communityPosts = (communityResponse.data || []).map(post => ({
+        ...post,
+        source: 'community' as const
+      }));
+
+      const therapistPosts = (therapistResponse.data || []).map(post => ({
+        id: post.id,
+        user_id: post.therapists?.user_id || '',
+        type: 'therapist_post' as const,
+        title: post.title,
+        content: post.content,
+        mood: null,
+        tags: post.tags || [],
+        is_anonymous: false,
+        like_count: 0,
+        comment_count: 0,
+        created_at: post.created_at,
+        therapist: post.therapists,
+        source: 'therapist' as const
+      }));
+
+      // Combine and sort all posts
+      const allPosts = [...communityPosts, ...therapistPosts];
+      
+      // Filter if needed
+      let filteredPosts = allPosts;
+      if (filter === 'post') {
+        filteredPosts = allPosts.filter(post => 
+          post.type === 'post' || post.type === 'therapist_post'
+        );
+      } else if (filter !== 'all') {
+        filteredPosts = allPosts.filter(post => post.type === filter);
+      }
+
+      // Sort by created_at and limit
+      filteredPosts.sort((a, b) => 
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+
+      setPosts(filteredPosts.slice(0, 20) as CommunityPost[]);
     } catch (error) {
       console.error('Error fetching posts:', error);
     } finally {
@@ -115,12 +196,17 @@ const CommunityFeed = () => {
         return { label: 'Întrebare', variant: 'secondary' as const };
       case 'mood':
         return { label: 'Emoție', variant: 'outline' as const };
+      case 'therapist_post':
+        return { label: '🩺 Expert', variant: 'default' as const };
       default:
         return { label: 'Postare', variant: 'default' as const };
     }
   };
 
   const getDisplayName = (post: CommunityPost) => {
+    if (post.source === 'therapist') {
+      return post.therapist?.name || 'Terapeut';
+    }
     if (post.is_anonymous) return 'Utilizator Anonim';
     return post.profiles?.full_name || 'Utilizator';
   };
@@ -192,25 +278,35 @@ const CommunityFeed = () => {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-sm">{getDisplayName(post)}</p>
-                          <Badge variant={typeInfo.variant} className="text-xs">
-                            {typeInfo.label}
-                          </Badge>
-                          {post.type === 'mood' && post.mood && (
-                            <Badge variant="outline" className="text-xs">
-                              {moodEmojis[post.mood as keyof typeof moodEmojis]} 
-                              {post.mood === 'happy' ? 'Fericit' : 
-                               post.mood === 'sad' ? 'Trist' :
-                               post.mood === 'anxious' ? 'Anxios' :
-                               post.mood === 'excited' ? 'Entuziasmat' :
-                               post.mood === 'stressed' ? 'Stresat' :
-                               post.mood === 'calm' ? 'Calm' :
-                               post.mood === 'angry' ? 'Supărat' :
-                               'Recunoscător'}
-                            </Badge>
-                          )}
-                        </div>
+                         <div className="flex items-center gap-2">
+                           <p className="font-semibold text-sm">{getDisplayName(post)}</p>
+                           <Badge variant={typeInfo.variant} className="text-xs">
+                             {typeInfo.label}
+                           </Badge>
+                           {post.source === 'therapist' && post.therapist?.specialization && (
+                             <Badge variant="outline" className="text-xs">
+                               {post.therapist.specialization}
+                             </Badge>
+                           )}
+                           {post.source === 'therapist' && post.therapist?.is_verified && (
+                             <Badge variant="secondary" className="text-xs">
+                               ✓ Verificat
+                             </Badge>
+                           )}
+                           {post.type === 'mood' && post.mood && (
+                             <Badge variant="outline" className="text-xs">
+                               {moodEmojis[post.mood as keyof typeof moodEmojis]} 
+                               {post.mood === 'happy' ? 'Fericit' : 
+                                post.mood === 'sad' ? 'Trist' :
+                                post.mood === 'anxious' ? 'Anxios' :
+                                post.mood === 'excited' ? 'Entuziasmat' :
+                                post.mood === 'stressed' ? 'Stresat' :
+                                post.mood === 'calm' ? 'Calm' :
+                                post.mood === 'angry' ? 'Supărat' :
+                                'Recunoscător'}
+                             </Badge>
+                           )}
+                         </div>
                         <p className="text-xs text-muted-foreground">
                           {formatDistanceToNow(new Date(post.created_at), { 
                             addSuffix: true, 

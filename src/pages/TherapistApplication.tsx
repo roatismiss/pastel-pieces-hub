@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTherapist } from '@/hooks/useTherapist';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -52,13 +53,33 @@ const TherapistApplication = () => {
     setIsSubmitting(true);
     try {
       if (canApply) {
-        await submitApplication(formData);
-        toast.success('Aplicația a fost trimisă cu succes! Veți fi contactat în curând.');
+        // Submitem aplicația
+        const applicationData = await submitApplication(formData);
+        
+        // Creăm automat profilul de terapeut (pentru testare)
+        const { data: therapistProfile, error: therapistError } = await supabase
+          .from('therapists')
+          .insert({
+            name: formData.full_name,
+            specialization: formData.specialization,
+            bio: formData.bio,
+            price: 150, // preț default
+            languages: formData.languages,
+            user_id: user.id,
+            application_id: applicationData.id,
+            is_verified: true // pentru testare îi facem verificați automat
+          })
+          .select()
+          .single();
+
+        if (therapistError) throw therapistError;
+
+        toast.success('Felicitări! Contul de terapeut a fost creat cu succes!');
+        navigate('/therapist-dashboard');
       } else if (canEditApplication) {
         await updateApplication(formData);
         toast.success('Aplicația a fost actualizată cu succes!');
       }
-      // Nu mai redirectionez automat la dashboard
     } catch (error) {
       console.error('Error submitting application:', error);
       toast.error('A apărut o eroare. Vă rugăm să încercați din nou.');
