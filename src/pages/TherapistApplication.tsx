@@ -144,10 +144,10 @@ const TherapistApplication = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-4">
-            Creează-ți Contul de Terapeut
+            Înregistrează-te ca Terapeut
           </h1>
           <p className="text-lg text-muted-foreground">
-            Completează formularul pentru a-ți crea contul și profilul de terapeut pe Healio
+            Creează-ți contul nou și profilul de terapeut pe Healio
           </p>
         </div>
 
