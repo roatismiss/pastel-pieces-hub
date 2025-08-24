@@ -717,15 +717,15 @@ const Index = () => {
               </div>
             </PuzzleCard>
 
-            <PuzzleCard size="1x1">
-              <div className="p-6 flex flex-col items-center justify-center h-full bg-gradient-to-br from-amber-50 to-orange-50">
+            <div className="relative">
+              <div className="p-6 flex flex-col items-center justify-center h-full" style={{ backgroundColor: '#F5E6D3' }}>
                 <img 
                   src="/lovable-uploads/2dba6fd7-ee5c-4ff2-8b80-6e85644344ba.png" 
                   alt="Confused person with questions"
                   className="w-full h-full object-contain"
                 />
               </div>
-            </PuzzleCard>
+            </div>
 
             <PuzzleCard size="1x1" variant="mint">
               <div className="p-4 text-center">
