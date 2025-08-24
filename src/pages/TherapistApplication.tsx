@@ -92,8 +92,10 @@ const TherapistApplication = () => {
 
       toast.success('Felicitări! Contul de terapeut a fost creat cu succes!');
       
-      // 4. Redirectionez direct la dashboard terapeut
-      navigate('/therapist-dashboard');
+      // 4. Aștept puțin pentru ca profilul să se reflecte în DB și apoi redirectionez
+      setTimeout(() => {
+        navigate('/therapist-dashboard');
+      }, 1000);
 
     } catch (error) {
       console.error('Error creating therapist account:', error);
