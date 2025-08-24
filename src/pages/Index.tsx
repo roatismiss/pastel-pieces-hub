@@ -227,14 +227,11 @@ const Index = () => {
 
       {/* Hero Section - Beautiful Pastel 2D Background */}
       <section className="relative min-h-screen overflow-hidden">
-        {/* Beautiful Pastel 2D Background */}
+        {/* Beautiful Pastel Gradient Background */}
         <div className="absolute inset-0">
-          {/* Main background image */}
-          <img 
-            src="/hero-pastel-4k-background.jpg"
-            alt="Ultra high quality 4K pastel colorful abstract background"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          {/* Ultra high quality gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-200 via-purple-100 to-cyan-100"></div>
+          <div className="absolute inset-0 bg-gradient-to-tl from-orange-100 via-transparent to-green-100 opacity-70"></div>
           
           {/* Overlay for better text readability */}
           <div className="absolute inset-0 bg-white/10"></div>
