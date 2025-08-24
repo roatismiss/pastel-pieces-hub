@@ -177,7 +177,60 @@ const Index = () => {
         <div className="container mx-auto px-3 sm:px-4 py-2 md:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
-              <div className="relative group">
+              <div className="relative group flex items-center gap-3">
+                {/* Medical Logo SVG */}
+                <div className="relative">
+                  <svg 
+                    width="40" 
+                    height="40" 
+                    viewBox="0 0 100 100" 
+                    className="drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
+                  >
+                    {/* Background gradient */}
+                    <defs>
+                      <linearGradient id="crossGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--healio-turquoise))" />
+                        <stop offset="100%" stopColor="hsl(var(--healio-mint))" />
+                      </linearGradient>
+                      <linearGradient id="crossGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--healio-orange))" />
+                        <stop offset="100%" stopColor="hsl(var(--primary))" />
+                      </linearGradient>
+                      <linearGradient id="pulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="hsl(var(--healio-turquoise))" />
+                        <stop offset="50%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--healio-mint))" />
+                      </linearGradient>
+                    </defs>
+                    
+                    {/* Left Medical Cross - Blue/Turquoise */}
+                    <g transform="translate(15, 25)">
+                      <rect x="10" y="0" width="8" height="30" rx="4" fill="url(#crossGradient1)" className="animate-pulse" />
+                      <rect x="0" y="10" width="28" height="8" rx="4" fill="url(#crossGradient1)" className="animate-pulse" />
+                    </g>
+                    
+                    {/* Right Medical Cross - Orange/Purple */}
+                    <g transform="translate(57, 25)">
+                      <rect x="10" y="0" width="8" height="30" rx="4" fill="url(#crossGradient2)" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
+                      <rect x="0" y="10" width="28" height="8" rx="4" fill="url(#crossGradient2)" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
+                    </g>
+                    
+                    {/* Heartbeat/Pulse Line */}
+                    <g>
+                      <path 
+                        d="M5 50 L25 50 L30 35 L35 65 L40 20 L45 80 L50 50 L55 45 L60 55 L65 50 L95 50" 
+                        stroke="url(#pulseGradient)" 
+                        strokeWidth="3" 
+                        fill="none" 
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="animate-pulse"
+                        style={{ animationDelay: '0.2s' }}
+                      />
+                    </g>
+                  </svg>
+                </div>
+                
                 <h1 className="text-xl sm:text-2xl md:text-4xl font-orbitron font-black animated-gradient-text animate-logo-bounce hover:animate-logo-glow cursor-pointer transition-all duration-1000 drop-shadow-2xl">
                   <span className="inline-block animate-letter-dance" style={{ animationDelay: '0s' }}>H</span>
                   <span className="inline-block animate-letter-dance" style={{ animationDelay: '1s' }}>e</span>
