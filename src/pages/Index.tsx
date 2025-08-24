@@ -288,9 +288,18 @@ const Index = () => {
                 <Star className="h-5 w-5 text-healio-orange flex-shrink-0" />
                 <span className="text-slate-700 font-medium">Terapeuți verificați</span>
               </div>
-            </div>
+             </div>
 
-            {/* CTA Buttons */}
+             {/* Therapy Illustration */}
+             <div className="mb-10 flex justify-center">
+               <img 
+                 src="/lovable-uploads/f3b7f652-a582-4647-b4b7-844e13bcdc5d.png"
+                 alt="Therapy session illustration showing therapist and patient in conversation"
+                 className="w-80 md:w-96 h-auto"
+               />
+             </div>
+
+             {/* CTA Buttons */}
             <div className="flex flex-col md:flex-row gap-4 justify-center max-w-lg mx-auto mb-8">
               <Button 
                 size="lg" 
