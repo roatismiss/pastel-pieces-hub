@@ -352,7 +352,7 @@ const Index = () => {
               <span className="hidden sm:inline">Specializare</span>
               <span className="sm:hidden">Filtru</span>
             </Button>
-            <Badge variant="secondary" className="bg-healio-turquoise text-xs px-2 py-1">Anxietate</Badge>
+            <Badge variant="secondary" className="bg-orange-100 text-orange-800 text-xs px-2 py-1">Anxietate</Badge>
             <Badge variant="secondary" className="bg-healio-orange text-xs px-2 py-1">Depresie</Badge>
             <Badge variant="secondary" className="bg-healio-orange text-xs px-2 py-1">Stres</Badge>
             <Badge variant="secondary" className="bg-healio-orange text-xs px-2 py-1">Relații</Badge>
