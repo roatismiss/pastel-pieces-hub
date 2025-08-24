@@ -51,12 +51,7 @@ const TherapistApplicationsManager = () => {
     try {
       let query = supabase
         .from('therapist_applications')
-        .select(`
-          *,
-          profiles!left (
-            full_name
-          )
-        `)
+        .select('*')
         .order('applied_at', { ascending: false });
 
       if (filter !== 'all') {
@@ -64,13 +59,9 @@ const TherapistApplicationsManager = () => {
       }
 
       const { data, error } = await query;
-      if (error) {
-        console.error('Query error:', error);
-        throw error;
-      }
+      if (error) throw error;
 
-      console.log('Applications fetched:', data);
-      setApplications(data as TherapistApplication[] || []);
+      setApplications((data as TherapistApplication[]) || []);
     } catch (error) {
       console.error('Error fetching applications:', error);
       toast.error('Eroare la încărcarea aplicațiilor');
