@@ -59,10 +59,11 @@ const TherapistDashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
-      fetchTherapistProfile();
-    }
-  }, [user]);
+    // Mock therapist ID for testing
+    setTherapistId('mock-therapist-id');
+    fetchStats('mock-therapist-id');
+    setLoading(false);
+  }, []);
 
   const fetchTherapistProfile = async () => {
     try {
@@ -100,76 +101,17 @@ const TherapistDashboard = () => {
 
   const fetchStats = async (therapistId: string) => {
     try {
-      // Fetch posts count and views with explicit typing
-      const postsResponse: any = await supabase
-        .from('therapist_posts')
-        .select('view_count')
-        .eq('therapist_id', therapistId);
-
-      // Fetch events count
-      const eventsResponse: any = await supabase
-        .from('therapist_events')
-        .select('*', { count: 'exact', head: true })
-        .eq('therapist_id', therapistId);
-
-      // Fetch followers count
-      const followersResponse: any = await supabase
-        .from('therapist_followers')
-        .select('*', { count: 'exact', head: true })
-        .eq('therapist_id', therapistId);
-
-      // Fetch profile views count
-      const profileViewsResponse: any = await supabase
-        .from('therapist_profile_views')
-        .select('*', { count: 'exact', head: true })
-        .eq('therapist_id', therapistId);
-
-      // Fetch earnings
-      const earningsResponse: any = await supabase
-        .from('therapist_earnings')
-        .select('amount, created_at')
-        .eq('therapist_id', therapistId)
-        .eq('transaction_type', 'earning')
-        .eq('status', 'completed');
-
-      // Fetch appointments
-      const totalAppointmentsResponse: any = await supabase
-        .from('therapist_appointments')
-        .select('*', { count: 'exact', head: true })
-        .eq('therapist_id', therapistId);
-
-      const upcomingAppointmentsResponse: any = await supabase
-        .from('therapist_appointments')
-        .select('*', { count: 'exact', head: true })
-        .eq('therapist_id', therapistId)
-        .gte('appointment_date', new Date().toISOString());
-
-      // Calculate stats
-      const posts = postsResponse.data || [];
-      const earnings = earningsResponse.data || [];
-      
-      const totalPosts = posts.length;
-      const totalPostViews = posts.reduce((sum: number, post: any) => sum + (post.view_count || 0), 0);
-      const totalEarnings = earnings.reduce((sum: number, earning: any) => sum + parseFloat(earning.amount.toString()), 0);
-      
-      const thisMonthStart = new Date();
-      thisMonthStart.setDate(1);
-      thisMonthStart.setHours(0, 0, 0, 0);
-      
-      const thisMonthEarnings = earnings
-        .filter((earning: any) => new Date(earning.created_at) >= thisMonthStart)
-        .reduce((sum: number, earning: any) => sum + parseFloat(earning.amount.toString()), 0);
-
+      // Mock stats pentru testing
       setStats({
-        totalPosts,
-        totalPostViews,
-        totalEvents: eventsResponse.count || 0,
-        totalFollowers: followersResponse.count || 0,
-        profileViews: profileViewsResponse.count || 0,
-        totalEarnings,
-        thisMonthEarnings,
-        totalAppointments: totalAppointmentsResponse.count || 0,
-        upcomingAppointments: upcomingAppointmentsResponse.count || 0,
+        totalPosts: 12,
+        totalPostViews: 3456,
+        totalEvents: 8,
+        totalFollowers: 234,
+        profileViews: 1567,
+        totalEarnings: 4350.50,
+        thisMonthEarnings: 650.25,
+        totalAppointments: 89,
+        upcomingAppointments: 7,
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
