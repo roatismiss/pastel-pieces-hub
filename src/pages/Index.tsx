@@ -728,8 +728,8 @@ const Index = () => {
             <div className="relative rounded-lg overflow-hidden" style={{ backgroundColor: '#F4E4D1' }}>
               <div className="p-6 flex flex-col items-center justify-center h-full">
                 <img 
-                  src="/lovable-uploads/2dba6fd7-ee5c-4ff2-8b80-6e85644344ba.png" 
-                  alt="Confused person with questions"
+                  src="/lovable-uploads/6ed05d7b-90e4-4456-8436-214acc0c14a3.png" 
+                  alt="Person meditating peacefully"
                   className="w-full h-full object-contain"
                 />
               </div>
