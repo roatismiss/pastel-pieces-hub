@@ -11,7 +11,6 @@ import { CommunityCard } from '@/components/CommunityCard';
 import { FloatingNodes } from '@/components/FloatingNodes';
 import ConnectedParticles from '@/components/ConnectedParticles';
 import CloudNodes from '@/components/CloudNodes';
-import PastelCloudBackground from '@/components/PastelCloudBackground';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Users, BookOpen, Calendar, Heart, Plus, Shield, Clock, Star, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Edit, Save, X } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -223,7 +222,12 @@ const Index = () => {
       <section className="relative hero-background">
         {/* Mobile full-screen hero */}
         <div className="md:hidden min-h-screen flex items-center justify-center relative overflow-hidden">
-          <PastelCloudBackground />
+          <FloatingNodes />
+          <img 
+            src={heroImage} 
+            alt="Healio - Echilibru interior"
+            className="absolute inset-0 w-full h-full object-cover opacity-3"
+          />
           <div className="relative z-10 text-center p-4 w-full">
             <div className="mb-4 sm:mb-6">
               <Badge className="hero-badge neuro-outset text-white mb-3 text-xs px-3 py-1 hero-animate-headline">
@@ -286,7 +290,12 @@ const Index = () => {
           <div className="container mx-auto max-w-6xl">
             <PuzzleGrid className="gap-3 sm:gap-4 md:gap-6">
               <PuzzleCard size="2x2" className="hero-neuro-glass texture-paper flex items-center justify-center relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-                <PastelCloudBackground />
+                <FloatingNodes />
+                <img 
+                  src={heroImage} 
+                  alt="Healio - Echilibru interior"
+                  className="absolute inset-0 w-full h-full object-cover opacity-3"
+                />
                 <div className="relative z-10 text-center p-4 sm:p-6 md:p-10">
                 <div className="mb-4 sm:mb-6 md:mb-8">
                   <Badge className="hero-badge neuro-outset text-white mb-3 sm:mb-4 text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 hero-animate-headline">
