@@ -53,7 +53,7 @@ const TherapistApplicationsManager = () => {
         .from('therapist_applications')
         .select(`
           *,
-          profiles!therapist_applications_user_id_fkey (
+          profiles!left (
             full_name
           )
         `)
@@ -64,8 +64,12 @@ const TherapistApplicationsManager = () => {
       }
 
       const { data, error } = await query;
-      if (error) throw error;
+      if (error) {
+        console.error('Query error:', error);
+        throw error;
+      }
 
+      console.log('Applications fetched:', data);
       setApplications(data as TherapistApplication[] || []);
     } catch (error) {
       console.error('Error fetching applications:', error);
