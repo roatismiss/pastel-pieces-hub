@@ -163,7 +163,7 @@ const CloudNodes: React.FC = () => {
       {/* Floating text overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
         <img 
-          src="/lovable-uploads/04188e45-459c-4460-9ceb-204a5bd38ec3.png"
+          src="/lovable-uploads/0f800fd3-d5bc-4775-8c5c-5f7b5f983b29.png"
           alt="Community support - people connecting and helping each other"
           className="w-full h-full object-cover animate-fade-in"
         />
