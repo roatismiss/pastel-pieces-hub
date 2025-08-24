@@ -699,7 +699,7 @@ const Index = () => {
               </div>
             </div>
 
-            <PuzzleCard size="1x1" variant="mint">
+            <PuzzleCard size="1x1" variant="turquoise">
               <div className="p-4 text-center">
                 <div className="mb-2 flex justify-center">
                   <img 
