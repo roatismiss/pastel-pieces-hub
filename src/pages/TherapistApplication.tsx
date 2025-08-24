@@ -146,18 +146,47 @@ const TherapistApplication = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-4">
-            Înregistrează-te ca Terapeut
+            Alătură-te Comunității Healio
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Creează-ți contul nou și profilul de terapeut pe Healio
+          <p className="text-xl text-muted-foreground mb-4">
+            Începe-ți cariera digitală ca terapeut și ajută mii de oameni să își găsească echilibrul
           </p>
+          <div className="bg-primary/5 p-6 rounded-lg text-left max-w-2xl mx-auto">
+            <h3 className="font-semibold text-lg mb-3 text-primary">De ce să alegi Healio?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+              <div className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>Câștiguri atractive și transparente</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>Flexibilitate în program</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>Acces la tehnologie avansată</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>Suport pentru dezvoltare profesională</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>Comunitate de terapeuți verificați</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>Instrumente pentru gestionarea practicii</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Informații de Cont și Profesionale</CardTitle>
+            <CardTitle>Începe Transformarea Digitală</CardTitle>
             <CardDescription>
-              Creează-ți contul și profilul de terapeut într-un singur pas
+              Completează formularul de mai jos pentru a-ți crea contul și a te alătura rețelei de terapeuți Healio. Procesul durează doar câteva minute.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -355,7 +384,7 @@ const TherapistApplication = () => {
                   className="flex-1"
                 >
                   {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                  Creează Cont și Profil Terapeut
+                  {isSubmitting ? 'Se creează contul...' : 'Alătură-te Healio - Începe Azi!'}
                 </Button>
               </div>
             </form>
