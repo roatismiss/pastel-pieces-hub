@@ -701,7 +701,13 @@ const Index = () => {
 
             <PuzzleCard size="1x1" variant="mint">
               <div className="p-4 text-center">
-                <div className="text-2xl mb-2">🧘‍♀️</div>
+                <div className="mb-2 flex justify-center">
+                  <img 
+                    src="/lovable-uploads/f3b7f652-a582-4647-b4b7-844e13bcdc5d.png"
+                    alt="Therapy session illustration"
+                    className="w-12 h-12 object-contain"
+                  />
+                </div>
                 <h4 className="font-medium mb-2">Micro-curs Mindfulness</h4>
                 <p className="text-xs text-healio-mint-foreground/70">5 min/zi</p>
               </div>
