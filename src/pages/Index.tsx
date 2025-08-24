@@ -622,7 +622,7 @@ const Index = () => {
                     index === 1 ? '1x1' : 
                     index === 2 ? '2x1' : '1x2'
                   }
-                  className="bg-gradient-to-br from-cyan-200 to-teal-300 rounded-[20px] border-0 shadow-[8px_8px_16px_rgba(103,232,249,0.3),-8px_-8px_16px_rgba(255,255,255,0.8)]"
+                  className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-[20px] border-0 shadow-[8px_8px_16px_rgba(254,215,170,0.3),-8px_-8px_16px_rgba(255,255,255,0.8)]"
                 >
                 <div className="p-4 md:p-6 h-full">
                   <div className="flex items-start gap-3 mb-3">
