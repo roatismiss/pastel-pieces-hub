@@ -18,6 +18,7 @@ import Community from "./pages/Community";
 import Therapists from "./pages/Therapists";
 import Education from "./pages/Education";
 import Events from "./pages/Events";
+import Feed from "./pages/Feed";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/education" element={<Education />} />
               <Route path="/events" element={<Events />} />
               <Route path="/community" element={<Community />} />
+              <Route path="/feed" element={<Feed />} />
               <Route path="/therapist-feed" element={<TherapistFeedPage />} />
               <Route 
                 path="/dashboard" 
@@ -66,6 +68,7 @@ const App = () => {
                 } 
               />
               <Route path="/therapist/:id" element={<TherapistProfile />} />
+              <Route path="/therapist-profile/:id" element={<TherapistProfile />} />
               <Route 
                 path="/therapist-dashboard" 
                 element={<TherapistDashboard />} 

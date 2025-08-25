@@ -59,15 +59,19 @@ function AppSidebar() {
   const isActive = (path: string) => location.pathname === path;
 
   const menuItems = [
-    // Main navigation - doar pentru clienți non-terapeuți
+    // Main navigation - pentru toți utilizatorii
+    { path: '/therapists', icon: Users, label: 'Terapeuți', group: 'main' },
+    { path: '/feed', icon: BookOpen, label: 'Feed Complet', group: 'main' },
+    { path: '/education', icon: BookOpen, label: 'Educație', group: 'main' },
+    { path: '/events', icon: Calendar, label: 'Evenimente', group: 'main' },
+    { path: '/community', icon: MessageSquare, label: 'Comunitate', group: 'main' },
+    // Client navigation - doar pentru clienți non-terapeuți
     ...(!isTherapist ? [
       { path: '/dashboard', icon: Home, label: 'Dashboard', group: 'main' },
     ] : []),
-    { path: '/community', icon: MessageSquare, label: 'Comunitate', group: 'main' },
     // Therapist navigation - doar pentru terapeuți
     ...(isTherapist ? [
       { path: '/therapist-dashboard', icon: Home, label: 'Dashboard', group: 'therapist' },
-      { path: '/therapist-profile', icon: User, label: 'Profil Terapeut', group: 'therapist' },
     ] : [])
   ];
 
