@@ -93,14 +93,16 @@ const CommunityFeed = () => {
         .from('community_posts')
         .select(`
           *,
-          profiles!community_posts_user_id_fkey (
+          profiles (
             full_name
           )
         `)
         .eq('is_active', true);
 
-      if (filter !== 'all' && filter !== 'post') {
+      if (filter === 'question' || filter === 'mood') {
         communityQuery = communityQuery.eq('type', filter);
+      } else if (filter === 'post') {
+        communityQuery = communityQuery.eq('type', 'post');
       }
 
       // Fetch therapist posts
@@ -112,7 +114,8 @@ const CommunityFeed = () => {
           content,
           tags,
           created_at,
-          therapists!therapist_posts_therapist_id_fkey (
+          therapist_id,
+          therapists (
             name,
             specialization,
             is_verified,

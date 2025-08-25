@@ -163,7 +163,12 @@ const Feed = () => {
     if (item.type === 'therapist') {
       navigate(`/therapist/${item.id}`);
     } else if (item.type === 'post' || item.type === 'event') {
-      navigate(`/therapist/${item.therapist_id}`);
+      // Make sure we have a valid therapist_id before navigating
+      if (item.therapist_id) {
+        navigate(`/therapist/${item.therapist_id}`);
+      } else {
+        toast.error('Nu s-a putut accesa profilul terapeutului');
+      }
     }
   };
 
