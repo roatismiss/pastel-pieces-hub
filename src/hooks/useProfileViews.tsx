@@ -9,7 +9,7 @@ export const useProfileViews = (therapistId: string) => {
     if (!therapistId) return;
 
     try {
-      // Insert view record
+      // Always insert view record - track every view even from same user
       await supabase
         .from('therapist_profile_views')
         .insert({
@@ -23,8 +23,11 @@ export const useProfileViews = (therapistId: string) => {
   };
 
   useEffect(() => {
-    trackView();
-  }, [therapistId, user]);
+    // Track view when component mounts (when profile is visited)
+    if (therapistId) {
+      trackView();
+    }
+  }, [therapistId]); // Only track when therapistId changes, not when user changes
 
   return { trackView };
 };

@@ -88,15 +88,10 @@ const CommunityFeed = () => {
 
   const fetchPosts = async () => {
     try {
-      // Fetch community posts
+      // Fetch community posts - without the profiles join since relationship might not exist
       let communityQuery = supabase
         .from('community_posts')
-        .select(`
-          *,
-          profiles (
-            full_name
-          )
-        `)
+        .select('*')
         .eq('is_active', true);
 
       if (filter === 'question' || filter === 'mood') {
@@ -132,8 +127,24 @@ const CommunityFeed = () => {
       if (communityResponse.error) throw communityResponse.error;
       if (therapistResponse.error) throw therapistResponse.error;
 
+      // Get user profiles separately for community posts
+      const userIds = [...new Set((communityResponse.data || []).map(post => post.user_id))];
+      let profilesMap = new Map();
+      
+      if (userIds.length > 0) {
+        const { data: profilesData } = await supabase
+          .from('profiles')
+          .select('user_id, full_name')
+          .in('user_id', userIds);
+        
+        profilesData?.forEach(profile => {
+          profilesMap.set(profile.user_id, profile);
+        });
+      }
+
       const communityPosts = (communityResponse.data || []).map(post => ({
         ...post,
+        profiles: profilesMap.get(post.user_id) || { full_name: 'Utilizator anonim' },
         source: 'community' as const
       }));
 

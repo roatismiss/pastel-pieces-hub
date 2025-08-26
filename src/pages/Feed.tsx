@@ -31,6 +31,23 @@ interface TherapistPost {
   };
 }
 
+interface CommunityPost {
+  id: string;
+  title?: string;
+  content: string;
+  post_type: string; // Renamed from 'type' to avoid conflicts
+  mood?: string;
+  tags: string[];
+  like_count: number;
+  comment_count: number;
+  created_at: string;
+  user_id: string;
+  is_anonymous: boolean;
+  profiles?: {
+    full_name: string;
+  };
+}
+
 interface TherapistEvent {
   id: string;
   title: string;
@@ -67,9 +84,10 @@ interface Therapist {
 }
 
 type FeedItem = 
-  | (TherapistPost & { type: 'post' })
-  | (TherapistEvent & { type: 'event' })
-  | (Therapist & { type: 'therapist' });
+  | (TherapistPost & { type: 'post'; source: 'therapist' })
+  | (CommunityPost & { type: 'post'; source: 'community' })
+  | (TherapistEvent & { type: 'event'; source: 'therapist' })
+  | (Therapist & { type: 'therapist'; source: 'therapist' });
 
 const Feed = () => {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
@@ -87,9 +105,10 @@ const Feed = () => {
     try {
       const items: FeedItem[] = [];
 
-      // Fetch posts if needed
+      // Fetch posts if needed (both therapist posts and community posts)
       if (filter === 'all' || filter === 'posts') {
-        const { data: posts } = await supabase
+        // Fetch therapist posts
+        const { data: therapistPosts } = await supabase
           .from('therapist_posts')
           .select(`
             *,
@@ -104,8 +123,40 @@ const Feed = () => {
           .eq('is_published', true)
           .order('created_at', { ascending: false });
 
-        if (posts) {
-          items.push(...posts.map(post => ({ ...post, type: 'post' as const })));
+        // Fetch community posts
+        const { data: communityPosts } = await supabase
+          .from('community_posts')
+          .select('*')
+          .eq('is_active', true)
+          .order('created_at', { ascending: false });
+
+        // Get user profiles for community posts
+        const userIds = [...new Set((communityPosts || []).map(post => post.user_id))];
+        let profilesMap = new Map();
+        
+        if (userIds.length > 0) {
+          const { data: profilesData } = await supabase
+            .from('profiles')
+            .select('user_id, full_name')
+            .in('user_id', userIds);
+          
+          profilesData?.forEach(profile => {
+            profilesMap.set(profile.user_id, profile);
+          });
+        }
+
+        if (therapistPosts) {
+          items.push(...therapistPosts.map(post => ({ ...post, type: 'post' as const, source: 'therapist' as const })));
+        }
+
+        if (communityPosts) {
+          items.push(...communityPosts.map(post => ({ 
+            ...post, 
+            post_type: post.type, // Preserve original community post type
+            type: 'post' as const, 
+            source: 'community' as const,
+            profiles: profilesMap.get(post.user_id) || { full_name: 'Utilizator anonim' }
+          })));
         }
       }
 
@@ -127,7 +178,7 @@ const Feed = () => {
           .order('created_at', { ascending: false });
 
         if (events) {
-          items.push(...events.map(event => ({ ...event, type: 'event' as const })));
+          items.push(...events.map(event => ({ ...event, type: 'event' as const, source: 'therapist' as const })));
         }
       }
 
@@ -139,7 +190,7 @@ const Feed = () => {
           .order('created_at', { ascending: false });
 
         if (therapists) {
-          items.push(...therapists.map(therapist => ({ ...therapist, type: 'therapist' as const })));
+          items.push(...therapists.map(therapist => ({ ...therapist, type: 'therapist' as const, source: 'therapist' as const })));
         }
       }
 
@@ -162,9 +213,15 @@ const Feed = () => {
   const handleItemClick = (item: FeedItem) => {
     if (item.type === 'therapist') {
       navigate(`/therapist/${item.id}`);
-    } else if (item.type === 'post' || item.type === 'event') {
-      // Make sure we have a valid therapist_id before navigating
-      if (item.therapist_id) {
+    } else if (item.type === 'post') {
+      if (item.source === 'therapist' && 'therapist_id' in item) {
+        navigate(`/therapist/${item.therapist_id}`);
+      } else if (item.source === 'community') {
+        // For community posts, we could navigate to the community page or show post details
+        navigate('/community');
+      }
+    } else if (item.type === 'event') {
+      if ('therapist_id' in item && item.therapist_id) {
         navigate(`/therapist/${item.therapist_id}`);
       } else {
         toast.error('Nu s-a putut accesa profilul terapeutului');
@@ -247,21 +304,51 @@ const Feed = () => {
                           <p className="text-sm text-muted-foreground">{item.specialization}</p>
                         </div>
                       </>
-                    ) : (
-                      <>
-                        <Avatar className="h-10 w-10">
-                          <AvatarImage src={item.therapists?.avatar_url} />
-                          <AvatarFallback>{item.therapists?.name.charAt(0) || 'T'}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <div className="flex items-center space-x-2">
-                            <CardTitle className="text-lg">{item.therapists?.name}</CardTitle>
-                            {item.therapists?.is_verified && <Verified className="h-4 w-4 text-primary" />}
-                          </div>
-                          <p className="text-sm text-muted-foreground">{item.therapists?.specialization}</p>
-                        </div>
-                      </>
-                    )}
+                     ) : (
+                       <>
+                         <Avatar className="h-10 w-10">
+                           {item.source === 'therapist' && 'therapists' in item ? (
+                             <>
+                               <AvatarImage src={item.therapists?.avatar_url} />
+                               <AvatarFallback>{item.therapists?.name.charAt(0) || 'T'}</AvatarFallback>
+                             </>
+                           ) : (
+                             <AvatarFallback>
+                               {item.source === 'community' && 'profiles' in item 
+                                 ? item.profiles?.full_name?.charAt(0) || 'U'
+                                 : 'U'
+                               }
+                             </AvatarFallback>
+                           )}
+                         </Avatar>
+                         <div>
+                           <div className="flex items-center space-x-2">
+                             <CardTitle className="text-lg">
+                               {item.source === 'therapist' && 'therapists' in item 
+                                 ? item.therapists?.name 
+                                 : item.source === 'community' && 'profiles' in item
+                                   ? (item.is_anonymous ? 'Utilizator anonim' : item.profiles?.full_name || 'Utilizator')
+                                   : 'Utilizator'
+                               }
+                             </CardTitle>
+                             {item.source === 'therapist' && 'therapists' in item && item.therapists?.is_verified && (
+                               <Verified className="h-4 w-4 text-primary" />
+                             )}
+                             <Badge variant="outline">
+                               {item.source === 'therapist' ? 'Terapeut' : 'Comunitate'}
+                             </Badge>
+                           </div>
+                             <p className="text-sm text-muted-foreground">
+                               {item.source === 'therapist' && 'therapists' in item 
+                                 ? item.therapists?.specialization 
+                                 : item.source === 'community' && 'post_type' in item
+                                   ? (item.post_type === 'question' ? 'Întrebare' : item.post_type === 'mood' ? 'Stare de spirit' : 'Postare')
+                                   : ''
+                               }
+                             </p>
+                         </div>
+                       </>
+                     )}
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-muted-foreground">{formatDate(item.created_at)}</p>
@@ -301,40 +388,82 @@ const Feed = () => {
                       </div>
                     </div>
                   </>
-                ) : item.type === 'post' ? (
-                  <>
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-2">
-                        <BookOpen className="h-4 w-4 text-primary" />
-                        <Badge {...getCategoryBadge(item.category)} />
-                        <Badge variant="outline">Articol</Badge>
-                      </div>
-                      
-                      <h3 className="text-xl font-semibold">{item.title}</h3>
-                      
-                      {item.excerpt && (
-                        <p className="text-muted-foreground line-clamp-3">{item.excerpt}</p>
-                      )}
-                      
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {item.tags.map((tag, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              #{tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      )}
-                      
-                      <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                        <div className="flex items-center space-x-1">
-                          <Eye className="h-4 w-4" />
-                          <span>{item.view_count || 0} vizualizări</span>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
+                 ) : item.type === 'post' ? (
+                   <>
+                     <div className="space-y-3">
+                       <div className="flex items-center space-x-2">
+                         <BookOpen className="h-4 w-4 text-primary" />
+                         {item.source === 'therapist' && 'category' in item && (
+                           <Badge {...getCategoryBadge(item.category)} />
+                         )}
+                           {item.source === 'community' && 'post_type' in item && (
+                             <Badge variant="secondary">
+                               {item.post_type === 'question' ? 'Întrebare' : 
+                                item.post_type === 'mood' ? 'Stare de spirit' : 'Postare'}
+                             </Badge>
+                           )}
+                         <Badge variant="outline">
+                           {item.source === 'therapist' ? 'Articol Terapeut' : 'Post Comunitate'}
+                         </Badge>
+                       </div>
+                       
+                       <h3 className="text-xl font-semibold">
+                         {'title' in item && item.title ? item.title : 'Post din comunitate'}
+                       </h3>
+                       
+                       {item.source === 'community' && 'mood' in item && item.mood && (
+                         <div className="flex items-center space-x-2">
+                           <span className="text-sm text-muted-foreground">Stare de spirit:</span>
+                           <Badge variant="outline">{item.mood === 'happy' ? '😊 Fericit' : 
+                            item.mood === 'sad' ? '😢 Trist' :
+                            item.mood === 'anxious' ? '😰 Anxios' :
+                            item.mood === 'excited' ? '🎉 Entuziasmat' :
+                            item.mood === 'stressed' ? '😓 Stresat' :
+                            item.mood === 'calm' ? '😌 Calm' :
+                            item.mood === 'angry' ? '😠 Supărat' :
+                            item.mood === 'grateful' ? '🙏 Recunoscător' : item.mood}</Badge>
+                         </div>
+                       )}
+                       
+                       {(('excerpt' in item && item.excerpt) || item.content) && (
+                         <p className="text-muted-foreground line-clamp-3">
+                           {'excerpt' in item && item.excerpt ? item.excerpt : item.content}
+                         </p>
+                       )}
+                       
+                       {item.tags && item.tags.length > 0 && (
+                         <div className="flex flex-wrap gap-1">
+                           {item.tags.map((tag, index) => (
+                             <Badge key={index} variant="secondary" className="text-xs">
+                               #{tag}
+                             </Badge>
+                           ))}
+                         </div>
+                       )}
+                       
+                       <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                         {item.source === 'therapist' && 'view_count' in item && (
+                           <div className="flex items-center space-x-1">
+                             <Eye className="h-4 w-4" />
+                             <span>{item.view_count || 0} vizualizări</span>
+                           </div>
+                         )}
+                         {item.source === 'community' && 'like_count' in item && (
+                           <div className="flex items-center space-x-1">
+                             <Heart className="h-4 w-4" />
+                             <span>{item.like_count || 0} aprecieri</span>
+                           </div>
+                         )}
+                         {item.source === 'community' && 'comment_count' in item && (
+                           <div className="flex items-center space-x-1">
+                             <MessageSquare className="h-4 w-4" />
+                             <span>{item.comment_count || 0} comentarii</span>
+                           </div>
+                         )}
+                       </div>
+                     </div>
+                   </>
+                 ) : (
                   <>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2">
