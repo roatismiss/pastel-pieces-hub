@@ -109,14 +109,14 @@ const EnhancedTherapistProfile = () => {
         .from('therapists')
         .select('*')
         .eq('id', id)
-        .single();
+        .maybeSingle();
 
       if (therapistError) {
-        if (therapistError.code === 'PGRST116') {
-          setError('Terapeutu nu a fost găsit');
-        } else {
-          throw therapistError;
-        }
+        throw therapistError;
+      }
+
+      if (!therapistData) {
+        setError('Terapeutu nu a fost găsit');
         return;
       }
 
